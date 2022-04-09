@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Book</title>
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<!-- library logo -->
+<header style="text-align: left;">
+    <a href="index.html">
+        <img src="images/library-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+    </a>
+    <span style="float: right;">
+            <nav class="navbar navbar-default" style="background:transparent;">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="books.html">Show all Books</a> </li>
+                        <li><a href="show-book.html">Find a Book</a></li>
+                        <li><a href="insert-book.html">Insert Book</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </span>
+</header><hr>
+<div class="container">
+    <div class="container">
+        <form onsubmit="bookDelete(); return false">
+            <p>Please select Confirm if you want to delete</p>
+            <input type="submit" class="btn btn-lg btn-outline-primary" value="Confirm">
+        </form>
+    </div>
+    <br><div class="jumbotron" style="background-color: #FFF7D6" id="message">
+    </div>
+</div>
+<script>
+    var parameter = new URLSearchParams(window.location.search);
+    var bookID = parameter.get("bookID");
+
+    const bookDelete = () => {
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("message").innerHTML ="Book Deleted!";
+
+            } else if (this.readyState == 4 && this.status != 200) {
+                document.getElementById("message").innerHTML = "Book not found! Please go back to the main page.";
+            }
+        };
+        xhttp.open('DELETE', url + bookID, true);
+        xhttp.send(bookID);
+    }
+
+    function load() {
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('GET', url + bookID, true);
+        xhttp.send();
+    }
+
+    window.onload = load();
+</script>
+
+</body>
+</html>

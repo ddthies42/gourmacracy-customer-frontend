@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find a Book</title>
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <style>
+        table, th, td {
+            border: solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- library logo -->
+<header style="text-align: left;">
+    <a href="index.html">
+        <img src="images/library-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+    </a>
+    <span style="float: right;">
+            <nav class="navbar navbar-default" style="background:transparent;">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="books.html">Show all Books</a> </li>
+                        <li><a href="show-book.html">Find a Book</a></li>
+                        <li><a href="insert-book.html">Insert Book</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </span>
+</header><hr>
+<div class="container">
+    <form onsubmit="bookRequest(); return false">
+        <h2>Please enter the book ID</h2>
+        <div class="mb-3 form-group">
+            <label>Book ID:</label>
+            <input type="text" name="_id" id="_id" class="form-control" required><br>
+            <input type="submit" class="btn btn-lg btn-outline-primary" value="Find Book">
+        </div>
+    </form>
+    <div class="jumbotron" style="background-color: #FFF7D6" id="output2">
+        <table style="text-align: center;">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Year</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Hard Cover?</th>
+            </tr>
+            <tr>
+                <td id="title"></td>
+                <td id="description"></td>
+                <td id="year"></td>
+                <td id="author"></td>
+                <td id="price"></td>
+                <td id="hardCover"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    const bookRequest = () => {
+        let _id = document.getElementById("_id").value;
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            var resp;
+            resp = JSON.parse(xhttp.responseText);
+
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("title").innerHTML = resp["title"];
+                document.getElementById("description").innerHTML = resp["description"];
+                document.getElementById("year").innerHTML = resp["year"];
+                document.getElementById("author").innerHTML = resp["author"];
+                document.getElementById("price").innerHTML = resp["price"];
+                document.getElementById("hardCover").innerHTML = resp["hardCover"];
+
+            } else if (this.readyState == 4 && this.status != 200) {
+                document.getElementById("output2").innerHTML = "Book not found! Please re-enter the Book ID.";
+            }
+        };
+        xhttp.open('GET', url + _id, true);
+        xhttp.send(_id);}
+
+</script>
+</body>
+</html>

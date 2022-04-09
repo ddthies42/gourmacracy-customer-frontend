@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Book</title>
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<!-- library logo -->
+<header style="text-align: left;">
+    <a href="index.html">
+        <img src="images/library-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+    </a>
+    <span style="float: right;">
+            <nav class="navbar navbar-default" style="background:transparent;">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="books.html">Show all Books</a> </li>
+                        <li><a href="show-book.html">Find a Book</a></li>
+                        <li><a href="insert-book.html">Insert Book</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </span>
+</header><hr>
+<div class="container">
+    <div class="container">
+        <form onsubmit="bookModify(); return false">
+            <h2>Please insert the book information</h2>
+            <div class="mb-3 form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="form-control"
+                       placeholder="Title">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description" class="form-control"
+                       placeholder="Description">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="year">Year</label>
+                <input type="number" name="year" min="1100" max="2021" id="year" step="1" class="form-control"
+                       placeholder="Year">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" class="form-control"
+                       placeholder="Author">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="price">Price</label>
+                <input type="number" name="price" min="0.00" step="0.01" id="price" class="form-control"
+                       placeholder="Price">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="hardCover">Hard Cover?</label><br>
+                <span>Yes <input id="hardCover" name="hardCover" type="radio"></span>
+                <span>No <input name="hardCover" type="radio" checked="checked"></span>
+            </div>
+            <input type="submit" class="btn btn-lg btn-outline-primary" id="btnModifyBook" value="Update Book"><br>
+        </form>
+    </div>
+    <br><div class="jumbotron" style="background-color: #FFF7D6" id="message">
+
+    </div>
+</div>
+<script>
+    var parameter = new URLSearchParams(window.location.search);
+    var bookID = parameter.get("bookID");
+
+    function bookModify() {
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("message").innerHTML =
+                    "Book Updated!";
+            }
+        }
+        let bookData = "title=" + document.getElementById("title").value + "&" +
+            "description=" + document.getElementById("description").value  + "&" +
+            "year="  + document.getElementById("year").value  + "&" +
+            "author="  + document.getElementById("author").value  + "&" +
+            "price="  + document.getElementById("price").value  + "&" +
+            "hardCover="  + document.getElementById("hardCover").checked  + "&";
+
+        xhttp.open('PATCH', url + bookID, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(bookData);
+    }
+
+    function load() {
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                bookData(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url + bookID, true);
+        xhttp.send();
+    }
+
+    function bookData(book) {
+        document.getElementById("title").value = book["title"];
+        document.getElementById("description").value = book["description"];
+        document.getElementById("year").value = book["year"];
+        document.getElementById("author").value = book["author"];
+        document.getElementById("price").value = book["price"];
+        document.getElementById("hardCover").checked = book["hardCover"];
+    }
+
+    window.onload = load();
+</script>
+
+</body>
+</html>

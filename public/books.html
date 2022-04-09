@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show All the Book</title>
+    <meta name="author" content="Thy Tran">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="update-book.html"></script>
+    <script src="delete-book.html"></script>
+</head>
+<body>
+<!-- library logo -->
+<header style="text-align: left;">
+    <a href="index.html">
+        <img src="images/library-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+    </a>
+    <span style="float: right;">
+            <nav class="navbar navbar-default" style="background:transparent;">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li><a href="books.html">Show all Books</a> </li>
+                        <li><a href="show-book.html">Find a Book</a></li>
+                        <li><a href="insert-book.html">Insert Book</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </span>
+</header><hr>
+    <div class="container">
+        <div class="jumbotron" style="background-color: #FFF7D6" id="output"></div>
+    </div>
+<script>
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">ID</th> \n'+
+            '           <th scope="col">Title</th> \n'+
+            '           <th scope="col">Description</th> \n'+
+            '           <th scope="col">Year</th> \n'+
+            '           <th scope="col">Author</th> \n'+
+            '           <th scope="col">Price</th> \n'+
+            '           <th scope="col">Hard Cover</th> \n'+
+            '           <th scope="col">Actions</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
+
+        for (let book in data){
+            table +=
+                '       <tr>\n' +
+                '           <td>' + data[book]["_id"] +  '</td>\n' +
+                '           <td>' + data[book]["title"]+  '</td>\n' +
+                '           <td>' + data[book]["description"]+  '</td>\n' +
+                '           <td>' + data[book]["year"]+  '</td>\n' +
+                '           <td>' + data[book]["author"]+  '</td>\n' +
+                '           <td>' + data[book]["price"]+  '</td>\n' +
+                '           <td>' + data[book]["hardCover"]+  '</td>\n' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
+                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateBook(\'' +
+                data[book]["_id"] +
+                '\')\">Update</button> </td>\n' +
+                '       </tr>\n';
+        }
+
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+    window.addEventListener('load', (event) =>{
+        let url = "https://tran-netcentric-final.herokuapp.com/api/books/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    CreateTable(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+    function deleteBook(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("bookID", id);
+        location.href = "delete-book.html?" + parameter.toString();
+    }
+
+    function updateBook(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("bookID", id);
+        location.href = "update-book.html?" + parameter.toString();
+    }
+
+</script>
+</body>
+</html>
