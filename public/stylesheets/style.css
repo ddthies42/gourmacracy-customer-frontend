@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.nav.navbar-nav li a {
+  color: #AB8900;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: 'Dosis';
+}
+
+.nav.navbar-nav {
+  border: transparent;
+}
+
+hr {
+  border: 1px solid #AB8900;
+}
+
+h1, h2 {
+  font-family: 'Dosis';
+}
