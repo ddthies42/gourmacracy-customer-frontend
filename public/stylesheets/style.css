@@ -4,11 +4,11 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #4596D8;
 }
 
 .nav.navbar-nav li a {
-  color: #AB8900;
+  color: #4596D8;
   font-size: 30px;
   font-weight: bold;
   font-family: 'Dosis';
@@ -19,7 +19,7 @@ a {
 }
 
 hr {
-  border: 1px solid #AB8900;
+  border: 1px solid #4596D8;
 }
 
 h1, h2 {
