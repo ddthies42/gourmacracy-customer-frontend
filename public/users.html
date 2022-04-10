@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Show All the Book</title>
+    <title>Show All the Users</title>
     <meta name="author" content="Thy Tran">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,13 +45,12 @@
             '           <th scope="col">Name</th> \n'+
             '           <th scope="col">Email</th> \n'+
             '           <th scope="col">Password</th> \n'+
-            '           <th scope="col">Author</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
             '   <tbody>\n';
 
-        for (let book in data){
+        for (let user in data){
             table +=
                 '       <tr>\n' +
                 '           <td>' + data[user]["_id"] +  '</td>\n' +
@@ -83,13 +82,13 @@
         xhttp.send();
     });
 
-    function deleteBook(id) {
+    function deleteUser(id) {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "delete-user.html?" + parameter.toString();
     }
 
-    function updateBook(id) {
+    function updateUser(id) {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "update-user.html?" + parameter.toString();
