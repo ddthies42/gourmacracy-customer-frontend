@@ -10,8 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
-    <script src="update-book.html"></script>
-    <script src="delete-book.html"></script>
+    <script src="update-user.html"></script>
+    <script src="delete-user.html"></script>
 </head>
 <body>
 <!-- library logo -->
@@ -23,9 +23,9 @@
             <nav class="navbar navbar-default" style="background:transparent;">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
-                        <li><a href="books.html">Show all Books</a> </li>
-                        <li><a href="show-book.html">Find a Book</a></li>
-                        <li><a href="insert-book.html">Insert Book</a></li>
+                        <li><a href="users.html">Show all Users</a> </li>
+                        <li><a href="show-user.html">Find a User</a></li>
+                        <li><a href="registration.html">Registration</a></li>
                     </ul>
                 </div>
             </nav>
@@ -42,12 +42,10 @@
             '   <thead>\n' +
             '       <tr>\n' +
             '           <th scope="col">ID</th> \n'+
-            '           <th scope="col">Title</th> \n'+
-            '           <th scope="col">Description</th> \n'+
-            '           <th scope="col">Year</th> \n'+
+            '           <th scope="col">Name</th> \n'+
+            '           <th scope="col">Email</th> \n'+
+            '           <th scope="col">Password</th> \n'+
             '           <th scope="col">Author</th> \n'+
-            '           <th scope="col">Price</th> \n'+
-            '           <th scope="col">Hard Cover</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
@@ -56,13 +54,10 @@
         for (let book in data){
             table +=
                 '       <tr>\n' +
-                '           <td>' + data[book]["_id"] +  '</td>\n' +
-                '           <td>' + data[book]["title"]+  '</td>\n' +
-                '           <td>' + data[book]["description"]+  '</td>\n' +
-                '           <td>' + data[book]["year"]+  '</td>\n' +
-                '           <td>' + data[book]["author"]+  '</td>\n' +
-                '           <td>' + data[book]["price"]+  '</td>\n' +
-                '           <td>' + data[book]["hardCover"]+  '</td>\n' +
+                '           <td>' + data[user]["_id"] +  '</td>\n' +
+                '           <td>' + data[user]["name"]+  '</td>\n' +
+                '           <td>' + data[user]["email"]+  '</td>\n' +
+                '           <td>' + data[user]["password"]+  '</td>\n' +
                 '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateBook(\'' +
                 data[book]["_id"] +
@@ -90,14 +85,14 @@
 
     function deleteBook(id) {
         let parameter = new URLSearchParams();
-        parameter.append("bookID", id);
-        location.href = "delete-book.html?" + parameter.toString();
+        parameter.append("userID", id);
+        location.href = "delete-user.html?" + parameter.toString();
     }
 
     function updateBook(id) {
         let parameter = new URLSearchParams();
-        parameter.append("bookID", id);
-        location.href = "update-book.html?" + parameter.toString();
+        parameter.append("userID", id);
+        location.href = "update-user.html?" + parameter.toString();
     }
 
 </script>
