@@ -68,14 +68,14 @@
             }
         };
 
-        let bookData = "name=" + document.getElementById("name").value + "&" +
+        let userData = "name=" + document.getElementById("name").value + "&" +
             "email=" + document.getElementById("email").value  + "&" +
             "password="  + document.getElementById("password").value  + "&";
           
         xhttp.open('POST', url, true);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(bookData);
+        xhttp.send(userData);
     }
 </script>
 
