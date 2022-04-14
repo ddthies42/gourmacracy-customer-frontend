@@ -51,16 +51,16 @@
             '   </thead>\n' +
             '   <tbody>\n';
 
-        for (let book in data){
+        for (let user in data){
             table +=
                 '       <tr>\n' +
                 '           <td>' + data[user]["_id"] +  '</td>\n' +
                 '           <td>' + data[user]["name"]+  '</td>\n' +
                 '           <td>' + data[user]["email"]+  '</td>\n' +
                 '           <td>' + data[user]["password"]+  '</td>\n' +
-                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[book]["_id"] +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[user]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateBook(\'' +
-                data[book]["_id"] +
+                data[user]["_id"] +
                 '\')\">Update</button> </td>\n' +
                 '       </tr>\n';
         }
