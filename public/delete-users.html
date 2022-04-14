@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Delete Book</title>
+    <title>Delete User</title>
     <meta name="author" content="Thy Tran">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 </header><hr>
 <div class="container">
     <div class="container">
-        <form onsubmit="bookDelete(); return false">
+        <form onsubmit="userDelete(); return false">
             <p>Please select Confirm if you want to delete</p>
             <input type="submit" class="btn btn-lg btn-outline-primary" value="Confirm">
         </form>
@@ -41,25 +41,25 @@
 </div>
 <script>
     var parameter = new URLSearchParams(window.location.search);
-    var bookID = parameter.get("bookID");
+    var bookID = parameter.get("userID");
 
-    const bookDelete = () => {
-        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+    const userDelete = () => {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("message").innerHTML ="Book Deleted!";
+                document.getElementById("message").innerHTML ="User Deleted!";
 
             } else if (this.readyState == 4 && this.status != 200) {
-                document.getElementById("message").innerHTML = "Book not found! Please go back to the main page.";
+                document.getElementById("message").innerHTML = "User not found! Please go back to the main page.";
             }
         };
-        xhttp.open('DELETE', url + bookID, true);
+        xhttp.open('DELETE', url + userID, true);
         xhttp.send(bookID);
     }
 
     function load() {
-        let url = "https://tran-netcentric-final.herokuapp.com/api/books/";
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
         let xhttp = new XMLHttpRequest();
         xhttp.open('GET', url + bookID, true);
         xhttp.send();
