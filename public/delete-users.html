@@ -56,13 +56,13 @@
             }
         };
         xhttp.open('DELETE', url + userID, true);
-        xhttp.send(bookID);
+        xhttp.send(userID);
     }
 
     function load() {
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
         let xhttp = new XMLHttpRequest();
-        xhttp.open('GET', url + bookID, true);
+        xhttp.open('GET', url + userID, true);
         xhttp.send();
     }
 

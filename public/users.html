@@ -58,8 +58,8 @@
                 '           <td>' + data[user]["name"]+  '</td>\n' +
                 '           <td>' + data[user]["email"]+  '</td>\n' +
                 '           <td>' + data[user]["password"]+  '</td>\n' +
-                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteBook(\''+ data[user]["_id"] +
-                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateBook(\'' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
+                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +
                 data[user]["_id"] +
                 '\')\">Update</button> </td>\n' +
                 '       </tr>\n';
@@ -83,13 +83,13 @@
         xhttp.send();
     });
 
-    function deleteBook(id) {
+    function deleteUser(id) {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "delete-user.html?" + parameter.toString();
     }
 
-    function updateBook(id) {
+    function updateUser(id) {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "update-user.html?" + parameter.toString();
