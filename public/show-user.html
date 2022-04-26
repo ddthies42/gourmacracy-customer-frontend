@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<!-- library logo -->
+<!-- gourmacracy logo -->
 <header style="text-align: left;">
     <a href="index.html">
         <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
@@ -43,26 +43,20 @@
         <div class="mb-3 form-group">
             <label>Book ID:</label>
             <input type="text" name="_id" id="_id" class="form-control" required><br>
-            <input type="submit" class="btn btn-lg btn-outline-primary" value="Find Book">
+            <input type="submit" class="btn btn-lg btn-outline-primary" value="Find User">
         </div>
     </form>
     <div class="jumbotron" style="background-color: #FFF7D6" id="output2">
         <table style="text-align: center;">
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Year</th>
-                <th>Author</th>
-                <th>Price</th>
-                <th>Hard Cover?</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
             </tr>
             <tr>
-                <td id="title"></td>
-                <td id="description"></td>
-                <td id="year"></td>
-                <td id="author"></td>
-                <td id="price"></td>
-                <td id="hardCover"></td>
+                <td id="name"></td>
+                <td id="email"></td>
+                <td id="password"></td>
             </tr>
         </table>
     </div>
@@ -70,7 +64,7 @@
 </div>
 
 <script>
-    const bookRequest = () => {
+    const userRequest = () => {
         let _id = document.getElementById("_id").value;
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
 
@@ -80,15 +74,13 @@
             resp = JSON.parse(xhttp.responseText);
 
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("title").innerHTML = resp["title"];
-                document.getElementById("description").innerHTML = resp["description"];
-                document.getElementById("year").innerHTML = resp["year"];
-                document.getElementById("author").innerHTML = resp["author"];
-                document.getElementById("price").innerHTML = resp["price"];
-                document.getElementById("hardCover").innerHTML = resp["hardCover"];
+                document.getElementById("name").innerHTML = resp["name"];
+                document.getElementById("email").innerHTML = resp["email"];
+                document.getElementById("password").innerHTML = resp["password"];
+              
 
             } else if (this.readyState == 4 && this.status != 200) {
-                document.getElementById("output2").innerHTML = "Book not found! Please re-enter the Book ID.";
+                document.getElementById("output2").innerHTML = "User not found! Please re-enter the User ID.";
             }
         };
         xhttp.open('GET', url + _id, true);

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-<!-- library logo -->
+<!-- gourmacracy logo -->
 <header style="text-align: left;">
     <a href="index.html">
         <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
@@ -32,7 +32,7 @@
 </header><hr>
 <div class="container">
     <div class="container">
-        <form onsubmit="bookModify(); return false">
+        <form onsubmit="userModify(); return false">
             <h2>Please insert the user information</h2>
             <div class="mb-3 form-group">
                 <label for="name">NAME</label>
@@ -58,9 +58,9 @@
 </div>
 <script>
     var parameter = new URLSearchParams(window.location.search);
-    var bookID = parameter.get("userID");
+    var userID = parameter.get("userID");
 
-    function bookModify() {
+    function userModify() {
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -69,7 +69,7 @@
                     "User Updated!";
             }
         }
-        let bookData = "name=" + document.getElementById("name").value + "&" +
+        let userData = "name=" + document.getElementById("name").value + "&" +
             "email=" + document.getElementById("email").value  + "&" +
             "password="  + document.getElementById("password").value  + "&";
 
@@ -91,13 +91,11 @@
         xhttp.send();
     }
 
-    function bookData(book) {
-        document.getElementById("title").value = book["title"];
-        document.getElementById("description").value = book["description"];
-        document.getElementById("year").value = book["year"];
-        document.getElementById("author").value = book["author"];
-        document.getElementById("price").value = book["price"];
-        document.getElementById("hardCover").checked = book["hardCover"];
+    function userData(user) {
+        document.getElementById("name").value = user["name"];
+        document.getElementById("email").value = user["email"];
+        document.getElementById("password").value = user["password"];
+      
     }
 
     window.onload = load();
