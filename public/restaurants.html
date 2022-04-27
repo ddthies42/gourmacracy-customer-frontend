@@ -51,7 +51,8 @@
       let restaurants = "";
       restaurants =
       '<form method="POST"\n' +
-      '  action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange" onsubmit="openMenu(); return false">\n' +
+      '  action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"\n' +
+      '  onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">\n' +
       '  <h2>Please select a restaurant</h2>' +
       '  <div class="mb-3 form-group">\n' +
       '    <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">\n'
