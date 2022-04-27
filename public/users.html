@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="update-user.html"></script>
-    <script src="delete-users.html"></script>
+    <script src="delete-user.html"></script>
 </head>
 <body>
 <!-- library logo -->
@@ -86,7 +86,7 @@
     function deleteUser(id) {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
-        location.href = "delete-users.html?" + parameter.toString();
+        location.href = "delete-user.html?" + parameter.toString();
     }
 
     function updateUser(id) {
