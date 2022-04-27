@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration</title>
-    <meta name="author" content="Thy Tran">
+    <meta name="author" content="Gourmacracy">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -34,8 +34,11 @@
     </span>
   </div>
 </header>
-<hr style="margin-top: 150px;">
+<div class="col-xs-12">
+  <hr style="margin-top: 20px;">
+</div>
 <div class="container">
+  <div class="col-xs-12">
     <!-- Form -->
     <form method="POST"
           action="https://gourmacracy-customer-backend.herokuapp.com/api/users/signin" onsubmit="bookFind(); return false">
@@ -54,7 +57,8 @@
         <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertBook" value="Create Account"> <br>
     </form>
     <br><div class="jumbotron" style="background-color: #FFF7D6" id="output1">
-</div>
+    </div>
+  </div>
 </div>
 
 </div>

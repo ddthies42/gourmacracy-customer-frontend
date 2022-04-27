@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Find a Book</title>
-    <meta name="author" content="Thy Tran">
+    <title>Find a User</title>
+    <meta name="author" content="Gourmacracy">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -41,12 +41,15 @@
     </span>
   </div>
 </header>
-<hr style="margin-top: 150px;">
+<div class="col-xs-12">
+  <hr style="margin-top: 20px;">
+</div>
 <div class="container">
+  <div class="col-xs-12">
     <form onsubmit="bookRequest(); return false">
-        <h2>Please enter the book ID</h2>
+        <h2>Please enter a user ID</h2>
         <div class="mb-3 form-group">
-            <label>Book ID:</label>
+            <label>User ID:</label>
             <input type="text" name="_id" id="_id" class="form-control" required><br>
             <input type="submit" class="btn btn-lg btn-outline-primary" value="Find User">
         </div>
@@ -65,6 +68,8 @@
             </tr>
         </table>
     </div>
+  </div>
+
 
 </div>
 
