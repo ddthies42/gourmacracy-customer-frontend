@@ -1,206 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home Page</title>
-    <meta name="author" content="Thy Tran">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
-</head>
-<body>
-<!-- Gourmacracy logo -->
-<header style="text-align: left;">
-    <a href="index.html">
-        <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
-    </a>
-    <span style="float: right;">
-            <nav class="navbar navbar-default" style="background:transparent;">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li><a href="users.html">Show all Users</a></li>
-                        <li><a href="show-user.html">Find a User</a></li>
-                        <li><a href="registration.html">Registration</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                    </ul>
-                </div>
-            </nav>
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Home Page</title>
+      <meta name="author" content="Gourmacracy">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="stylesheets/style.css">
+      <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+  </head>
+  <body>
+    <header>
+      <!-- Gourmacracy logo -->
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a href="index.html">
+            <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <span style="float: right;">
+              <nav class="navbar navbar-default" style="background:transparent;">
+                  <div class="container-fluid">
+                      <ul class="nav navbar-nav">
+                          <li><a href="users.html">Show all Users</a></li>
+                          <li><a href="show-user.html">Find a User</a></li>
+                          <li><a href="registration.html">Registration</a></li>
+                          <li><a href="menu.html">Menu</a></li>
+                      </ul>
+                  </div>
+              </nav>
         </span>
-</header><hr>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-2"></div>
-    <div class="col-sm-12 col-md-10">
+      </div>
+    </header>
+    <div class="col-xs-12">
+      <hr style="margin-top: 20px;">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-2"></div>
+        <div class="col-sm-12 col-md-10">
+
+        </div>
+        <div class="col-xs-3 col-md-2" style="position: sticky; top: 0;">
+          <!-- Need to add scripting to sticky for when screen is small.  -->
+          <h2>Menu</h2>
+          <p><a href="#appetizers">Appetizers</a></p>
+          <p><a href="#soup">Soup</a></p>
+          <p><a href="#salad">Salad</a></p>
+          <p><a href="#noodles">Noodles</a></p>
+          <p><a href="#entrees">Entrees</a></p>
+          <p><a href="#rice">Rice</a></p>
+        </div>
+        <div class="col-xs-9 col-md-10">
+          <div class="row" id="appetizers">
+            <br/><h4>Appetizers</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="soup">
+            <br/><h4>Soup</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="salad">
+            <br/><h4>Salad</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="noodles">
+            <br/><h4>Noodles</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="entrees">
+            <br/><h4>Entrees</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="rice">
+            <br/><h4>Rice</h4>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
+                <p>A nice description of the food would go here. This one is longer
+                because it can be longer.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="menu-item">
+                <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
+                <p>A nice description of the food would go here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
-    <div class="col-sm-12 col-md-2" style="position: sticky; top: 0;">
-      <!-- Need to add scripting to sticky for when screen is small.  -->
-      <h2>Menu</h2>
-      <p><a href="#appetizers">Appetizers</a></p>
-      <p><a href="#soup">Soup</a></p>
-      <p><a href="#salad">Salad</a></p>
-      <p><a href="#noodles">Noodles</a></p>
-      <p><a href="#entrees">Entrees</a></p>
-      <p><a href="#rice">Rice</a></p>
-    </div>
-    <div class="col-sm-12 col-md-10">
-      <div class="row" id="appetizers">
-        <br/><h4>Appetizers</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="soup">
-        <br/><h4>Soup</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="salad">
-        <br/><h4>Salad</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="noodles">
-        <br/><h4>Noodles</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="entrees">
-        <br/><h4>Entrees</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="row" id="rice">
-        <br/><h4>Rice</h4>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V, G)<span style="float: right;"> $7.99</span></b></p>
-            <p>A nice description of the food would go here. This one is longer
-            because it can be longer.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum! (V)<span style="float: right;"> $10.50</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-6">
-          <div class="menu-item">
-            <p><b>Lorem Ipsum!<span style="float: right;"> $4.99</span></b></p>
-            <p>A nice description of the food would go here.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-</body>
+  </body>
 </html>

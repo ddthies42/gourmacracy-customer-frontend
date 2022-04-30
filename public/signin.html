@@ -5,32 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration</title>
-    <meta name="author" content="Thy Tran">
+    <meta name="author" content="Gourmacracy">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-<!-- library logo -->
-<header style="text-align: left;">
+<header>
+  <!-- Gourmacracy logo -->
+  <div class="col-xs-12 col-sm-6 col-md-4">
     <a href="index.html">
         <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
     </a>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-8">
     <span style="float: right;">
-            <nav class="navbar navbar-default" style="background:transparent;">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li><a href="users.html">Show all Users</a></li>
-                        <li><a href="show-user.html">Find a User</a></li>
-                        <li><a href="registration.html">Registration</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </span>
-</header><hr>
+          <nav class="navbar navbar-default" style="background:transparent;">
+              <div class="container-fluid">
+                  <ul class="nav navbar-nav">
+                      <li><a href="users.html">Show all Users</a></li>
+                      <li><a href="show-user.html">Find a User</a></li>
+                      <li><a href="registration.html">Registration</a></li>
+                      <li><a href="menu.html">Menu</a></li>
+                  </ul>
+              </div>
+          </nav>
+    </span>
+  </div>
+</header>
+<div class="col-xs-12">
+  <hr style="margin-top: 20px;">
+</div>
 <div class="container">
+  <div class="col-xs-12">
     <!-- Form -->
     <form method="POST"
           action="https://gourmacracy-customer-backend.herokuapp.com/api/users/signin" onsubmit="bookFind(); return false">
@@ -49,7 +57,8 @@
         <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertBook" value="Create Account"> <br>
     </form>
     <br><div class="jumbotron" style="background-color: #FFF7D6" id="output1">
-</div>
+    </div>
+  </div>
 </div>
 
 </div>
