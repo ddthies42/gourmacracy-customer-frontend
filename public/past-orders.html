@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Home Page</title>
+      <meta name="author" content="Gourmacracy">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="stylesheets/style.css">
+      <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+      <script>
+      function order(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("OrderID", id);
+        location.href = "rating.html?" + parameter.toString();
+      }
+      </script>
+  </head>
+  <body>
+    <header>
+      <!-- Gourmacracy logo -->
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <a href="index.html">
+            <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
+        </a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <span style="float: right;">
+              <nav class="navbar navbar-default" style="background:transparent;">
+                  <div class="container-fluid">
+                      <ul class="nav navbar-nav">
+                          <li><a href="users.html">Show all Users</a></li>
+                          <li><a href="show-user.html">Find a User</a></li>
+                          <li><a href="registration.html">Registration</a></li>
+                          <li><a href="menu.html">Menu</a></li>
+                      </ul>
+                  </div>
+              </nav>
+        </span>
+      </div>
+    </header>
+    <div class="col-xs-12">
+      <hr style="margin-top: 20px;">
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Past Orders</h2>
+        </div>
+        <div class="col-xs-12">
+          <div class="menu-item" onclick="order(1)">
+            <p>Restaurant Name</p>
+            <p>List of items ordered</p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="menu-item" onclick="order(2)">
+            <p>Restaurant Name 2</p>
+            <p>List of items ordered</p>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="menu-item" onclick="order(3)">
+            <p>Restaurant Name 3</p>
+            <p>List of items ordered</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
