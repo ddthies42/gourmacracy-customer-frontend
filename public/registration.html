@@ -42,7 +42,7 @@
   <div class="col-xs-12">
     <!-- Form -->
     <form method="POST"
-          action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="showAlert()">
+          action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
         <h2>Please insert user information</h2>
         <div class="mb-3 form-group">
             <label for="name">NAME</label>
@@ -69,10 +69,7 @@
 
 </div>
 <script>
-  function showAlert() {
-    var myText = "User succesfully registered with Gourmacracy!";
-    alert (myText);
-  }
+  
     function userFind() {
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
         let xhttp = new XMLHttpRequest();
