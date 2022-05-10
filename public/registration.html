@@ -76,6 +76,7 @@
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("output1").innerHTML =
                     "Welcome " + this.responseText + " You are now a registered Gourmacracy User!";
+                console.log("responseText: "+this.responseText);
             }
         };
 
@@ -84,6 +85,8 @@
             "password="  + document.getElementById("password").value  + "&";
 
         xhttp.open('POST', url, true);
+        console.log("userData: "+userData);
+        console.log("url: " + url);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(userData);
