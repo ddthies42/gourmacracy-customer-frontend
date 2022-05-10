@@ -7,14 +7,14 @@ a {
     color: #4596D8;
 }
 
-.nav.navbar-nav li a {
+.nav.navbar-nav-1 li a {
     color: #4596D8;
     font-size: 30px;
     font-weight: bold;
     font-family: 'Dosis';
 }
 
-.nav.navbar-nav {
+.nav.navbar-nav-1 {
     border: transparent;
 }
 
@@ -30,21 +30,6 @@ h1, h2 {
 
 html {
     scroll-behavior: smooth;
-}
-
-.menu-item {
-    margin: 5px;
-    padding: 10px;
-    border: solid lightgrey;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px lightgrey;
-    height: 95px;
-    cursor: pointer;
-}
-
-.menu-item:active {
-    background: lightgrey;
 }
 
 .product-removal-1 {
