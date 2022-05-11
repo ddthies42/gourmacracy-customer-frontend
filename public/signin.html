@@ -68,7 +68,7 @@
                    placeholder="Password">
         </div>
 
-        <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertBook" value="Login"> <br>
+        <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertUser" value="Login"> <br>
     </form>
     <br><div class="jumbotron" style="background-color: #FFF7D6" id="output1">
     </div>
@@ -78,7 +78,7 @@
 </div>
 <script>
     function userFind() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/signin"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
