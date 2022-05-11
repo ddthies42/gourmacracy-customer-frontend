@@ -85,6 +85,10 @@
                 document.getElementById("output1").innerHTML =
                 this.responseText;
             }
+            else {
+              document.getElementById("output1").innerHTML =
+              "Congratulations you are logged in!";
+            }
         };
 
         let userData = "email=" + document.getElementById("email").value  + "&" +
