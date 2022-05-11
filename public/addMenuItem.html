@@ -56,25 +56,36 @@
   <div class="col-xs-12">
     <!-- Form -->
     <form method="POST"
-          action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
-        <h2>Please insert user information</h2>
+          action="https://gourmacracy-customer-backend.herokuapp.com/api/menuItems" onsubmit="menuItemFind(); return false">
+        <h2>Please insert menu item information</h2>
         <div class="mb-3 form-group">
-            <label for="name">NAME</label>
-            <input type="text" name="name" id="name" class="form-control"
-                   placeholder="Name">
+            <label for="itemName">ITEM NAME</label>
+            <input type="text" name="itemName" id="itemName" class="form-control"
+                   placeholder="ItemName">
         </div>
         <div class="mb-3 form-group">
-            <label for="email">EMAIL</label>
-            <input type="text" name="email" id="email" class="form-control"
-                   placeholder="Email">
+            <label for="description">DESCRIPTION</label>
+            <input type="text" name="description" id="description" class="form-control"
+                   placeholder="Description">
         </div>
         <div class="mb-3 form-group">
-            <label for="password">PASSWORD</label>
-            <input type="password" name="password" id="password" class="form-control"
-                   placeholder="Password">
-        </div>
+            <label for="price">PRICE</label>
+            <input type="number" name="price" min="0" step="0.01" id="price" class="form-control"
+                   placeholder="Price">
+    </div>
+    <div class="mb-3 form-group">
+        <label for="points">POINTS</label>
+        <input type="number" name="points" id="points" class="form-control"
+               placeholder="Points">
+    </div>
+</div>
+<div class="mb-3 form-group">
+    <label for="numRatings">NUMBER OF RATINGS</label>
+    <input type="number" name="numRatings" id="numRatings" class="form-control"
+           placeholder="NumRatings">
+</div>
 
-        <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertUser" value="Create Account"> <br>
+        <input type="submit" class="btn btn-lg btn-outline-primary" id="btnInsertMenuItem" value="Add Menu Item"> <br>
     </form>
     <br><div class="jumbotron" style="background-color: #FFF7D6" id="output1">
     </div>
@@ -84,28 +95,30 @@
 </div>
 <script>
 
-    function userFind() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
+    function menuItemFind() {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
 
                 document.getElementById("output1").innerHTML =
-                    "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User!";
+                    "Item:  " + this.responseText + " has been added to the database!";
 
             }
         };
 
-        let userData = "name=" + document.getElementById("name").value + "&" +
-            "email=" + document.getElementById("email").value  + "&" +
-            "password="  + document.getElementById("password").value  + "&";
+        let menuItemData = "itemName=" + document.getElementById("itemName").value + "&" +
+            "description=" + document.getElementById("description").value  + "&" +
+            "price="  + document.getElementById("price").value  + "&" +
+            "points=" + document.getElementById("points").value  + "&" +
+            "numRatings=" + document.getElementById("numRatings").value  + "&";
 
         xhttp.open('POST', url, true);
-        console.log("userData: "+userData);
+        console.log("menuItemData: "+menuItemData);
         console.log("url: " + url);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(userData);
+        xhttp.send(menuItemData);
     }
 </script>
 
