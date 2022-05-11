@@ -6,15 +6,18 @@ body {
 a {
     color: #4596D8;
 }
-
-.nav.navbar-nav-1 li a {
+.nav-li {
     color: #4596D8;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: 'Dosis';
+    font-size: 25px;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.nav.navbar-nav li a {
+    color: #4596D8;
+    font-size: 25px;
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-.nav.navbar-nav-1 {
+.nav.navbar-nav {
     border: transparent;
 }
 
@@ -25,7 +28,7 @@ hr {
 }
 
 h1, h2 {
-    font-family: 'Dosis';
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -39,3 +42,4 @@ html {
 .product-price-1 {
 }
 .product-quantity-1{}
+#cart-subtotal-1 {}
