@@ -33,24 +33,39 @@
 <div class="container">
   <div class="col-xs-12">
     <div class="container">
-        <form onsubmit="userModify(); return false">
-            <h2>Please insert the user information</h2>
+        <form onsubmit="menuItemModify(); return false">
+            <h2>Please Insert the Menu Item Information</h2>
             <div class="mb-3 form-group">
-                <label for="name">NAME</label>
-                <input type="text" name="name" id="name" class="form-control"
-                       placeholder="Name">
+                <label for="itemName">ITEM NAME</label>
+                <input type="text" name="itemName" id="itemName" class="form-control"
+                       placeholder="Item Name">
             </div>
             <div class="mb-3 form-group">
-                <label for="email">EMAIL</label>
-                <input type="text" name="email" id="email" class="form-control"
-                       placeholder="Email">
+                <label for="category">CATEGORY</label>
+                <input type="text" name="category" id="category" class="form-control"
+                       placeholder="Category">
             </div>
             <div class="mb-3 form-group">
-                <label for="password">PASSWORD</label>
-                <input type="text" name="password" id="password" class="form-control"
-                       placeholder="Password">
+                <label for="description">DESCRIPTION</label>
+                <input type="text" name="description" id="description" class="form-control"
+                       placeholder="Description">
             </div>
-     <input type="submit" class="btn btn-lg btn-outline-primary" id="btnModifyUser" value="Update User"><br>
+            <div class="mb-3 form-group">
+                <label for="price">PRICE</label>
+                <input type="number" name="price" min="0" step="0.01" id="price" class="form-control"
+                       placeholder="Price">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="points">POINTS</label>
+                <input type="number" name="points" id="points" class="form-control"
+                       placeholder="Points">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="numRatings">NUMBER OF RATINGS</label>
+                <input type="number" name="numRatings" id="numRatings" class="form-control"
+                       placeholder="numRatings">
+            </div>
+     <input type="submit" class="btn btn-lg btn-outline-primary" id="btnModifyMenuItem" value="Update Menu Item"><br>
         </form>
     </div>
     <br><div class="jumbotron" style="background-color: #FFF7D6" id="message">
@@ -59,43 +74,48 @@
 </div>
 <script>
     var parameter = new URLSearchParams(window.location.search);
-    var userID = parameter.get("userID");
+    var menuItemID = parameter.get("menuItemID");
 
-    function userModify() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+    function menuItemModify() {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("message").innerHTML =
-                    "User Updated!";
+                    "Menu Item Updated!";
             }
         }
-        let userData = "name=" + document.getElementById("name").value + "&" +
-            "email=" + document.getElementById("email").value  + "&" +
-            "password="  + document.getElementById("password").value  + "&";
+        let menuItemData = "itemName=" + document.getElementById("itemName").value + "&" +
+            "category=" + document.getElementById("category").value  + "&" +
+            "description="  + document.getElementById("description").value  + "&" +
+            "points=" + document.getElementById("points").value  + "&" +
+            "numRatings=" + document.getElementById("numRatings").value  + "&";
 
-        xhttp.open('PATCH', url + userID, true);
+        xhttp.open('PATCH', url + menuItemID, true);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(userData);
+        xhttp.send(menuItemData);
     }
 
     function load() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/books/";
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                bookData(JSON.parse(this.responseText));
+                menuItemData(JSON.parse(this.responseText));
             }
         };
-        xhttp.open('GET', url + userID, true);
+        xhttp.open('GET', url + menuItemID, true);
         xhttp.send();
     }
 
-    function userData(user) {
-        document.getElementById("name").value = user["name"];
-        document.getElementById("email").value = user["email"];
-        document.getElementById("password").value = user["password"];
+    function menuItemData(menuItem) {
+        document.getElementById("itemName").value = menuItem["itemName"];
+        document.getElementById("category").value = menuItem["category"];
+        document.getElementById("description").value = menuItem["description"];
+        document.getElementById("points").value = menuItem["points"];
+        document.getElementById("numRatings").value = menuItem["numRatings"];
+
 
     }
 
