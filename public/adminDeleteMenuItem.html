@@ -70,20 +70,20 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("message").innerHTML = "User Deleted!";
+                document.getElementById("message").innerHTML = "Menu Item Deleted!";
 
             } else if (this.readyState == 4 && this.status != 200) {
-                document.getElementById("message").innerHTML = "User not found! Please go back to the main page.";
+                document.getElementById("message").innerHTML = "Menu Item Not Found!";
             }
         };
-        xhttp.open('DELETE', url + userID, true);
-        xhttp.send(userID);
+        xhttp.open('DELETE', url + menuItemID, true);
+        xhttp.send(menuItemID);
     }
 
     function load() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/";
         let xhttp = new XMLHttpRequest();
-        xhttp.open('GET', url + userID, true);
+        xhttp.open('GET', url + menuItemsID, true);
         xhttp.send();
     }
 
