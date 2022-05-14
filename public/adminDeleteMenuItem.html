@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete User</title>
+    <meta name="author" content="Gourmacracy">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<header>
+  <!-- Gourmacracy logo -->
+<!--  <div class="col-xs-12 col-sm-6 col-md-4">-->
+<!--    <a href="index.html">-->
+<!--        <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <div class="col-xs-12 col-sm-6 col-md-8">-->
+<!--    <span style="float: right;">-->
+<!--          <nav class="navbar navbar-default" style="background:transparent;">-->
+<!--              <div class="container-fluid">-->
+<!--                  <ul class="nav navbar-nav">-->
+<!--                      <li><a href="users.html">Show all Users</a></li>-->
+<!--                      <li><a href="show-user.html">Find a User</a></li>-->
+<!--                      <li><a href="registration.html">Registration</a></li>-->
+<!--                      <li><a href="menu.html">Menu</a></li>-->
+<!--                  </ul>-->
+<!--              </div>-->
+<!--          </nav>-->
+<!--    </span>-->
+<!--  </div>-->
+    <span style="float: right;">
+          <nav class="navbar navbar-default" style="background:transparent;">
+              <div class="container-fluid">
+                  <ul class="nav navbar-nav">
+                      <li><a href="users.html">Show all Users</a></li>
+                      <li><a href="show-user.html">Find a User</a></li>
+                      <li><a href="menu.html">Menu</a></li>
+                      <li><a href="registration.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span> Sign Up</a></li>
+                      <li><a href="signin.html"><span class="glyphicon glyphicon-log-in" style="font-size: 21px; color: #4596D8"></span> Login</a></li>
+                      <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
+                  </ul>
+              </div>
+          </nav>
+    </span>
+</header>
+<div class="col-xs-12">
+  <hr style="margin-top: 20px;">
+</div>
+<div class="container">
+  <div class="col-xs-12">
+    <div class="container">
+        <form onsubmit="userDelete(); return false">
+            <p>Please select Confirm if you want to delete</p>
+            <input type="submit" class="btn btn-lg btn-outline-primary" value="Confirm">
+        </form>
+    </div>
+    <br><div class="jumbotron" style="background-color: #FFF7D6" id="message">
+    </div>
+  </div>
+</div>
+<script>
+    var parameter = new URLSearchParams(window.location.search);
+    var userID = parameter.get("userID");
+
+    const userDelete = () => {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("message").innerHTML = "User Deleted!";
+
+            } else if (this.readyState == 4 && this.status != 200) {
+                document.getElementById("message").innerHTML = "User not found! Please go back to the main page.";
+            }
+        };
+        xhttp.open('DELETE', url + userID, true);
+        xhttp.send(userID);
+    }
+
+    function load() {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('GET', url + userID, true);
+        xhttp.send();
+    }
+
+    window.onload = load();
+</script>
+
+</body>
+</html>
