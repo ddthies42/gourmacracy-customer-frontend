@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show All Users</title>
+    <meta name="author" content="Gourmacracy">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="update-menuItem.html"></script>
+    <script src="delete-menuItem.html"></script>
+</head>
+<body>
+<header>
+  <!-- Gourmacracy logo -->
+<!--  <div class="col-xs-12 col-sm-6 col-md-4">-->
+<!--    <a href="index.html">-->
+<!--        <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <div class="col-xs-12 col-sm-6 col-md-8">-->
+<!--    <span style="float: right;">-->
+<!--          <nav class="navbar navbar-default" style="background:transparent;">-->
+<!--              <div class="container-fluid">-->
+<!--                  <ul class="nav navbar-nav">-->
+<!--                      <li><a href="users.html">Show all Users</a></li>-->
+<!--                      <li><a href="show-user.html">Find a User</a></li>-->
+<!--                      <li><a href="menu.html">Menu</a></li>-->
+<!--                      <li><a href="registration.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+<!--                      <li><a href="signin.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+<!--                      <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>-->
+<!--                  </ul>-->
+<!--              </div>-->
+<!--          </nav>-->
+<!--    </span>-->
+<!--  </div>-->
+    <span style="float: right;">
+          <nav class="navbar navbar-default" style="background:transparent;">
+              <div class="container-fluid">
+                  <ul class="nav navbar-nav">
+                      <li><a href="users.html">Show all Users</a></li>
+                      <li><a href="show-user.html">Find a User</a></li>
+                      <li><a href="menu.html">Menu</a></li>
+                      <li><a href="registration.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span> Sign Up</a></li>
+                      <li><a href="signin.html"><span class="glyphicon glyphicon-log-in" style="font-size: 21px; color: #4596D8"></span> Login</a></li>
+                      <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
+                  </ul>
+              </div>
+          </nav>
+    </span>
+</header>
+<div class="col-xs-12">
+  <hr style="margin-top: 20px;">
+</div>
+    <div class="container">
+      <div class="col-xs-12">
+        <div class="jumbotron" style="background-color: #FFF7D6" id="output"></div>
+      </div>
+    </div>
+<script>
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">ID</th> \n'+
+            '           <th scope="col">Name</th> \n'+
+            '           <th scope="col">Email</th> \n'+
+            '           <th scope="col">Password</th> \n'+
+            '           <th scope="col">Actions</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
+
+        for (let user in data){
+            table +=
+                '       <tr>\n' +
+                '           <td>' + data[user]["_id"] +  '</td>\n' +
+                '           <td>' + data[user]["name"]+  '</td>\n' +
+                '           <td>' + data[user]["email"]+  '</td>\n' +
+                '           <td>' + data[user]["password"]+  '</td>\n' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
+                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +
+                data[user]["_id"] +
+                '\')\">Update</button> </td>\n' +
+                '       </tr>\n';
+        }
+
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+    window.addEventListener('load', (event) =>{
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    CreateTable(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+    function deleteUser(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("userID", id);
+        location.href = "delete-user.html?" + parameter.toString();
+    }
+
+    function updateUser(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("userID", id);
+        location.href = "update-user.html?" + parameter.toString();
+    }
+
+</script>
+</body>
+</html>
