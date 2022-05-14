@@ -75,16 +75,19 @@
             '   </thead>\n' +
             '   <tbody>\n';
 
-        for (let user in data){
+        for (let menuItem in data){
             table +=
                 '       <tr>\n' +
-                '           <td>' + data[user]["_id"] +  '</td>\n' +
-                '           <td>' + data[user]["name"]+  '</td>\n' +
-                '           <td>' + data[user]["email"]+  '</td>\n' +
-                '           <td>' + data[user]["password"]+  '</td>\n' +
-                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
-                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +
-                data[user]["_id"] +
+                '           <td>' + data[menuItem]["_id"] +  '</td>\n' +
+                '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["category"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["description"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["price"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["points"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["numRatings"]+  '</td>\n' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteMenuItem(\''+ data[menuItem]["_id"] +
+                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateMenuItem(\'' +
+                data[menuItem]["_id"] +
                 '\')\">Update</button> </td>\n' +
                 '       </tr>\n';
         }
@@ -95,7 +98,7 @@
         return table;
     }
     window.addEventListener('load', (event) =>{
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
@@ -107,16 +110,16 @@
         xhttp.send();
     });
 
-    function deleteUser(id) {
+    function deleteMenuItem(id) {
         let parameter = new URLSearchParams();
-        parameter.append("userID", id);
-        location.href = "delete-user.html?" + parameter.toString();
+        parameter.append("menuItemID", id);
+        location.href = "adminDeleteMenuItem.html?" + parameter.toString();
     }
 
-    function updateUser(id) {
+    function updateMenuItem(id) {
         let parameter = new URLSearchParams();
-        parameter.append("userID", id);
-        location.href = "update-user.html?" + parameter.toString();
+        parameter.append("menuItemID", id);
+        location.href = "adminUpdateMenuItem.html?" + parameter.toString();
     }
 
 </script>
