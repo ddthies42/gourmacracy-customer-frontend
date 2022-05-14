@@ -52,7 +52,7 @@
 <div class="container">
   <div class="col-xs-12">
     <div class="container">
-        <form onsubmit="userDelete(); return false">
+        <form onsubmit="menuItemDelete(); return false">
             <p>Please select Confirm if you want to delete</p>
             <input type="submit" class="btn btn-lg btn-outline-primary" value="Confirm">
         </form>
@@ -63,10 +63,10 @@
 </div>
 <script>
     var parameter = new URLSearchParams(window.location.search);
-    var userID = parameter.get("userID");
+    var menuItemID = parameter.get("menuItemID");
 
-    const userDelete = () => {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+    const menuItemDelete = () => {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200) {
