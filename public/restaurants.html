@@ -53,49 +53,24 @@
   <hr style="margin-top: 20px;">
 </div>
     <div class="container">
-      <div class="col-xs-12" style="background-color: white;" id="output"></div>
+      <form method="POST"
+        action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"
+        onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">
+        <h2>Please select a restaurant</h2>
+        <div class="mb-3 form-group">
+          <label for="restaurantList">RESTAURANT</label>
+          <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">
+            <option value="Epic Eats">Epic Eats</option>
+            <option value="Food of Destiny">Food of Destiny</option>
+            <option value="Great Yum!">Great Yum!</option>
+            <option value="Terrific Teriyaki">Terrific Teriyaki</option>
+            <option value="Victor's Noodle Spot">Victor's Noodle Spot</option>
+          </select>
+          <br><input type="submit" class="btn btn-lg btn-outline-primary" id="btnOpenRestaurantMenu" value="Open Menu"> <br>
+        </div>
+      </form>
     </div>
 <script>
-    function AddRestaurants(data){
-      // <div class="mb-3 form-group">
-      //     <label for="password">PASSWORD</label>
-          // <input type="text" name="password" id="password" class="form-control"
-          //        placeholder="Password">
-      // </div>
-      let restaurants = "";
-      restaurants =
-      '<form method="POST"\n' +
-      '  action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"\n' +
-      '  onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">\n' +
-      '  <h2>Please select a restaurant</h2>' +
-      '  <div class="mb-3 form-group">\n' +
-      '  <label for="restaurantList">RESTAURANT</label>\n' +
-      '    <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">\n'
-      for(let restaurant in data){
-        restaurants +=
-        '      <option value="' + data[restaurant]["_id"] + '">' + data[restaurant]["name"] + '</option>\n'
-      }
-      restaurants +=
-      '    </select>\n' +
-      '  </div>\n\n' +
-      '  <br><input type="submit" class="btn btn-lg btn-outline-primary" id="btnOpenRestaurantMenu" value="Open Menu"> <br>\n' +
-      '</form>'
-
-      return restaurants;
-    }
-
-    window.addEventListener('load', (event) =>{
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function (){
-            if (this.readyState == 4 && this.status == 200){
-                document.getElementById("output").innerHTML =
-                    AddRestaurants(JSON.parse(this.responseText));
-            }
-        };
-        xhttp.open('GET', url, true);
-        xhttp.send();
-    });
 
     function openMenu(id) {
       let parameter = new URLSearchParams();

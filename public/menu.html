@@ -35,24 +35,28 @@
 <!--          </nav>-->
 <!--    </span>-->
 <!--  </div>-->
-    <span style="float: right;">
-          <nav class="navbar navbar-default" style="background:transparent;">
-              <div class="container-fluid">
-                  <ul class="nav navbar-nav">
-                      <li><a href="menu.html">Menu</a></li>
-                      <li><a href="adminAddMenuItem.html">Add Menu Item</a></li>
-                      <li><a href="adminDeleteMenuItem.html">Delete Menu Item</a></li>
-                      <li><a href="adminUpdateMenuItem.html">Update Menu Item</a></li>
-                  </ul>
-              </div>
-          </nav>
-    </span>
+<span style="float: right;">
+      <nav class="navbar navbar-default" style="background:transparent;">
+          <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="users.html">Show all Users</a></li>
+                  <li><a href="show-user.html">Find a User</a></li>
+                  <li><a href="registration.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span> Sign Up</a></li>
+                  <li><a href="signin.html"><span class="glyphicon glyphicon-log-in" style="font-size: 21px; color: #4596D8"></span> Login</a></li>
+                  <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
+
+                </ul>
+          </div>
+      </nav>
+</span>
 </header>
 <div class="col-xs-12">
   <hr style="margin-top: 20px;">
 </div>
     <div class="container">
       <div class="col-xs-12">
+        <h2>Menu</h2>
         <div class="jumbotron" style="background-color: #FFF7D6" id="output"></div>
       </div>
     </div>
@@ -65,7 +69,6 @@
             '<table class="table table-bordered table-hover"> \n' +
             '   <thead>\n' +
             '       <tr>\n' +
-            '           <th scope="col">ID</th> \n'+
             '           <th scope="col">Item Name</th> \n'+
             '           <th scope="col">Category</th> \n'+
             '           <th scope="col">Description</th> \n'+
@@ -80,19 +83,14 @@
             var average = data[menuItem]["points"] / data[menuItem]["numRatings"];
             table +=
                 '       <tr>\n' +
-                '           <td>' + data[menuItem]["_id"] +  '</td>\n' +
                 '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
                 '           <td>' + data[menuItem]["category"]+  '</td>\n' +
                 '           <td>' + data[menuItem]["description"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["price"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["points"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["numRatings"]+  '</td>\n' +
+                '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
                 '           <td>' + average +  '</td>\n' +
 
-                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteMenuItem(\''+ data[menuItem]["_id"] +
-                '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateMenuItem(\'' +
-                data[menuItem]["_id"] +
-                '\')\">Update</button> </td>\n' +
+                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"addMenuItemToCart(\''+ data[menuItem]["_id"] +
+                '\')\">Add</button></td>\n' +
                 '       </tr>\n';
         }
 
@@ -114,16 +112,11 @@
         xhttp.send();
     });
 
-    function deleteMenuItem(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("menuItemID", id);
-        location.href = "adminDeleteMenuItem.html?" + parameter.toString();
-    }
-
-    function updateMenuItem(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("menuItemID", id);
-        location.href = "adminUpdateMenuItem.html?" + parameter.toString();
+    function addMenuItemToCart(id) {
+      console.log("We need to do something when adding item to cart");
+      // let parameter = new URLSearchParams();
+      // parameter.append("menuItemID", id);
+      // location.href = "adminDeleteMenuItem.html?" + parameter.toString();
     }
 
 </script>

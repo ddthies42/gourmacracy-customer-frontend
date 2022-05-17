@@ -83,7 +83,13 @@
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("output1").innerHTML =
-                this.responseText;
+                this.responseText + " Redirecting...";
+
+                // Go to restaurants list after 3 seconds
+                setTimeout(function(){
+                    let parameter = new URLSearchParams();
+                    location.href = "restaurants.html";
+                },3000);
             }
         };
 
