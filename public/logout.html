@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Delete User</title>
+    <title>Logout</title>
     <meta name="author" content="Gourmacracy">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -32,8 +32,8 @@
 <div class="container">
   <div class="col-xs-12">
     <div class="container">
-        <form onsubmit="userDelete(); return false">
-            <p>Please select Confirm if you want to delete</p>
+        <form onsubmit="userLogout(); return false">
+            <p>Please select Confirm if you want to logout</p>
             <input type="submit" class="btn btn-lg btn-outline-primary" value="Confirm">
         </form>
     </div>
@@ -42,28 +42,34 @@
   </div>
 </div>
 <script>
-    var parameter = new URLSearchParams(window.location.search);
-    var userID = parameter.get("userID");
 
-    const userDelete = () => {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+    const userLogout = () => {
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/logout";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("message").innerHTML = "User Deleted!";
+                document.getElementById("output1").innerHTML =
+                this.responseText + " Successfully Logged Out!...";
+            
+                // Go to restaurants list after 3 seconds
+                setTimeout(function(){
+                    let parameter = new URLSearchParams();
+                    location.href = "index.html";
+                },3000);
+            
 
             } else if (this.readyState == 4 && this.status != 200) {
-                document.getElementById("message").innerHTML = "User not found! Please go back to the main page.";
+                document.getElementById("message").innerHTML = "Not able to logout";
             }
         };
-        xhttp.open('DELETE', url + userID, true);
-        xhttp.send(userID);
+        xhttp.open('GET', url, true);
+        
     }
 
     function load() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/";
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/logout";
         let xhttp = new XMLHttpRequest();
-        xhttp.open('GET', url + userID, true);
+        xhttp.open('GET', url, true);
         xhttp.send();
     }
 
