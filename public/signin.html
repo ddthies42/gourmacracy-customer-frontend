@@ -92,6 +92,11 @@
                 } else if (this.responseText == "Admin Login Successful!") {
                     document.getElementById("output1").innerHTML =
                     this.responseText + " Redirecting...";
+
+                    setTimeout(function(){
+                        let parameter = new URLSearchParams();
+                        location.href = "adminIndex.html";
+                    },3000);
                 }
             }
         };
