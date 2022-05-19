@@ -80,19 +80,20 @@
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
                 
-                if (this.responseText == "Login Successful!"){
-                document.getElementById("output1").innerHTML =
-                this.responseText + " Redirecting...";
+                if (this.responseText == "Login Successful!") {
+                    document.getElementById("output1").innerHTML =
+                    this.responseText + " Redirecting...";
 
-        
-
-                // Go to restaurants list after 3 seconds
-                setTimeout(function(){
-                    let parameter = new URLSearchParams();
-                    location.href = "restaurants.html";
-                },3000);
+                    // Go to restaurants list after 3 seconds
+                    setTimeout(function(){
+                        let parameter = new URLSearchParams();
+                        location.href = "restaurants.html";
+                    },3000);
+                } else if (this.responseText == "Admin Login Successful!") {
+                    document.getElementById("output1").innerHTML =
+                    this.responseText + " Redirecting for Admin...";
+                }
             }
-        }
         };
 
         let userData = "email=" + document.getElementById("email").value  + "&" +
