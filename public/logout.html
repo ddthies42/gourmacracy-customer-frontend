@@ -11,22 +11,20 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-<header>
-
-    <span style="float: right;">
-          <nav class="navbar navbar-default" style="background:transparent;">
-              <div class="container-fluid">
-                  <ul class="nav navbar-nav">
-                      <li><a href="menu.html">Menu</a></li>
-                      <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
-                  </ul>
-              </div>
-          </nav>
-    </span>
-</header>
-<div class="col-xs-12">
-  <hr style="margin-top: 20px;">
-</div>
+<!-- nav-bar -->
+<nav class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+        <li style="margin-top: 15px"><a href="menu.html"><i class="bi bi-menu-up"></i>&emsp;Menu</a></li>
+    </ul>
+</nav>
+<hr>
+<!-- nav-bar -->
 <div class="container">
   <div class="col-xs-12">
     <div class="container">
@@ -40,7 +38,6 @@
   </div>
 </div>
 <script>
-
     const userLogout = () => {
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/logout";
         let xhttp = new XMLHttpRequest();
