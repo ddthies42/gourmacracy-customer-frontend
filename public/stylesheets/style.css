@@ -212,7 +212,7 @@ input[type=email] {
 .gourmacracy-epic-eats-pos {
   position: absolute;
   top: 100%;
-  left: 27%;
+  left: 10%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
 }
