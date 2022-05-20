@@ -2,6 +2,11 @@ body {
   font: 14px 'Inter', sans-serif;
 }
 
+h2 {
+  font-weight: bold;
+  font-family: 'TT Norms Pro', sans-serif;
+}
+
 .gourmacracy-logo-container {
   height: 4em;
   position: relative
@@ -157,4 +162,57 @@ input[type=email] {
   background-color: #F3F3F3;
   border: 0;
   border-radius: 10px
+}
+
+.gourmacracy-menu-header-container {
+  height: 20em;
+  position: relative
+}
+
+.gourmacracy-menu-header-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.gourmacracy-menu-header-wrapper {
+  display: inline-block;
+  width: 800px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.gourmacracy-menu-output-container {
+  height: 70em;
+  position: relative
+}
+
+.gourmacracy-menu-output-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.gourmacracy-epic-eats-wrapper {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 140px;
+  box-shadow:
+          0 5px 10px 0px rgba(0,0,0,0.22),
+          0 10px 13px 0px rgba(0,0,0,0.34),
+          inset 0 18px 18px 0 rgba(255,255,255,0.35),
+          inset 0 -18px 18px 0 rgba(0,0,0,0.10);
+}
+
+.gourmacracy-epic-eats-pos {
+  position: absolute;
+  top: 100%;
+  left: 27%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
