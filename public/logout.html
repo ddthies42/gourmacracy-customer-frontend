@@ -13,12 +13,11 @@
 </head>
 <body>
 <header>
-  
+
     <span style="float: right;">
           <nav class="navbar navbar-default" style="background:transparent;">
               <div class="container-fluid">
                   <ul class="nav navbar-nav">
-                      
                       <li><a href="menu.html">Menu</a></li>
                       <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
                   </ul>
@@ -50,20 +49,20 @@
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("output1").innerHTML =
                 this.responseText + " Successfully Logged Out!...";
-            
+
                 // Go to restaurants list after 3 seconds
                 setTimeout(function(){
                     let parameter = new URLSearchParams();
                     location.href = "index.html";
                 },3000);
-            
+
 
             } else if (this.readyState == 4 && this.status != 200) {
                 document.getElementById("message").innerHTML = "Not able to logout";
             }
         };
         xhttp.open('GET', url, true);
-        
+
     }
 
     function load() {
