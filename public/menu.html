@@ -6,50 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Show All Menu Items</title>
     <meta name="author" content="Gourmacracy">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="adminUpdateMenuItem.html"></script>
     <script src="adminDeleteMenuItem.html"></script>
 </head>
 <body>
-<header>
-  <!-- Gourmacracy logo -->
-<!--  <div class="col-xs-12 col-sm-6 col-md-4">-->
-<!--    <a href="index.html">-->
-<!--        <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <div class="col-xs-12 col-sm-6 col-md-8">-->
-<!--    <span style="float: right;">-->
-<!--          <nav class="navbar navbar-default" style="background:transparent;">-->
-<!--              <div class="container-fluid">-->
-<!--                  <ul class="nav navbar-nav">-->
-<!--                      <li><a href="menu.html">Menu</a></li>-->
-<!--                      <li><a href="adminAddMenuItem.html">Add Menu Item</a></li>-->
-<!--                      <li><a href="adminDeleteMenuItem.html">Delete Menu Item</a></li>-->
-<!--                      <li><a href="adminUpdateMenuItem.html">Update Menu Item</a></li>-->
-<!--                  </ul>-->
-<!--              </div>-->
-<!--          </nav>-->
-<!--    </span>-->
-<!--  </div>-->
-<span style="float: right;">
-      <nav class="navbar navbar-default" style="background:transparent;">
-          <div class="container-fluid">
-              <ul class="nav navbar-nav">
-
-                  <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
-                  <li><a href="logout.html">Logout</a></li>
-                </ul>
-          </div>
-      </nav>
-</span>
-</header>
-<div class="col-xs-12">
-  <hr style="margin-top: 20px;">
-</div>
+<!-- nav-bar -->
+<nav class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+    </ul>
+</nav>
+<hr>
+<!-- nav-bar -->
     <div class="container">
       <div class="col-xs-12">
         <h2>Menu</h2>
@@ -57,8 +34,6 @@
       </div>
     </div>
 <script>
-
-
     function CreateTable(data){
         let table = "";
         table =
