@@ -1,5 +1,5 @@
 # gourmacracy-customer-frontend
-
+https://icons.getbootstrap.com/ 
 ###### **Most required links:**
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
