@@ -1,17 +1,50 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Inter', sans-serif;
 }
 
 a {
   color: #4596D8;
 }
 
+.gourmacracy-nav-bar {
+
+}
+
+.gourmacracy-nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.gourmacracy-nav-bar li {
+  float: right;
+}
+
+.gourmacracy-nav-bar li a {
+  font: 14px 'Inter', sans-serif;
+  font-weight: bold;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.gourmacracy-nav-bar li a:hover:not(.active) {
+  background-color: #E5E5E5;
+}
+
+.gourmacracy-nav-bar .active {
+  color: #DB9232;
+}
+
 .nav.navbar-nav li a {
   color: #4596D8;
   font-size: 30px;
   font-weight: bold;
-  font-family: 'Dosis';
+  font-family: 'Inter', sans-serif;
 }
 
 .nav.navbar-nav {
@@ -25,7 +58,7 @@ hr {
 }
 
 h1, h2 {
-  font-family: 'Dosis';
+  font-family: 'Inter', sans-serif;
 }
 
 html {
