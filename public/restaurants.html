@@ -12,49 +12,44 @@
     <script src="menu.html"></script>
 </head>
 <body>
-<header>
- 
-    <span style="float: right;">
-          <nav class="navbar navbar-default" style="background:transparent;">
-              <div class="container-fluid">
-                  <ul class="nav navbar-nav">
-                    <li><a href="update-user.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span>Update Account</a></li>
-                    <li><a href="logout.html">Logout</a></li>-->
-                    <li><a href="past-orders.html">Logout</a></li>-->
-                    <li><a href="rate-order.html">Logout</a></li>-->
-                  
-                  </ul>
-              </div>
-          </nav>
-    </span>
-</header>
-<div class="col-xs-12">
-  <hr style="margin-top: 20px;">
-</div>
-    <div class="container">
-      <form method="POST"
-        action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"
-        onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">
+<!-- nav-bar -->
+<nav class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+    </ul>
+</nav>
+<hr>
+<!-- nav-bar -->
+
+<div class="container">
+    <form method="POST"
+          action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"
+          onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">
         <h2>Please select a restaurant</h2>
         <div class="mb-3 form-group">
-          <label for="restaurantList">RESTAURANT</label>
-          <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">
-            <option value="Epic Eats">Epic Eats</option>
-            <option value="Food of Destiny">Food of Destiny</option>
-            <option value="Great Yum!">Great Yum!</option>
-            <option value="Terrific Teriyaki">Terrific Teriyaki</option>
-            <option value="Victor's Noodle Spot">Victor's Noodle Spot</option>
-          </select>
-          <br><input type="submit" class="btn btn-lg btn-outline-primary" id="btnOpenRestaurantMenu" value="Open Menu"> <br>
+            <label for="restaurantList">RESTAURANT</label>
+            <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">
+                <option value="Epic Eats">Epic Eats</option>
+                <option value="Food of Destiny">Food of Destiny</option>
+                <option value="Great Yum!">Great Yum!</option>
+                <option value="Terrific Teriyaki">Terrific Teriyaki</option>
+                <option value="Victor's Noodle Spot">Victor's Noodle Spot</option>
+            </select>
+            <br><input type="submit" class="btn btn-lg btn-outline-primary" id="btnOpenRestaurantMenu" value="Open Menu"> <br>
         </div>
-      </form>
-    </div>
+    </form>
+</div>
 <script>
 
     function openMenu(id) {
-      let parameter = new URLSearchParams();
-      parameter.append("restaurantID", id);
-      location.href = "menu.html?" + parameter.toString();
+        let parameter = new URLSearchParams();
+        parameter.append("restaurantID", id);
+        location.href = "menu.html?" + parameter.toString();
     }
 
 </script>
