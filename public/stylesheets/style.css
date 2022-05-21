@@ -1,17 +1,79 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Inter', sans-serif;
+}
+
+h2 {
+  font-weight: bold;
+  font-family: 'TT Norms Pro', sans-serif;
+}
+
+.gourmacracy-logo-container {
+  height: 4em;
+  position: relative
+}
+
+.gourmacracy-logo-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 a {
-  color: #4596D8;
+  color: #DB9232;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.gourmacracy-button {
+  width:100%;
+  height: 40px;
+  display:block;
+  border-radius: 25px;
+  background-color: #DB9232;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 0px;
+}
+
+.gourmacracy-nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.gourmacracy-nav-bar li {
+  float: right;
+}
+
+.gourmacracy-nav-bar li a {
+  font: 20px 'Inter', sans-serif;
+  font-weight: bold;
+  display: block;
+  color: #323232;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.gourmacracy-nav-bar li a:hover:not(.active) {
+  background-color: #E5E5E5;
+}
+
+.gourmacracy-nav-bar .active {
+  color: #DB9232;
 }
 
 .nav.navbar-nav li a {
-  color: #4596D8;
+  color: #454545;
   font-size: 30px;
   font-weight: bold;
-  font-family: 'Dosis';
+  font-family: 'Inter', sans-serif;
 }
 
 .nav.navbar-nav {
@@ -21,11 +83,12 @@ a {
 hr {
   /* border: 1px solid #4596D8; */
   border: none;
-  border-bottom: 2px solid #4596D8;
+  border-bottom: 1px solid #323232;
+  box-shadow: 0 20px 20px #E5E5E5;
 }
 
 h1, h2 {
-  font-family: 'Dosis';
+  font-family: 'Inter', sans-serif;
 }
 
 html {
@@ -57,4 +120,99 @@ html {
   color: lightgrey;
   font-size: 20px;
   cursor: pointer;
+}
+
+.container-form {
+  height: 30em;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.container-center {
+  margin: 0;
+  width: 400px
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #F3F3F3;
+  border: 0;
+  border-radius: 10px
+}
+
+input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #F3F3F3;
+  border: 0;
+  border-radius: 10px
+}
+
+input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #F3F3F3;
+  border: 0;
+  border-radius: 10px
+}
+
+.gourmacracy-menu-header-container {
+  height: 20em;
+  position: relative
+}
+
+.gourmacracy-menu-header-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.gourmacracy-menu-header-wrapper {
+  display: inline-block;
+  width: 800px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.gourmacracy-menu-output-container {
+  height: 70em;
+  position: relative
+}
+
+.gourmacracy-menu-output-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.gourmacracy-epic-eats-wrapper {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 140px;
+  box-shadow:
+          0 5px 10px 0px rgba(0,0,0,0.22),
+          0 10px 13px 0px rgba(0,0,0,0.34),
+          inset 0 18px 18px 0 rgba(255,255,255,0.35),
+          inset 0 -18px 18px 0 rgba(0,0,0,0.10);
+}
+
+.gourmacracy-epic-eats-pos {
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
