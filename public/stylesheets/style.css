@@ -2,6 +2,10 @@ body {
   font: 14px 'Inter', sans-serif;
 }
 
+.gourmacracy-main-container {
+  margin-top: 30px;
+}
+
 h2 {
   font-weight: bold;
   font-family: 'TT Norms Pro', sans-serif;
@@ -50,6 +54,13 @@ a:link {
   font-size: 18px;
   font-weight: bold;
   border: 0px;
+}
+
+.gourmacracy-nav-bar {
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%;
 }
 
 .gourmacracy-nav-bar ul {

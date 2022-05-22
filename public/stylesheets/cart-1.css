@@ -1,18 +1,18 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 14px 'Inter', sans-serif;
 }
 
 a {
-    color: #4596D8;
+    color: #DB9232;
 }
+
 .nav-li {
-    color: #4596D8;
+    color: #DB9232;
     font-size: 25px;
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 .nav.navbar-nav li a {
-    color: #4596D8;
+    color: #DB9232;
     font-size: 25px;
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -24,7 +24,7 @@ a {
 hr {
     /* border: 1px solid #4596D8; */
     border: none;
-    border-bottom: 2px solid #4596D8;
+    border-bottom: 2px solid #DB9232;
 }
 
 h1, h2 {
