@@ -13,6 +13,7 @@
     <script src="adminDeleteMenuItem.html"></script>
 </head>
 <body>
+<<<<<<< HEAD
 <header>
 
 <span style="float: right;">
@@ -36,6 +37,26 @@
         <h2>Menu</h2>
         <div class="jumbotron" style="background-color: #FFF7D6" id="output"></div>
       </div>
+=======
+<!-- nav-bar -->
+<nav class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+    </ul>
+</nav>
+<hr>
+<!-- nav-bar -->
+<section class="gourmacracy-menu-header-container">
+    <div class="gourmacracy-menu-header-center">
+        <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
+        <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+>>>>>>> e85ffcce49f0d172e32c289ac28d0d9bc67720df
     </div>
 </section>
 <div class="gourmacracy-menu-output-container">
@@ -96,6 +117,7 @@
         xhttp.send();
     });
 
+<<<<<<< HEAD
     function addMenuItemToCart(itemName) {
         let url = "https://tran-netcentric-final.herokuapp.com/api/menuItems/"
         let xhttp = new XMLHttpRequest();
@@ -109,6 +131,13 @@
 
       
       
+=======
+    function addMenuItemToCart(id) {
+        console.log("We need to do something when adding item to cart");
+        // let parameter = new URLSearchParams();
+        // parameter.append("menuItemID", id);
+        // location.href = "adminDeleteMenuItem.html?" + parameter.toString();
+>>>>>>> e85ffcce49f0d172e32c289ac28d0d9bc67720df
     }
     // function bookFind() {
     //     let url = "https://tran-netcentric-final.herokuapp.com/api/books/"
