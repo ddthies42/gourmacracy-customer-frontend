@@ -48,6 +48,7 @@
             '           <th scope="col">Name</th> \n'+
             '           <th scope="col">Email</th> \n'+
             '           <th scope="col">Password</th> \n'+
+            '           <th scope="col">Orders</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
@@ -60,6 +61,8 @@
                 '           <td>' + data[user]["name"]+  '</td>\n' +
                 '           <td>' + data[user]["email"]+  '</td>\n' +
                 '           <td>' + data[user]["password"]+  '</td>\n' +
+                '           <td>' + data[user]["orders"]+  '</td>\n' +
+
                 '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +
                 data[user]["_id"] +
