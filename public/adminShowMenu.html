@@ -72,16 +72,14 @@
             '           <th scope="col">Category</th> \n'+
             '           <th scope="col">Description</th> \n'+
             '           <th scope="col">Price</th> \n'+
-            '           <th scope="col">Points</th> \n'+
-            '           <th scope="col">NumRatings</th> \n'+
-            '           <th scope="col">Average</th> \n'+
+            '           <th scope="col">Rating</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
             '   <tbody>\n';
 
         for (let menuItem in data){
-            var average = data[menuItem]["points"] / data[menuItem]["numRatings"];
+            var Rating= data[menuItem]["points"] / data[menuItem]["numRatings"];
             table +=
                 '       <tr>\n' +
                 '           <td>' + data[menuItem]["_id"] +  '</td>\n' +
@@ -89,9 +87,7 @@
                 '           <td>' + data[menuItem]["category"]+  '</td>\n' +
                 '           <td>' + data[menuItem]["description"]+  '</td>\n' +
                 '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["points"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["numRatings"]+  '</td>\n' +
-                '           <td>' + average +  '</td>\n' +
+                '           <td>' + Rating +  '</td>\n' +
 
                 '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteMenuItem(\''+ data[menuItem]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateMenuItem(\'' +
