@@ -13,37 +13,37 @@
     <script src="adminDeleteMenuItem.html"></script>
 </head>
 <body>
-<header>
-
-<span style="float: right;">
-      <nav class="navbar navbar-default" style="background:transparent;">
-          <div class="container-fluid">
-              <ul class="nav navbar-nav">
-                
-                  <li><a href="update-user.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span>Update Account</a></li>
-                  <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
-                  <li><a href="logout.html">Logout</a></li>-->
-                </ul>
-          </div>
-      </nav>
-</span>
-</header>
-<div class="col-xs-12">
-  <hr style="margin-top: 20px;">
-</div>
-    <div class="container">
-      <div class="col-xs-12">
-        <h2>Menu</h2>
-        <div class="jumbotron" style="background-color: #FFF7D6" id="output"></div>
-      </div>
+<!-- nav-bar -->
+<nav class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+    </ul>
+</nav>
+<!-- nav-bar -->
+<div class="gourmacracy-main-container">
+    <!-- restaurant header -->
+    <section class="gourmacracy-menu-header-container">
+        <div class="gourmacracy-menu-header-center">
+            <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
+            <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+        </div>
+    </section>
+    <!-- restaurant header -->
+    <!-- epic eats info and menu outpu -->
+    <div class="gourmacracy-menu-output-container">
+        <div class="gourmacracy-menu-output-center">
+            <h2>Epic Eats</h2>
+            <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+            <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+        </div>
     </div>
-</section>
-<div class="gourmacracy-menu-output-container">
-    <div class="gourmacracy-menu-output-center">
-        <h2>Epic Eats</h2>
-        <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
-        <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
-    </div>
+    <!-- epic eats info and menu output -->
 </div>
 
 <script>
