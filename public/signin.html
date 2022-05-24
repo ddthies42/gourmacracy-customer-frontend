@@ -12,37 +12,39 @@
 </head>
 <body>
 <!-- nav-bar -->
-<div class="gourmacracy-logo-container">
-    <a href="index.html" class="gourmacracy-logo-center">
-        <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
-    </a>
+<div class="gourmacracy-nav-bar">
+    <div class="gourmacracy-logo-container">
+        <a href="index.html" class="gourmacracy-logo-center">
+            <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+        </a>
+    </div>
 </div>
-<hr>
 <!-- nav-bar -->
-
-<div class="container-form">
-    <!-- Form -->
-    <form class="container-center" method="POST"
-          action="https://gourmacracy-customer-backend.herokuapp.com/api/users/signin" onsubmit="userFind(); return false">
+<div class="gourmacracy-main-container">
+    <div class="container-form">
+        <!-- Form -->
+        <form class="container-center" method="POST"
+              action="https://gourmacracy-customer-backend.herokuapp.com/api/users/signin" onsubmit="userFind(); return false">
+            <br>
+            <h2 style="font-weight: bold; text-align: center">Sign In</h2>
+            <p style="color: #808080; text-align: center; font-size: 18px">New to Gourmacracy?
+                <a href="registration.html" style="color: #DB9232; font-weight: bold">Sign Up</a></p>
+            <br>
+            <div class="mb-3 form-group">
+                <label for="email" style="font-size: 18px; margin-bottom: 8px"><i class="bi bi-at"></i>&emsp;&emsp;&emsp;Email</label><br>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="password" style="font-size: 18px; margin-bottom: 8px"><i class="bi bi-key-fill"></i>&emsp;&emsp;&emsp;Password</label>
+                <span style="float: right; color: #808080"><a href="forgot-password.html">Forgot your password?</a></span><br>
+                <input type="password" name="password" id="password" class="form-control">
+            </div><br>
+            <input type="submit" class="gourmacracy-button" id="btnInsertUser" value="Sign In">
+        </form>
         <br>
-        <h2 style="font-weight: bold; text-align: center">Sign In</h2>
-        <p style="color: #808080; text-align: center; font-size: 18px">New to Gourmacracy?
-            <a href="registration.html" style="color: #DB9232; font-weight: bold">Sign Up</a></p>
-        <br>
-        <div class="mb-3 form-group">
-            <label for="email" style="font-size: 18px; margin-bottom: 8px"><i class="bi bi-at"></i>&emsp;&emsp;&emsp;Email</label><br>
-            <input type="email" name="email" id="email" class="form-control">
-        </div>
-        <div class="mb-3 form-group">
-            <label for="password" style="font-size: 18px; margin-bottom: 8px"><i class="bi bi-key-fill"></i>&emsp;&emsp;&emsp;Password</label>
-            <span style="float: right; color: #808080"><a href="forgot-password.html">Forgot your password?</a></span><br>
-            <input type="password" name="password" id="password" class="form-control">
-        </div><br>
-        <input type="submit" class="gourmacracy-button" id="btnInsertUser" value="Sign In">
-    </form>
-    <br>
+    </div>
+    <div class="col-xs-12 jumbotron" style="background-color: #FFF7D6; border-radius: 10px" id="output1"></div>
 </div>
-<div class="col-xs-12 jumbotron" style="background-color: #FFF7D6; border-radius: 10px" id="output1"></div>
 
 <script>
     function userFind() {

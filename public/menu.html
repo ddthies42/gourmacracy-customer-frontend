@@ -13,29 +13,16 @@
     <script src="adminDeleteMenuItem.html"></script>
 </head>
 <body>
-<!-- nav-bar -->
-<nav class="gourmacracy-nav-bar">
-    <ul>
-        <li style="float: left">
-            <a href="index.html">
-                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
-            </a>
-        </li>
-        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
-    </ul>
-</nav>
-<!-- nav-bar -->
 <div class="gourmacracy-main-container">
     <!-- restaurant header -->
-    <section class="gourmacracy-menu-header-container">
+    <div class="gourmacracy-menu-header-container">
         <div class="gourmacracy-menu-header-center">
             <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
             <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
         </div>
-    </section>
+    </div>
     <!-- restaurant header -->
-    <!-- epic eats info and menu outpu -->
+    <!-- epic eats info and menu output -->
     <div class="gourmacracy-menu-output-container">
         <div class="gourmacracy-menu-output-center">
             <h2>Epic Eats</h2>
@@ -45,7 +32,19 @@
     </div>
     <!-- epic eats info and menu output -->
 </div>
-
+<!-- nav-bar -->
+<div class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+    </ul>
+</div>
+<!-- nav-bar -->
 <script>
     function CreateTable(data){
         let table = "";
