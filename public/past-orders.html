@@ -1,74 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Home Page</title>
-      <meta name="author" content="Gourmacracy">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="stylesheets/style.css">
-      <script>
-      function order(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("OrderID", id);
-        location.href = "rating.html?" + parameter.toString();
-      }
-      </script>
-  </head>
-  <body>
-    <header>
-      <!-- Gourmacracy logo -->
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <a href="index.html">
-            <img src="images/gourmacracy-logo.png" class="img-fluid" alt="logo" width="300" style="vertical-align: baseline">
-        </a>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-8">
-        <span style="float: right;">
-              <nav class="navbar navbar-default" style="background:transparent;">
-                  <div class="container-fluid">
-                      <ul class="nav navbar-nav">
-                         
-                          <li><a href="update-user.html"><span class="glyphicon glyphicon-user" style="font-size: 21px; color: #4596D8"></span>Update Account</a></li>
-                          <li><a href="menu.html">Menu</a></li>
-                          <li><a href="cart-1.html"><span class="glyphicon glyphicon-shopping-cart" style="font-size: 21px; color: #4596D8"></span> Cart</a></li>
-                          <li><a href="logout.html">Logout</a></li>-->
-                      </ul>
-                  </div>
-              </nav>
-        </span>
-      </div>
-    </header>
-    <div class="col-xs-12">
-      <hr style="margin-top: 20px;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show All Menu Items</title>
+    <meta name="author" content="Gourmacracy">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+  <div class="gourmacracy-past-orders-output-container">
+      <div class="gourmacracy-menu-output-center">
+        <div>
+            <h2 id="userName">Past Orders</h2>
+            <h4>&nbsp;&nbsp;&nbsp;&nbsp;Epic Eats</h4>
+            <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+        </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h2>Past Orders</h2>
-        </div>
-        <div class="col-xs-12">
-          <div class="menu-item" onclick="order(1)">
-            <p>Restaurant Name</p>
-            <p>List of items ordered</p>
-          </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="menu-item" onclick="order(2)">
-            <p>Restaurant Name 2</p>
-            <p>List of items ordered</p>
-          </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="menu-item" onclick="order(3)">
-            <p>Restaurant Name 3</p>
-            <p>List of items ordered</p>
-          </div>
-        </div>
-      </div>
+</div>
+<!-- nav-bar -->
+<div class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+    </ul>
+</div>
+<!-- nav-bar -->
+<script>
+    function LoadUserData(menuItems){
+      let userID = "626c99569aba2d00048f6371";
 
-    </div>
-  </body>
+      let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/" + userID;
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function (){
+          if (this.readyState == 4 && this.status == 200){
+              let userData = JSON.parse(this.responseText);
+              var orders = (userData.orders[0]).split(',  ');
+              var userMenuData = new Array;
+              for(orderID in orders) {
+                for(item in menuItems) {
+                  if(menuItems[item]["_id"] == orders[orderID]) {
+                    userMenuData.push(menuItems[item]);
+                  }
+                }
+              }
+
+              document.getElementById("output").innerHTML =
+                  CreateTable(userMenuData);
+              document.getElementById("userName").innerHTML =
+                  userData.name + "'s Past Orders";
+          }
+      };
+      xhttp.open('GET', url, true);
+      xhttp.send();
+    }
+
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">Item Name</th> \n'+
+            '           <th scope="col">Category</th> \n'+
+            '           <th scope="col">Description</th> \n'+
+            '           <th scope="col">Price</th> \n'+
+            '           <th scope="col">Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
+
+        for (let menuItem in data){
+            var average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
+            table +=
+                '       <tr>\n' +
+                '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["category"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["description"]+  '</td>\n' +
+                '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
+                '           <td>';
+            for(var i =0; i < 5; i++) {
+              if(average > 0) {
+                table += '<i class="bi bi-star-fill"></i>';
+                average--;
+              } else {
+                table += '<i class="bi bi-star"></i>';
+              }
+            }
+            table += '</td>\n' +
+                '       </tr>\n';
+        }
+
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+    window.addEventListener('load', (event) =>{
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+              LoadUserData(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+
+
+</script>
+</body>
 </html>

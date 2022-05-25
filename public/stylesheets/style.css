@@ -250,3 +250,8 @@ input[type=email] {
   margin-right: -50%;
   transform: translate(-50%, -50%)
 }
+
+.gourmacracy-past-orders-output-container {
+  height: 35em;
+  position: relative;
+}
