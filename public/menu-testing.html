@@ -42,9 +42,9 @@
         </div>
         <div class="cart-items">
         </div>
-        <div class="cart-total">
-            <strong class="cart-total-title">Total</strong>
-            <span class="cart-total-price">$0</span>
+        <div class="cart-subtotal">
+            <strong class="cart-subtotal-title">Subtotal</strong>
+            <span class="cart-subtotal-price">$0</span>
         </div>
         <button class="btn btn-primary checkout-btn" type="button">Checkout</button>
     </section>
@@ -228,17 +228,17 @@
     function updateCartTotal() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-        var total = 0
+        var subtotal = 0
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i]
             var priceElement = cartRow.getElementsByClassName('cart-price')[0]
             var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
             var price = parseFloat(priceElement.innerText.replace('$', ''))
             var quantity = quantityElement.value
-            total = total + (price * quantity)
+            subtotal = subtotal + (price * quantity)
         }
-        total = Math.round(total * 100) / 100
-        document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+        subtotal = Math.round(subtotal * 100) / 100
+        document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
     }
 
     let field = document.getElementById("cart-items");
