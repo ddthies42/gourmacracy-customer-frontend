@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="userFind()">Process Payment</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="cardFind()">Process Payment</button>
                 </form>
             </div>
         </div>
@@ -150,33 +150,25 @@
 // <form class="container-center" method="POST"
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
-function userFind() {
-    let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function (){
-        if (this.readyState == 4 && this.status == 200){
+function cardFind() {
+   
 
-            document.getElementById("output1").innerHTML =
-                "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Redirecting...";
+    //         // Go to restaurants list after 3 seconds
+    //         setTimeout(function(){
+    //             let parameter = new URLSearchParams();
+    //             location.href = "restaurants.html";
+    //         },3000);
+    //     } else {
+    //         console.log("Output error: " + this.responseText);
+    //     }
+    // };
 
-            // Go to restaurants list after 3 seconds
-            setTimeout(function(){
-                let parameter = new URLSearchParams();
-                location.href = "restaurants.html";
-            },3000);
-        } else {
-            console.log("Output error: " + this.responseText);
-        }
-    };
+    let cardData = "cardname=" + document.getElementById("cardname").value + "&" +
+        "creditcard=" + document.getElementById("creditcard").value  + "&" +
+        "experation="  + document.getElementById("experiation").value  + "&" +
+        "cvv="  + document.getElementById("cvv").value  + "&";
 
-    let userData = "name=" + document.getElementById("name").value + "&" +
-        "email=" + document.getElementById("email").value  + "&" +
-        "password="  + document.getElementById("password").value  + "&";
-
-    xhttp.open('POST', url, true);
-    // Just needed to place this line AFTER opening the object
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send(userData);
+   
 }
 </script>
 
