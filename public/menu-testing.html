@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Show All Menu Items</title>
+    <meta name="author" content="Gourmacracy">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/menu.css">
+</head>
+<body>
+<div class="gourmacracy-main-container">
+    <!-- restaurant header -->
+    <div class="gourmacracy-menu-header-container">
+        <div class="gourmacracy-menu-header-center">
+            <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
+            <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+        </div>
+    </div>
+    <!-- restaurant header -->
+    <!-- epic eats info and menu output -->
+    <div class="gourmacracy-menu-output-container">
+        <div class="gourmacracy-menu-output-center">
+            <h2>Epic Eats</h2>
+            <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+            <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+        </div>
+    </div>
+    <!-- epic eats info and menu output -->
+
+    <!-- cart info -->
+    <section class="container content-section">
+        <h2 class="section-header">CART</h2>
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column">ITEM</span>
+            <span class="cart-price cart-header cart-column">PRICE</span>
+            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+        <div class="cart-items">
+        </div>
+        <div class="cart-total">
+            <strong class="cart-total-title">Total</strong>
+            <span class="cart-total-price">$0</span>
+        </div>
+        <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
+    </section>
+    <!-- cart info -->
+
+</div>
+<!-- nav-bar -->
+<div class="gourmacracy-nav-bar">
+    <ul>
+        <li style="float: left">
+            <a href="index.html">
+                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+            </a>
+        </li>
+        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+    </ul>
+</div>
+<!-- nav-bar -->
+
+<script>
+    function CreateTable(data){
+        let table = "";
+        table =
+            '<table class="table table-bordered table-hover"> \n' +
+            '   <thead>\n' +
+            '       <tr>\n' +
+            '           <th scope="col">Item Name</th> \n'+
+            '           <th scope="col">Category</th> \n'+
+            '           <th scope="col">Description</th> \n'+
+            '           <th scope="col">Price</th> \n'+
+            '           <th scope="col">Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> \n'+
+            '           <th scope="col">Actions</th> \n'+
+            '       </tr>\n' +
+            '   </thead>\n' +
+            '   <tbody>\n';
+
+        for (let menuItem in data){
+            var average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
+            table +=
+                '       <tr>\n' +
+                '           <td class=\"shop-item-title\">' + data[menuItem]["itemName"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["category"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["description"]+  '</td>\n' +
+                '           <td class=\"shop-item-title\">$' + data[menuItem]["price"]+  '</td>\n' +
+                '           <td>';
+            for(var i =0; i < 5; i++) {
+              if(average > 0) {
+                table += '<i class="bi bi-star-fill"></i>';
+                average--;
+              } else {
+                table += '<i class="bi bi-star"></i>';
+              }
+            }
+            table += '</td>\n' +
+
+                '           <td style=\"text-align:center\"> <button class=\"shop-item-button btn btn-primary\" ' +
+                'onclick=\"addItemToCart(\''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
+                '\')\">Add</button></td>\n' +
+                '       </tr>\n';
+        }
+
+        table +=
+            '   </tbody>\n' +
+            '</table>\n'
+        return table;
+    }
+    window.addEventListener('load', (event) =>{
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    CreateTable(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+    function addMenuItemToCart(id) {
+        let parameter = new URLSearchParams();
+        parameter.append("menuItemID", id);
+        location.href = "cart.html?" + parameter.toString();
+        //code that sends to cart.....what happens next?
+    }
+
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', ready)
+    } else {
+        ready()
+    }
+
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', ready)
+    } else {
+        ready()
+    }
+
+    function ready() {
+        var removeCartItemButtons = document.getElementsByClassName('btn-delete-item')
+        for (var i = 0; i < removeCartItemButtons.length; i++) {
+            var button = removeCartItemButtons[i]
+            button.addEventListener('click', removeCartItem)
+        }
+
+        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+        for (var i = 0; i < quantityInputs.length; i++) {
+            var input = quantityInputs[i]
+            input.addEventListener('change', quantityChanged)
+        }
+
+        var addToCartButtons = document.getElementsByClassName('shop-item-button')
+        for (var i = 0; i < addToCartButtons.length; i++) {
+            var button = addToCartButtons[i]
+            button.addEventListener('click', addToCartClicked)
+        }
+
+        document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+    }
+
+    function purchaseClicked() {
+        alert('Thank you for your purchase')
+        var cartItems = document.getElementsByClassName('cart-items')[0]
+        while (cartItems.hasChildNodes()) {
+            cartItems.removeChild(cartItems.firstChild)
+        }
+        updateCartTotal()
+    }
+
+    function removeCartItem(event) {
+        var buttonClicked = event.target
+        buttonClicked.parentElement.parentElement.remove()
+        updateCartTotal()
+    }
+
+    function quantityChanged(event) {
+        var input = event.target
+        if (isNaN(input.value) || input.value <= 0) {
+            input.value = 1
+        }
+        updateCartTotal()
+    }
+
+    function addToCartClicked(event) {
+        var button = event.target
+        var shopItem = button.parentElement.parentElement
+        var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+        var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
+        addItemToCart(title, price)
+        updateCartTotal()
+    }
+
+    function addItemToCart(title, price) {
+        var cartRow = document.createElement('div')
+        cartRow.classList.add('cart-row')
+        var cartItems = document.getElementsByClassName('cart-items')[0]
+        var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+        for (var i = 0; i < cartItemNames.length; i++) {
+            if (cartItemNames[i].innerText == title) {
+                alert('This item is already added to the cart')
+                return
+            }
+        }
+        var cartRowContents = `
+        <div class="cart-item cart-column">
+            <span class="cart-item-title">${title}</span>
+        </div>
+        <span class="cart-price cart-column">$${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-delete-item" type="button">REMOVE</button>
+        </div>`
+        cartRow.innerHTML = cartRowContents
+        cartItems.append(cartRow)
+        cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
+        cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+    }
+
+    function updateCartTotal() {
+        var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+        var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+        var total = 0
+        for (var i = 0; i < cartRows.length; i++) {
+            var cartRow = cartRows[i]
+            var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+            var price = parseFloat(priceElement.innerText.replace('$', ''))
+            var quantity = quantityElement.value
+            total = total + (price * quantity)
+        }
+        total = Math.round(total * 100) / 100
+        document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+    }
+
+</script>
+</body>
+</html>
