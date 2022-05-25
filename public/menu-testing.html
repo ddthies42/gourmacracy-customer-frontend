@@ -12,31 +12,33 @@
 </head>
 <body>
 <div class="gourmacracy-main-container">
-    <!-- restaurant header -->
-    <div class="gourmacracy-menu-header-container">
-        <div class="gourmacracy-menu-header-center">
-            <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
-            <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+    <div class="gourmacracy-menu-container">
+        <!-- restaurant header -->
+        <div class="gourmacracy-menu-header-container">
+            <div class="gourmacracy-menu-header-center">
+                <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
+                <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+            </div>
         </div>
-    </div>
-    <!-- restaurant header -->
-    <!-- epic eats info and menu output -->
-    <div class="gourmacracy-menu-output-container">
-        <div class="gourmacracy-menu-output-center">
-            <h2>Epic Eats</h2>
-            <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
-            <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+        <!-- restaurant header -->
+        <!-- epic eats info and menu output -->
+        <div class="gourmacracy-menu-output-container">
+            <div class="gourmacracy-menu-output-center">
+                <h2>Epic Eats</h2>
+                <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+                <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+            </div>
         </div>
+        <!-- epic eats info and menu output -->
     </div>
-    <!-- epic eats info and menu output -->
 
     <!-- cart info -->
-    <section class="container content-section">
+    <section class="gourmacracy-cart-container">
         <h2 class="section-header">CART</h2>
         <div class="cart-row">
-            <span class="cart-item cart-header cart-column">ITEM</span>
-            <span class="cart-price cart-header cart-column">PRICE</span>
-            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            <span class="cart-item cart-header cart-column"></span>
+            <span class="cart-price cart-header cart-column"></span>
+            <span class="cart-quantity cart-header cart-column"></span>
         </div>
         <div class="cart-items">
         </div>
@@ -44,7 +46,7 @@
             <strong class="cart-total-title">Total</strong>
             <span class="cart-total-price">$0</span>
         </div>
-        <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
+        <button class="btn btn-primary checkout-btn" type="button">Checkout</button>
     </section>
     <!-- cart info -->
 
@@ -84,10 +86,10 @@
             var average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
             table +=
                 '       <tr>\n' +
-                '           <td class=\"shop-item-title\">' + data[menuItem]["itemName"]+  '</td>\n' +
+                '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
                 '           <td>' + data[menuItem]["category"]+  '</td>\n' +
                 '           <td>' + data[menuItem]["description"]+  '</td>\n' +
-                '           <td class=\"shop-item-title\">$' + data[menuItem]["price"]+  '</td>\n' +
+                '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
                 '           <td>';
             for(var i =0; i < 5; i++) {
               if(average > 0) {
@@ -99,7 +101,7 @@
             }
             table += '</td>\n' +
 
-                '           <td style=\"text-align:center\"> <button class=\"shop-item-button btn btn-primary\" ' +
+                '           <td style=\"text-align:center\"> <button class=\"add-to-cart-btn btn btn-primary\" ' +
                 'onclick=\"addItemToCart(\''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
                 '\')\">Add</button></td>\n' +
                 '       </tr>\n';
@@ -155,22 +157,23 @@
             input.addEventListener('change', quantityChanged)
         }
 
-        var addToCartButtons = document.getElementsByClassName('shop-item-button')
+        var addToCartButtons = document.getElementsByClassName('add-to-cart-btn')
         for (var i = 0; i < addToCartButtons.length; i++) {
             var button = addToCartButtons[i]
             button.addEventListener('click', addToCartClicked)
         }
 
-        document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+        document.getElementsByClassName('checkout-btn')[0].addEventListener('click', checkoutClicked)
     }
 
-    function purchaseClicked() {
-        alert('Thank you for your purchase')
-        var cartItems = document.getElementsByClassName('cart-items')[0]
-        while (cartItems.hasChildNodes()) {
-            cartItems.removeChild(cartItems.firstChild)
-        }
-        updateCartTotal()
+    function checkoutClicked() {
+        // alert('Thank you for your purchase')
+        // var cartItems = document.getElementsByClassName('cart-items')[0]
+        // while (cartItems.hasChildNodes()) {
+        //     cartItems.removeChild(cartItems.firstChild)
+        // }
+        // updateCartTotal()
+        location.href = "checkout.html?" + parameter.toString();
     }
 
     function removeCartItem(event) {
@@ -189,9 +192,9 @@
 
     function addToCartClicked(event) {
         var button = event.target
-        var shopItem = button.parentElement.parentElement
-        var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
-        var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText
+        var menuItem = button.parentElement.parentElement
+        var title = menuItem.getElementsByClassName('menu-item-title')[0].innerText
+        var price = menuItem.getElementsByClassName('menu-item-price')[0].innerText
         addItemToCart(title, price)
         updateCartTotal()
     }
@@ -214,7 +217,7 @@
         <span class="cart-price cart-column">$${price}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-delete-item" type="button">REMOVE</button>
+            <button class="btn btn-delete-item" type="button" style="float: right"><i class="bi bi-trash3-fill"></i></button>
         </div>`
         cartRow.innerHTML = cartRowContents
         cartItems.append(cartRow)
@@ -237,6 +240,14 @@
         total = Math.round(total * 100) / 100
         document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
     }
+
+    let field = document.getElementById("cart-items");
+    if (sessionStorage.getItem("autosave")) {
+        field.value = sessionStorage.getItem("autosave");
+    }
+    field.addEventListener("change", function() {
+        sessionStorage.setItem("autosave", field.value);
+    });
 
 </script>
 </body>
