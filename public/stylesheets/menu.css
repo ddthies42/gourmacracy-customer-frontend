@@ -15,6 +15,10 @@ h2 {
     font-family: 'TT Norms Pro', sans-serif;
 }
 
+hr {
+    color: #323232FF;
+}
+
 .gourmacracy-logo-container {
     height: 4em;
     position: relative
@@ -200,9 +204,7 @@ input[type=email] {
     flex-shrink: 0;
     padding-left: 10px;
     padding-right:20px;
-    border-left: 1px solid;
-    border-left: #323232;
-    border-right: 1px solid;
+    border-left: 1px solid lightgrey;
 }
 
 .gourmacracy-menu-container {
@@ -269,5 +271,9 @@ input[type=email] {
 }
 
 <!---->
+.cart-row {
+    border-bottom: 1px solid;
+    border-bottom: #323232;
+}
 
 
