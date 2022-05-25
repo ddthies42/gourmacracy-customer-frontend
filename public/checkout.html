@@ -88,15 +88,16 @@
                             <label class="form-label" for="country">Country </label>
                             <select class="form-select" id="country">
                                 <option>Choose</option>
-                                <option>India</option>
+                                <option>United States</option>
+                                <option>Canada</option>
                             </select>
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="state">State </label>
                             <select class="form-select" id="state">
                                 <option>Choose</option>
-                                <option>Gujarat</option>
-                                <option>Karnataka</option>
+                                <option>Washington</option>
+                                <option>Oregon</option>
                             </select>
                         </div>
                         <div class="col-3">
@@ -139,11 +140,38 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Continue To Checkout</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="cardFind()">Process Payment</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+
+// <form class="container-center" method="POST"
+//           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
+
+function cardFind() {
+   
+
+    //         // Go to restaurants list after 3 seconds
+    //         setTimeout(function(){
+    //             let parameter = new URLSearchParams();
+    //             location.href = "restaurants.html";
+    //         },3000);
+    //     } else {
+    //         console.log("Output error: " + this.responseText);
+    //     }
+    // };
+
+    let cardData = "cardname=" + document.getElementById("cardname").value + "&" +
+        "creditcard=" + document.getElementById("creditcard").value  + "&" +
+        "experation="  + document.getElementById("experiation").value  + "&" +
+        "cvv="  + document.getElementById("cvv").value  + "&";
+
+   
+}
+</script>
+
 </body>
 
 </html>
