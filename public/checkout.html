@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="cardFind()">Process Payment</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="validateForm()">Process Payment</button>
                 </form>
             </div>
         </div>
@@ -177,7 +177,7 @@ function isValidDate(dateString)
 // <form class="container-center" method="POST"
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
-function validateForm {
+function validateForm() {
    
 
     //         // Go to restaurants list after 3 seconds
@@ -210,7 +210,7 @@ function validateForm {
             alert("CVV Number is Required");
             return false;
         }
-        
+
 let current = new Date();
 let form = document.getElementByID("expiration").value;
 let m1 = current.getTime();
