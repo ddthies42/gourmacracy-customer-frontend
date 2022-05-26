@@ -140,17 +140,44 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="cardFind()">Process Payment</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="validateForm()">Process Payment</button>
                 </form>
             </div>
         </div>
     </div>
     <script>
+      
+
+function isValidDate(dateString)
+{
+    // First check for the pattern
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+        return false;
+
+    // Parse the date parts to integers
+    var parts = dateString.split("/");
+    var day = parseInt(parts[1], 10);
+    var month = parseInt(parts[0], 10);
+    var year = parseInt(parts[2], 10);
+
+    // Check the ranges of month and year
+    if(year < 1000 || year > 3000 || month == 0 || month > 12)
+        return false;
+
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    // Adjust for leap years
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        monthLength[1] = 29;
+
+    // Check the range of the day
+    return day > 0 && day <= monthLength[month - 1];
+};
 
 // <form class="container-center" method="POST"
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
-function cardFind() {
+function validateForm() {
    
 
     //         // Go to restaurants list after 3 seconds
@@ -163,11 +190,35 @@ function cardFind() {
     //     }
     // };
 
-    let cardData = "cardname=" + document.getElementById("cardname").value + "&" +
-        "creditcard=" + document.getElementById("creditcard").value  + "&" +
-        "experation="  + document.getElementById("experiation").value  + "&" +
-        "cvv="  + document.getElementById("cvv").value  + "&";
+   
 
+        let a = document.getElementByID("cardname").value;
+        let b = document.getElementByID("creditcard").value;
+        let c = document.getElementByID("expiration").value;
+        let d = document.getElementByID("cvv").value;
+
+        if(a == ""){
+            alert("Name must be filled out");
+            return false;
+        }else if (b == ""){
+            alert("Credit Card Information Required");
+            return false;
+        }else if (c == ""){
+            alert("Must Provide an Expiration Date");
+            return false;
+        }else if(d == ""){
+            alert("CVV Number is Required");
+            return false;
+        }
+
+let current = new Date();
+let form = document.getElementByID("expiration").value;
+let m1 = current.getTime();
+let m2 = form.getTime();
+
+    if (m1 < m2){
+        alert("The Card is Expired!");
+    }
    
 }
 </script>
