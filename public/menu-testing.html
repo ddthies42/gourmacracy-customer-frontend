@@ -103,7 +103,7 @@
             table += '</td>\n' +
 
                 '           <td style=\"text-align:center\"> <button class=\"add-to-cart-btn\" ' +
-                'onclick=\"addItemToCart(\''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
+                'onclick=\"addItemToCart(\''+ data[menuItem]["_id"] + '\', \''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
                 '\')\">Add</button></td>\n' +
                 '       </tr>\n';
         }
@@ -147,9 +147,9 @@
 
         var quantityInputs = document.getElementsByClassName('cart-quantity-input')
         quantityInputs.click();
-        // quantityInputs.readOnly = false;
-        // quantityInputs.focus();
-        // quantityInputs.value = quantityInputs.value;
+        quantityInputs.readOnly = false;
+        quantityInputs.focus();
+        quantityInputs.value = quantityInputs.value;
         for (var i = 0; i < quantityInputs.length; i++) {
             var input = quantityInputs[i]
             input.addEventListener('change', quantityChanged)
@@ -171,7 +171,9 @@
         //     cartItems.removeChild(cartItems.firstChild)
         // }
         // updateCartTotal()
-        location.href = "checkout.html?" + parameter.toString();
+        var para = new URLSearchParams();
+        para.append("KEY", "VALUE");
+        location.href = "checkout.html?" + para.toString();
     }
 
     function removeCartItem(event) {
@@ -197,7 +199,7 @@
         updateCartTotal()
     }
 
-    function addItemToCart(title, price) {
+    function addItemToCart(id, title, price) {
         var cartRow = document.createElement('div')
         cartRow.classList.add('cart-row')
         var cartItems = document.getElementsByClassName('cart-items')[0]
