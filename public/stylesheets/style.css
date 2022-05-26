@@ -134,15 +134,18 @@ html {
 .menu-item {
   margin: 5px;
   padding: 10px;
-  border: solid lightgrey;
+  border: solid #DB9232;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 5px lightgrey;
-  height: 95px;
   cursor: pointer;
 }
 
 .menu-item:active {
+  background: lightgrey;
+}
+
+.menu-item:hover {
   background: lightgrey;
 }
 
@@ -228,8 +231,8 @@ input[type=email] {
 }
 
 .gourmacracy-menu-output-container {
-  height: 70em;
-  position: relative
+  height: 123em;
+  position: relative;
 }
 
 .gourmacracy-menu-output-center {
