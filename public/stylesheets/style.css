@@ -310,12 +310,12 @@ input[type=email] {
 }
 
 .index-nav-bar-content-center {
-  font-size: 60px;
+  font-size: 75px;
   font-weight: bold;
   color: white;
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
-  width: 650px;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 850px;
   position: absolute;
   top: 50%;
   left: 50%;
