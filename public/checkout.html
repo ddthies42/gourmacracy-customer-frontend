@@ -189,7 +189,7 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="validateForm()">Process Payment</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onclick="validateForm()">Process Payment</button>
                 </form>
             </div>
         </div>
@@ -245,7 +245,7 @@ function validateForm() {
     //     }
     // };
 
-   
+    alert("Name must be filled out");
 
         let a = document.getElementByID("cardname").value;
         let b = document.getElementByID("creditcard").value;
