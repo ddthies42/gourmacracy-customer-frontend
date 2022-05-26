@@ -271,6 +271,8 @@ input[type=email] {
   padding-right: 20px;
   background-image: url('../images/gourmacracy-index-nav-img.jpg');
   background-repeat: no-repeat;
+  background-size:contain;
+  background-position:center;
 }
 
 .gourmacracy-nav-bar-index ul {
