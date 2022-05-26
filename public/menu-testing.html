@@ -195,7 +195,7 @@
         var menuItem = button.parentElement.parentElement
         var title = menuItem.getElementsByClassName('menu-item-title')[0].innerText
         var price = menuItem.getElementsByClassName('menu-item-price')[0].innerText
-        addItemToCart(title, price)
+        addItemToCart(id, title, price)
         updateCartTotal()
     }
 
@@ -223,6 +223,7 @@
         cartItems.append(cartRow)
         cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
         cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+        updateCartTotal();
     }
 
     function updateCartTotal() {
