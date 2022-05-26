@@ -270,8 +270,11 @@ input[type=email] {
   box-shadow: 0 5px 5px #E5E5E5;
   padding-right: 20px;
   background-image: url('../images/gourmacracy-index-nav-img.jpg');
-  background-repeat: no-repeat;
-  background-size:contain;
+  background-repeat:no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
   background-position:center;
 }
 
