@@ -195,12 +195,12 @@
         </div>
     </div>
     <script>
-let firstName = document.getElementByID("firstname").value;
+/*let firstName = document.getElementByID("firstname").value;
 let lastName = document.getElementByID("lastname").value;
 let username = document.getElementByID("usrname").value;
 let address = document.getElementByID("address").value;
 let country = document.getElementByID("country").value;
-let state = document.getElementByID("state").value;
+let state = document.getElementByID("state").value;*/
       
 
 function isValidDate(dateString)
@@ -245,13 +245,12 @@ function validateForm() {
     //     }
     // };
 
-    
-        let a = document.getElementByID("cardname").value;
-        let b = document.getElementByID("creditcard").value;
-        let c = document.getElementByID("expiration").value;
-        let d = document.getElementByID("cvv").value;
-        alert("success");
-        if(a === ""){
+        let a = document.getElementById("cardname").value;
+        let b = document.getElementById("creditcard").value;
+        let c = document.getElementById("expiration").value;
+        let d = document.getElementById("cvv").value;
+        
+        if (a == "") {
             alert("Name must be filled out");
             //return false;
         }else if (b == ""){
