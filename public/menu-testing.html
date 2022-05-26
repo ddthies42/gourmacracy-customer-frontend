@@ -102,7 +102,7 @@
             }
             table += '</td>\n' +
 
-                '           <td style=\"text-align:center\"> <button class=\"add-to-cart-btn btn btn-primary\" ' +
+                '           <td style=\"text-align:center\"> <button class=\"add-to-cart-btn\" ' +
                 'onclick=\"addItemToCart(\''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
                 '\')\">Add</button></td>\n' +
                 '       </tr>\n';
@@ -126,13 +126,6 @@
         xhttp.send();
     });
 
-    function addMenuItemToCart(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("menuItemID", id);
-        location.href = "cart.html?" + parameter.toString();
-        //code that sends to cart.....what happens next?
-    }
-
     if (document.readyState == 'loading') {
         document.addEventListener('DOMContentLoaded', ready)
     } else {
@@ -153,6 +146,10 @@
         }
 
         var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+        quantityInputs.click();
+        // quantityInputs.readOnly = false;
+        // quantityInputs.focus();
+        // quantityInputs.value = quantityInputs.value;
         for (var i = 0; i < quantityInputs.length; i++) {
             var input = quantityInputs[i]
             input.addEventListener('change', quantityChanged)
@@ -213,7 +210,7 @@
         }
         var cartRowContents = `
         <div class="cart-item cart-column">
-            <span class="cart-item-title">${title}</span>
+            <span class="cart-item-title" style="font-weight: bold">${title}</span>
         </div>
         <span class="cart-price cart-column">$${price}</span>
         <div class="cart-quantity cart-column">
@@ -242,13 +239,6 @@
         document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
     }
 
-    let field = document.getElementById("cart-items");
-    if (sessionStorage.getItem("autosave")) {
-        field.value = sessionStorage.getItem("autosave");
-    }
-    field.addEventListener("change", function() {
-        sessionStorage.setItem("autosave", field.value);
-    });
 
 </script>
 </body>

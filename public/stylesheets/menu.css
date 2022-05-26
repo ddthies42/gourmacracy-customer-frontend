@@ -64,6 +64,18 @@ a:link {
     border: 0px;
 }
 
+.add-to-cart-btn {
+    width:100%;
+    height: 40px;
+    display:block;
+    border-radius: 2px;
+    background-color: #DB9232;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: 0px;
+}
+
 .gourmacracy-nav-bar {
     overflow: hidden;
     position: fixed;
