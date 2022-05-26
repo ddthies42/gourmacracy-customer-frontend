@@ -195,7 +195,6 @@
         </div>
     </div>
     <script>
-      
 let firstName = document.getElementByID("firstname").value;
 let lastName = document.getElementByID("lastname").value;
 let username = document.getElementByID("usrname").value;
@@ -255,27 +254,28 @@ function validateForm() {
 
         if(a == ""){
             alert("Name must be filled out");
-            return false;
+            //return false;
         }else if (b == ""){
             alert("Credit Card Information Required");
-            return false;
+            //return false;
         }else if (c == ""){
             alert("Must Provide an Expiration Date");
-            return false;
+            //return false;
         }else if(d == ""){
             alert("CVV Number is Required");
-            return false;
+            //return false;
+        } else {
+
+            let current = new Date();
+            let form = document.getElementByID("expiration").value;
+            let m1 = current.getTime();
+            let m2 = form.getTime();
+
+                if (m1 < m2){
+                    alert("The Card is Expired!");
+                }
+            
         }
-
-let current = new Date();
-let form = document.getElementByID("expiration").value;
-let m1 = current.getTime();
-let m2 = form.getTime();
-
-    if (m1 < m2){
-        alert("The Card is Expired!");
-    }
-   
 }
 </script>
 
