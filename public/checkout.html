@@ -245,21 +245,21 @@ function validateForm() {
     //     }
     // };
 
-        let a = document.getElementById("cardname").value;
-        let b = document.getElementById("creditcard").value;
-        let c = document.getElementById("expiration").value;
-        let d = document.getElementById("cvv").value;
+        let cardname = document.getElementById("cardname").value;
+        let creditcard = document.getElementById("creditcard").value;
+        let exp = document.getElementById("expiration").value;
+        let cvv = document.getElementById("cvv").value;
         
-        if (a === "") {
+        if (cardname === "") {
             alert("Name must be filled out");
             //return false;
-        } else if (b === "") {
+        } else if (creditcard === "") {
             alert("Credit Card Information Required");
             //return false;
-        } else if (c === "") {
+        } else if (exp === "") {
             alert("Must Provide an Expiration Date");
             //return false;
-        } else if (d === "") {
+        } else if (cvv === "") {
             alert("CVV Number is Required");
             //return false;
         } else {
@@ -270,9 +270,9 @@ function validateForm() {
             let m1 = current.getTime();
             let m2 = form.getTime();
 
-                if (m1 < m2){
-                    alert("The Card is Expired!");
-                }
+            if (m1 < m2) {
+                alert("The Card is Expired!");
+            }
             
         }
 }
