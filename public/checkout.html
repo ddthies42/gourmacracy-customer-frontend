@@ -160,7 +160,7 @@ function validateDate(testdate) {
     return date_regex.test(testdate);
 }
 
-function valideCVV(sample){
+function validateCVV(sample){
     var re = new RegExp("\d\d\d");
         if (re.test(sample)){
             console.log("Valid CVV");
@@ -177,22 +177,13 @@ function valideCVV(sample){
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
 function validateForm() {
-   
-
-    //         // Go to restaurants list after 3 seconds
-    //         setTimeout(function(){
-    //             let parameter = new URLSearchParams();
-    //             location.href = "restaurants.html";
-    //         },3000);
-    //     } else {
-    //         console.log("Output error: " + this.responseText);
-    //     }
-    // };
 
         let cardname = document.getElementById("cardname").value;
         let creditcard = document.getElementById("creditcard").value;
         let exp = document.getElementById("expiration").value;
         let cvv = document.getElementById("cvv").value;
+
+        validateCVV(cvv);
         
         if (cardname === "") {
             alert("Name must be filled out");
@@ -207,19 +198,48 @@ function validateForm() {
             alert("CVV Number is Required");
             //return false;
         } else {
-            alert("success");
-
             let current = new Date();
             let form = document.getElementById("expiration").value;
             let m1 = current.getTime();
             let m2 = form.getTime();
+        }
 
             if (m1 < m2) {
                 alert("The Card is Expired!");
             }
-            
+
+            if (!is_creditCard(creditcard)){
+                alert("The Credit Card Number Is Not Valid!")
+
+            }else if (!validateDate(exp)){
+                alert("The Date Format Required is MM/YY");
+            }else{
+                
+                alert("Your Payment has been Received! Thank You!");
+                
+                setTimeout(function(){
+                let parameter = new URLSearchParams();
+                location.href = "rate-order.html";
+            },3000);
         }
 }
+
+
+
+
+            
+        
+
+
+ //         // Go to restaurants list after 3 seconds
+    //         setTimeout(function(){
+    //             let parameter = new URLSearchParams();
+    //             location.href = "restaurants.html";
+    //         },3000);
+    //     } else {
+    //         console.log("Output error: " + this.responseText);
+    //     }
+    // };
 </script>
 
 </body>
