@@ -134,16 +134,11 @@ h1 {
 .menu-item {
     margin: 5px;
     padding: 10px;
-    border: solid lightgrey;
+    width: 805px;
+    border: solid #DB9232;
     background: white;
     border-radius: 5px;
     box-shadow: 5px 5px 5px lightgrey;
-    height: 95px;
-    cursor: pointer;
-}
-
-.menu-item:active {
-    background: lightgrey;
 }
 
 .star-checked {
@@ -208,15 +203,20 @@ input[type=email] {
 }
 
 .gourmacracy-cart-container {
-    height: calc(100vh - 100px);
+    height: 100vh;
     position: fixed;
     right: 0px;
-    top: 100px;
+    top: 0px;
     width: 300px;
     flex-shrink: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding-left: 10px;
-    padding-right:20px;
+    padding-right: 20px;
+    padding-top: 100px;
+    padding-bottom: 20px;
     border-left: 1px solid lightgrey;
+    background-color: white;
 }
 
 .gourmacracy-menu-container {
@@ -245,7 +245,7 @@ input[type=email] {
 }
 
 .gourmacracy-menu-output-container {
-    height: 82em;
+    height: 145em;
     position: relative
 }
 
@@ -287,5 +287,3 @@ input[type=email] {
     border-bottom: 1px solid;
     border-bottom: #323232;
 }
-
-

@@ -27,7 +27,7 @@
             <div class="gourmacracy-menu-output-center">
                 <h2>Epic Eats</h2>
                 <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
-                <div class="jumbotron" style="background-color: #FFF7D6; width: 800px" id="output"></div>
+                <div class="jumbotron" style="width: 800px;" id="output"><h4>Loading...</h4></div>
             </div>
         </div>
         <!-- epic eats info and menu output -->
@@ -68,59 +68,70 @@
 <!-- nav-bar -->
 
 <script>
-    function CreateTable(data){
-        let table = "";
-        table =
-            '<table class="table table-bordered table-hover"> \n' +
-            '   <thead>\n' +
-            '       <tr>\n' +
-            '           <th scope="col">Item Name</th> \n'+
-            '           <th scope="col">Category</th> \n'+
-            '           <th scope="col">Description</th> \n'+
-            '           <th scope="col">Price</th> \n'+
-            '           <th scope="col">Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> \n'+
-            '           <th scope="col">Actions</th> \n'+
-            '       </tr>\n' +
-            '   </thead>\n' +
-            '   <tbody>\n';
-
-        for (let menuItem in data){
-            var average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
-            table +=
-                '       <tr>\n' +
-                '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["category"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["description"]+  '</td>\n' +
-                '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
-                '           <td>';
-            for(var i =0; i < 5; i++) {
-                if(average > 0) {
-                    table += '<i class="bi bi-star-fill"></i>';
-                    average--;
-                } else {
-                    table += '<i class="bi bi-star"></i>';
-                }
-            }
-            table += '</td>\n' +
-
-                '           <td style=\"text-align:center\"> <button class=\"add-to-cart-btn\" ' +
-                'onclick=\"addItemToCart(\''+ data[menuItem]["_id"] + '\', \''+ data[menuItem]["itemName"] + '\', \''+ data[menuItem]["price"] +
-                '\')\">Add</button></td>\n' +
-                '       </tr>\n';
+    function CreateMenu(data) {
+      let visibleMenu = "";
+      let sortedMenu = [];
+      let categoryExists = false;
+      for(let menuItem in data) {
+        categoryExists = false;
+        for(let i = 0; i < sortedMenu.length; i++) {
+          if(sortedMenu[i][0] == data[menuItem]["category"]) {
+            sortedMenu[i].push(data[menuItem]);
+            categoryExists = true;
+          }
         }
+        if(!categoryExists && data[menuItem]["category"] != "Optional") {
+          sortedMenu.push([data[menuItem]["category"]]);
+          sortedMenu[sortedMenu.length-1].push(data[menuItem]);
+        }
+      }
 
-        table +=
-            '   </tbody>\n' +
-            '</table>\n'
-        return table;
+      for(let category in sortedMenu) {
+        visibleMenu +=
+            '<div class="row" id='+sortedMenu[category][0]+'>\n' +
+            '   <br/><h4>'+sortedMenu[category][0]+'s</h4>\n';
+        for(let menuItem in sortedMenu[category]) {
+          if(sortedMenu[category][menuItem].itemName != null) {
+            let average = Math.ceil((sortedMenu[category][menuItem].points / sortedMenu[category][menuItem].numRatings));
+            visibleMenu +=
+                '<div class="menu-item"> \n' +
+                '   <p><b>'+sortedMenu[category][menuItem].itemName+
+                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price+'&emsp;&emsp;';
+                for(let i =0; i < 5; i++) {
+                  if(average > 0) {
+                    visibleMenu += '<i class="bi bi-star-fill"></i>';
+                    average--;
+                  } else {
+                    visibleMenu += '<i class="bi bi-star"></i>';
+                  }
+                }
+            visibleMenu +=
+                '   </span></b></p>\n' +
+                '   <p>'+sortedMenu[category][menuItem].description+'\n';
+
+            visibleMenu +=
+                '   <button class=\"add-to-cart-btn\" style="width: 9em; margin-top: 1em; float: right;" ' +
+                'onclick=\"addItemToCart(\''+ sortedMenu[category][menuItem]._id + '\', \''+
+                sortedMenu[category][menuItem].itemName + '\', \''+
+                sortedMenu[category][menuItem].price +
+                '\')\">Add</button></p>\n' +
+                '</div>\n';
+          }
+        }
+        visibleMenu +=
+            '</div><br/>\n';
+      }
+
+      return visibleMenu;
     }
+
     window.addEventListener('load', (event) =>{
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
                 document.getElementById("output").innerHTML =
-                    CreateTable(JSON.parse(this.responseText));
+                    CreateMenu(JSON.parse(this.responseText));
             }
         };
         xhttp.open('GET', url, true);
@@ -146,16 +157,6 @@
             button.addEventListener('click', removeCartItem)
         }
 
-        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-        quantityInputs.click();
-        quantityInputs.readOnly = false;
-        quantityInputs.focus();
-        quantityInputs.value = quantityInputs.value;
-        for (var i = 0; i < quantityInputs.length; i++) {
-            var input = quantityInputs[i]
-            input.addEventListener('change', quantityChanged)
-        }
-
         var addToCartButtons = document.getElementsByClassName('add-to-cart-btn')
         for (var i = 0; i < addToCartButtons.length; i++) {
             var button = addToCartButtons[i]
@@ -170,7 +171,14 @@
 
     function removeCartItem(event) {
         var buttonClicked = event.target
-        buttonClicked.parentElement.parentElement.remove()
+        // If event clicked is <i> trash icon:
+        if(event.target.type == null) {
+          // Remove higher than if button
+          buttonClicked.parentElement.parentElement.parentElement.remove()
+        } else {
+          // If it is button, remove one less above parent
+          buttonClicked.parentElement.parentElement.remove()
+        }
         updateCartTotal()
     }
 
@@ -187,6 +195,16 @@
         var menuItem = button.parentElement.parentElement
         var title = menuItem.getElementsByClassName('menu-item-title')[0].innerText
         var price = menuItem.getElementsByClassName('menu-item-price')[0].innerText
+
+        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+        quantityInputs.click();
+        quantityInputs.readOnly = false;
+        quantityInputs.focus();
+        quantityInputs.value = quantityInputs.value;
+        for (var i = 0; i < quantityInputs.length; i++) {
+            var input = quantityInputs[i]
+            input.addEventListener('change', quantityChanged)
+        }
         addItemToCart(id, title, price)
         updateCartTotal()
     }
