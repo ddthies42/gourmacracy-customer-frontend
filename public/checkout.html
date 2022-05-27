@@ -155,8 +155,10 @@ function is_creditCard(str)
             return false;
           }
 }
+
+// tests for MM/YYYY
 function validateDate(testdate) {
-    var date_regex = /^\d{2}\/\d{2}\/\d{4}$/ ;
+    var date_regex = /^(0[1-9]|1[0-2])\/?([0-9]{4})$/;
     return date_regex.test(testdate);
 }
 
@@ -170,6 +172,26 @@ function validateCVV(sample){
 
 }
 
+// Returns whether or not it has passed a date
+function notExpired(exp) {
+    var curr = new Date();
+
+    // mm/yyyy
+    var dateParts = exp.split("/");
+    var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
+
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    curr = mm + '/' + yyyy;
+
+    alert(curr);
+    alert(expDate);
+    if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
+        return false;
+    }
+    return true;
+}
 
 
 
@@ -185,44 +207,55 @@ function validateForm() {
 
         validateCVV(cvv);
         
-        if (cardname === "") {
+        /*if (cardname === "") {
             alert("Name must be filled out");
-            //return false;
+            return false;
         } else if (creditcard === "") {
             alert("Credit Card Information Required");
-            //return false;
+            return false;
         } else if (exp === "") {
             alert("Must Provide an Expiration Date");
-            //return false;
+            return false;
         } else if (cvv === "") {
             alert("CVV Number is Required");
-            //return false;
-        } else {
-            let current = new Date();
-            let form = document.getElementById("expiration").value;
-            let m1 = current.getTime();
-            let m2 = form.getTime();
+            return false;
+        }*/
+        
+        if (!validateDate(exp)) {
+            alert("Invalid date format. The Date format requires is MM/YYYY");
+            return false;
         }
+        
 
-            if (m1 < m2) {
-                alert("The Card is Expired!");
-            }
+        //let expDate = new Date(exp);
 
-            if (!is_creditCard(creditcard)){
-                alert("The Credit Card Number Is Not Valid!")
+        if (!notExpired(exp)) {
+            alert("The Card is Expired!");
+            return false;
+        }
+        //alert("hi");
 
+        if (!is_creditCard(creditcard)){
+            alert("The Credit Card Number Is Not Valid!")
+
+<<<<<<< HEAD
             }if (!validateDate(exp)){
                 alert("The Date Format Required is MM/YY");
             
             }else if (creditcard == "4111111111111111"){
+=======
+        }else if (!validateDate(exp)){
+            alert("The Date Format Required is MM/YYYY");
+        }else{
+>>>>>>> 6985cccdf601f3b7ed867760b6a16a9ed71e5351
                 
-                alert("Your Payment has been Received! Thank You!");
+            alert("Your Payment has been Received! Thank You!");
                 
-                setTimeout(function(){
-                let parameter = new URLSearchParams();
-                location.href = "rate-order.html";
-            },3000);
-        }
+            setTimeout(function(){
+            let parameter = new URLSearchParams();
+            location.href = "rate-order.html";
+        },3000);
+    }
 }
 
 
