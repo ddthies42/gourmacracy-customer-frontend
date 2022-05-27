@@ -158,7 +158,7 @@ function is_creditCard(str)
 
 // tests for MM/YYYY
 function validateDate(testdate) {
-    var date_regex = /^(0[1-9]|1[0-2])\/?([0-9]{4})$/;
+    var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
     return date_regex.test(testdate);
 }
 
@@ -227,10 +227,7 @@ function validateForm() {
         if (!is_creditCard(creditcard)){
             alert("The Credit Card Number Is Not Valid!")
 
-            }if (!validateDate(exp)){
-                alert("The Date Format Required is MM/YYYY");
-            
-            }else if (creditcard == "4111111111111111"){
+        }else {
                 
             alert("Your Payment has been Received! Thank You!");
                 
