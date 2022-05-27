@@ -180,13 +180,6 @@ function notExpired(exp) {
     var dateParts = exp.split("/");
     var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
 
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-
-    curr = mm + '/' + yyyy;
-
-    alert(curr);
-    alert(expDate);
     if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
         return false;
     }
@@ -207,7 +200,7 @@ function validateForm() {
 
         validateCVV(cvv);
         
-        /*if (cardname === "") {
+        if (cardname === "") {
             alert("Name must be filled out");
             return false;
         } else if (creditcard === "") {
@@ -219,21 +212,17 @@ function validateForm() {
         } else if (cvv === "") {
             alert("CVV Number is Required");
             return false;
-        }*/
+        }
         
         if (!validateDate(exp)) {
             alert("Invalid date format. The Date format requires is MM/YYYY");
             return false;
         }
         
-
-        //let expDate = new Date(exp);
-
         if (!notExpired(exp)) {
             alert("The Card is Expired!");
             return false;
         }
-        //alert("hi");
 
         if (!is_creditCard(creditcard)){
             alert("The Credit Card Number Is Not Valid!")
