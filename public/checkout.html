@@ -227,9 +227,16 @@ function validateForm() {
         if (!is_creditCard(creditcard)){
             alert("The Credit Card Number Is Not Valid!")
 
+<<<<<<< HEAD
+            }if (!validateDate(exp)){
+                alert("The Date Format Required is MM/YY");
+            
+            }else if (creditcard == "4111111111111111"){
+=======
         }else if (!validateDate(exp)){
             alert("The Date Format Required is MM/YYYY");
         }else{
+>>>>>>> 6985cccdf601f3b7ed867760b6a16a9ed71e5351
                 
             alert("Your Payment has been Received! Thank You!");
                 
