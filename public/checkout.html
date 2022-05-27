@@ -160,6 +160,17 @@ function validateDate(testdate) {
     return date_regex.test(testdate);
 }
 
+function valideCVV(sample){
+    var re = new RegExp("\d\d\d");
+        if (re.test(sample)){
+            console.log("Valid CVV");
+        }else{
+            alert("Invalid CVV!");
+        }
+
+}
+
+
 
 
 // <form class="container-center" method="POST"
