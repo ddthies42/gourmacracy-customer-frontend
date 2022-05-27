@@ -8,6 +8,7 @@
     <title>Checkout Form</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/style2.css" type="text/css">
+    <script type= "text/javascript" src = "js/countries.js"></script>
 </head>
 
 <body>
@@ -86,18 +87,12 @@
                         </div>
                         <div class="col-5">
                             <label class="form-label" for="country">Country </label>
-                            <select class="form-select" id="country">
-                                <option>Choose</option>
-                                <option>United States</option>
-                                <option>Canada</option>
+                            <select class="form-select" onchange="print_state('state',this.selectedIndex)" id="country" name ="country"></select>
                             </select>
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="state">State </label>
-                            <select class="form-select" id="state">
-                                <option>Choose</option>
-                                <option>Washington</option>
-                                <option>Oregon</option>
+                            <select class="form-select" name ="state" id ="state"></select>
                             </select>
                         </div>
                         <div class="col-3">
@@ -140,12 +135,13 @@
                         </div>
                     </div>
                     <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onsubmit="validateForm()">Process Payment</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" onclick="validateForm()">Process Payment</button>
                 </form>
             </div>
         </div>
     </div>
     <script>
+<<<<<<< HEAD
 
 function is_creditCard(str)
 {
@@ -160,6 +156,16 @@ function is_creditCard(str)
             return false;
           }
 }
+=======
+print_country("country");
+/*let firstName = document.getElementById("firstname").value;
+let lastName = document.getElementById("lastname").value;
+let username = document.getElementById("usrname").value;
+let address = document.getElementById("address").value;
+let country = document.getElementById("country").value;
+let state = document.getElementById("state").value;*/
+      
+>>>>>>> cd781892da878b7333b2f68ee917d10432648230
 
 function isValidDate(dateString)
 {
@@ -203,36 +209,36 @@ function validateForm() {
     //     }
     // };
 
-   
-
-        let a = document.getElementByID("cardname").value;
-        let b = document.getElementByID("creditcard").value;
-        let c = document.getElementByID("expiration").value;
-        let d = document.getElementByID("cvv").value;
-
-        if(a == ""){
+        let cardname = document.getElementById("cardname").value;
+        let creditcard = document.getElementById("creditcard").value;
+        let exp = document.getElementById("expiration").value;
+        let cvv = document.getElementById("cvv").value;
+        
+        if (cardname === "") {
             alert("Name must be filled out");
-            return false;
-        }else if (b == ""){
+            //return false;
+        } else if (creditcard === "") {
             alert("Credit Card Information Required");
-            return false;
-        }else if (c == ""){
+            //return false;
+        } else if (exp === "") {
             alert("Must Provide an Expiration Date");
-            return false;
-        }else if(d == ""){
+            //return false;
+        } else if (cvv === "") {
             alert("CVV Number is Required");
-            return false;
+            //return false;
+        } else {
+            alert("success");
+
+            let current = new Date();
+            let form = document.getElementById("expiration").value;
+            let m1 = current.getTime();
+            let m2 = form.getTime();
+
+            if (m1 < m2) {
+                alert("The Card is Expired!");
+            }
+            
         }
-
-let current = new Date();
-let form = document.getElementByID("expiration").value;
-let m1 = current.getTime();
-let m2 = form.getTime();
-
-    if (m1 < m2){
-        alert("The Card is Expired!");
-    }
-   
 }
 </script>
 
