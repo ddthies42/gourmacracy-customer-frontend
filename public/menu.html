@@ -62,7 +62,7 @@
             </a>
         </li>
         <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
     </ul>
 </div>
 <!-- nav-bar -->
@@ -166,7 +166,7 @@
             button.addEventListener('click', addToCartClicked)
         }
 
-        document.getElementsByClassName('checkout-btn')[0].addEventListener('click', checkoutClicked)
+        //document.getElementsByClassName('checkout-btn')[0].addEventListener('click', checkoutClicked)
     }
 
     function checkoutClicked() {
@@ -249,6 +249,7 @@
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
         var subtotal = 0
+        var numItems = 0
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i]
             var priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -256,12 +257,16 @@
             var price = parseFloat(priceElement.innerText.replace('$', ''))
             var quantity = quantityElement.value
             subtotal = subtotal + (price * quantity)
+            numItems += parseInt(quantity)
         }
         subtotal = Math.round(subtotal * 100) / 100
         document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+        cartIndicator(numItems);
     }
 
     function checkoutCart() {
+
+        // Grab all IDs of items in cart
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
         var cart = [];
@@ -270,20 +275,37 @@
             var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
             var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].value
             for(let j = 0; j < quantityElement; j++) {
+              // For each quantity of the element, push the id to cart.
               cart.push(id);
             }
         }
 
+        // Save cart (contains menu IDs) to localStorage.
         localStorage.setItem('cart', cart);
+
+        // Load next Page.
         setTimeout(function(){
             let parameter = new URLSearchParams();
             location.href = "checkout.html";
-        },1000);
+        },0);
+    }
+
+    function cartIndicator(number) {
+      if(number > 0) {
+        document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+number+')</a>';
+      }
+      /*
+      var cart = localStorage.getItem('cart').split(',');
+      console.log(cart);
+      if(cart[0] != "") {
+        document.getElementById("cartIndicator").innerHTML = '<a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
+      }
+      */
+      // <a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a>
     }
 
     function updateCartFromSession(data) {
       // Update the cart from session data (localStorage)
-
       // Grab localStorage
       var cart = localStorage.getItem('cart').split(',');
       var alreadyAdded = [];
