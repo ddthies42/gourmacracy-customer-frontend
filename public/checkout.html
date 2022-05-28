@@ -6,18 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Checkout Form</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/style2.css" type="text/css">
     <script type= "text/javascript" src = "js/countries.js"></script>
 </head>
-<script>
-    function get () {
-        var id = sessionStorage.getItem("id");
-    }
-
-    get();
-</script>
 
 <body>
     <div class="loader"></div>
@@ -343,51 +335,51 @@ function is_creditCard(str)
  regexp = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/;
   
         if (regexp.test(str))
-          {
+        {
             return true;
-          }
+        }
         else
-          {
+        {
             return false;
-          }
-}
+        }
+    }
 
-// tests for MM/YYYY
-function validateDate(testdate) {
-    var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
-    return date_regex.test(testdate);
-}
+    // tests for MM/YYYY
+    function validateDate(testdate) {
+        var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
+        return date_regex.test(testdate);
+    }
 
-function validateCVV(sample){
-    var re = new RegExp("\d\d\d");
+    function validateCVV(sample){
+        var re = new RegExp("\d\d\d");
         if (re.test(sample)){
             console.log("Valid CVV");
         }else{
             alert("Invalid CVV!");
         }
 
-}
-
-// Returns whether or not it has passed a date
-function notExpired(exp) {
-    var curr = new Date();
-
-    // mm/yyyy
-    var dateParts = exp.split("/");
-    var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
-
-    if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
-        return false;
     }
-    return true;
-}
+
+    // Returns whether or not it has passed a date
+    function notExpired(exp) {
+        var curr = new Date();
+
+        // mm/yyyy
+        var dateParts = exp.split("/");
+        var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
+
+        if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
+            return false;
+        }
+        return true;
+    }
 
 
 
-// <form class="container-center" method="POST"
-//           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
+    // <form class="container-center" method="POST"
+    //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
-function validateForm() {
+    function validateForm() {
 
         let cardname = document.getElementById("cardname").value;
         let creditcard = document.getElementById("creditcard").value;
@@ -395,7 +387,7 @@ function validateForm() {
         let cvv = document.getElementById("cvv").value;
 
         validateCVV(cvv);
-        
+
         if (cardname === "") {
             alert("Name must be filled out");
             return false;
@@ -409,12 +401,12 @@ function validateForm() {
             alert("CVV Number is Required");
             return false;
         }
-        
+
         if (!validateDate(exp)) {
             alert("Invalid date format. The Date format requires is MM/YYYY");
             return false;
         }
-        
+
         if (!notExpired(exp)) {
             alert("The Card is Expired!");
             return false;
@@ -423,28 +415,25 @@ function validateForm() {
         if (!is_creditCard(creditcard)){
             alert("The Credit Card Number Is Not Valid!")
 
-            }if (!validateDate(exp)){
-                alert("The Date Format Required is MM/YY");
-            
-            }else if (creditcard == "4111111111111111"){
-                
+        }else {
+
             alert("Your Payment has been Received! Thank You!");
-                
+
             setTimeout(function(){
-            let parameter = new URLSearchParams();
-            location.href = "rate-order.html";
-        },3000);
+                let parameter = new URLSearchParams();
+                location.href = "rate-order.html";
+            },3000);
+        }
     }
-}
 
 
 
 
-            
-        
 
 
- //         // Go to restaurants list after 3 seconds
+
+
+    //         // Go to restaurants list after 3 seconds
     //         setTimeout(function(){
     //             let parameter = new URLSearchParams();
     //             location.href = "restaurants.html";

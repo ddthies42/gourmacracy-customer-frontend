@@ -48,7 +48,7 @@
             <strong class="cart-subtotal-title">Subtotal</strong>
             <span class="cart-subtotal-price">$0</span>
         </div><br>
-        <button class="gourmacracy-button checkout-btn" type="button">Checkout</button>
+        <button class="gourmacracy-button checkout-btn" type="button" onclick="checkoutCart()">Checkout</button>
     </section>
     <!-- cart info -->
 
@@ -62,13 +62,16 @@
             </a>
         </li>
         <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px"><a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a></li>
     </ul>
 </div>
 <!-- nav-bar -->
 
 <script>
     function CreateMenu(data) {
+      // Update cart from localStorage
+      updateCartFromSession(data);
+
       let visibleMenu = "";
       let sortedMenu = [];
       let categoryExists = false;
@@ -138,33 +141,7 @@
         xhttp.send();
     });
 
-    if (document.readyState == 'loading') {
-        document.addEventListener('DOMContentLoaded', ready)
-    } else {
-        ready()
-    }
 
-    if (document.readyState == 'loading') {
-        document.addEventListener('DOMContentLoaded', ready)
-    } else {
-        ready()
-    }
-
-    function ready() {
-        var removeCartItemButtons = document.getElementsByClassName('btn-delete-item')
-        for (var i = 0; i < removeCartItemButtons.length; i++) {
-            var button = removeCartItemButtons[i]
-            button.addEventListener('click', removeCartItem)
-        }
-
-        var addToCartButtons = document.getElementsByClassName('add-to-cart-btn')
-        for (var i = 0; i < addToCartButtons.length; i++) {
-            var button = addToCartButtons[i]
-            button.addEventListener('click', addToCartClicked)
-        }
-
-        document.getElementsByClassName('checkout-btn')[0].addEventListener('click', checkoutClicked)
-    }
 
     function checkoutClicked() {
         let parameter = new URLSearchParams();
@@ -184,7 +161,8 @@
           // If it is button, remove one less above parent
           buttonClicked.parentElement.parentElement.remove()
         }
-        updateCartTotal()
+        updateCartTotal();
+        updateLocalStorage();
     }
 
     function quantityChanged(event) {
@@ -192,26 +170,8 @@
         if (isNaN(input.value) || input.value <= 0) {
             input.value = 1
         }
-        updateCartTotal()
-    }
-
-    function addToCartClicked(event) {
-        var button = event.target
-        var menuItem = button.parentElement.parentElement
-        var title = menuItem.getElementsByClassName('menu-item-title')[0].innerText
-        var price = menuItem.getElementsByClassName('menu-item-price')[0].innerText
-
-        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-        quantityInputs.click();
-        quantityInputs.readOnly = false;
-        quantityInputs.focus();
-        quantityInputs.value = quantityInputs.value;
-        for (var i = 0; i < quantityInputs.length; i++) {
-            var input = quantityInputs[i]
-            input.addEventListener('change', quantityChanged)
-        }
-        addItemToCart(id, title, price)
-        updateCartTotal()
+        updateCartTotal();
+        updateLocalStorage();
     }
 
     function addItemToCart(id, title, price) {
@@ -230,6 +190,7 @@
             <span class="cart-item-title" style="font-weight: bold">${title}</span>
         </div>
         <span class="cart-price cart-column">$${price}</span>
+        <span hidden class="hidden-id">${id}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-delete-item" type="button" style="float: right"><i class="bi bi-trash3-fill"></i></button>
@@ -239,12 +200,14 @@
         cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
         cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
         updateCartTotal();
+        updateLocalStorage();
     }
 
     function updateCartTotal() {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
         var subtotal = 0
+        var numItems = 0
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i]
             var priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -252,9 +215,121 @@
             var price = parseFloat(priceElement.innerText.replace('$', ''))
             var quantity = quantityElement.value
             subtotal = subtotal + (price * quantity)
+            numItems = numItems + parseInt(quantity)
         }
         subtotal = Math.round(subtotal * 100) / 100
         document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+        cartIndicator(numItems);
+    }
+
+    function updateLocalStorage() {
+      // Grab all IDs of items in cart
+      var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+      var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+      var cart = [];
+      for (var i = 0; i < cartRows.length; i++) {
+          var cartRow = cartRows[i]
+          var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
+          var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].value
+          for(let j = 0; j < quantityElement; j++) {
+            // For each quantity of the element, push the id to cart.
+            cart.push(id);
+          }
+      }
+
+      // Save cart (contains menu IDs) to localStorage.
+      localStorage.setItem('cart', cart);
+    }
+
+    function checkoutCart() {
+
+        // Update local storage
+        updateLocalStorage();
+
+        // Load next Page.
+        setTimeout(function(){
+            let parameter = new URLSearchParams();
+            location.href = "checkout.html";
+        },0);
+    }
+
+    function cartIndicator(number) {
+      if(number >= 0) {
+        document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+number+')</a>';
+      }
+
+      // If loaded from localStorage
+      if(number == -1 && localStorage.getItem('cart') != null) {
+        var cart = localStorage.getItem('cart').split(',');
+        // If cart has data:
+        if(cart[0] != "") {
+          document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
+        }
+      }
+      /*
+      var cart = localStorage.getItem('cart').split(',');
+      if(cart[0] != "") {
+        document.getElementById("cartIndicator").innerHTML = '<a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
+      }
+      */
+    }
+
+    function updateCartFromSession(data) {
+      // Update the cart from session data (localStorage)
+      // Grab localStorage
+      if(localStorage.getItem('cart') != null) {
+        var cart = localStorage.getItem('cart').split(',');
+        var alreadyAdded = [];
+
+        // For length of localStorage, check each menu item against it.
+        for(let i = 0; i < cart.length; i++) {
+          for(let j = 0; j < data.length; j++) {
+
+            // If cart matches menuItem ID
+            if(cart[i] == data[j]["_id"]) {
+
+              let added = false;
+
+              // Check if menu item has been added before, mark if it has
+              for(let k = 0; k < alreadyAdded.length; k++) {
+                if(cart[i] == alreadyAdded[k]) {
+                  added = true;
+                  // Break out of for loop early if found
+                  break;
+                }
+              }
+
+              // If it hasn't been added...
+              if(!added) {
+                // Add item to cart and alreadyAdded list.
+                addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"]);
+                alreadyAdded.push(cart[i]);
+
+              } else {
+
+                // If it has not been added:
+                // find locations, check IDs and increase quantity.
+                var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+                var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+                for (var l = 0; l < cartRows.length; l++) {
+                    var cartRow = cartRows[l]
+                    var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
+                    var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].value
+                    if(id == cart[i]) {
+                      cartRow.getElementsByClassName('cart-quantity-input')[0].value++;
+                      // if the item has been found, break out early.
+                      break;
+                    }
+                }
+
+              }
+              // Get out of for loop early to check next localStorage item if menu item found.
+              break;
+            }
+          }
+        }
+        cartIndicator(-1);
+      }
     }
 
 </script>
