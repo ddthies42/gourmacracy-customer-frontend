@@ -294,14 +294,23 @@
       if(number > 0) {
         document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+number+')</a>';
       }
+
+      // If loaded from localStorage
+      if(number == -1) {
+        var cart = localStorage.getItem('cart').split(',');
+        // If cart has data:
+        if(cart[0] != "") {
+          document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
+        } else {
+          document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a>';
+        }
+      }
       /*
       var cart = localStorage.getItem('cart').split(',');
-      console.log(cart);
       if(cart[0] != "") {
         document.getElementById("cartIndicator").innerHTML = '<a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
       }
       */
-      // <a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart</a>
     }
 
     function updateCartFromSession(data) {
@@ -357,6 +366,7 @@
           }
         }
       }
+      cartIndicator(-1);
     }
 
 </script>
