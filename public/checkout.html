@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-12">
                             <label class="form-label" for="email">Email
-                                <span class="text-muted"> (Optional)</span>
+                                <span class="text-muted">(Optional)</span>
                             </label>
                             <input type="text" id="email" class="form-control">
                         </div>
@@ -143,30 +143,24 @@
         </div>
     </div>
     <script>
-    print_country("country");
 
-    window.addEventListener('load', (event) =>{
+print_country("country");
 
-      // Load items from local storage, apply to cartIndicator
-      if(localStorage.getItem('cart') != null) {
+window.addEventListener('load', (event) =>{
+// Load items from local storage, apply to cartIndicator
+    if (localStorage.getItem('cart') != null) {
         var cart = localStorage.getItem('cart').split(',');
         if(cart[0] != "") {
-          document.getElementById("cartIndicator").innerText = cart.length;
+            document.getElementById("cartIndicator").innerText = cart.length;
         } else {
-          document.getElementById("cartIndicator").innerText = "0";
+            document.getElementById("cartIndicator").innerText = "0";
         }
-      }
-    });
-
-
-
-
-
+    }
+});
 
 function get () {
   // (A) GET FROM SESSION
   var id = sessionStorage.getItem("id");
-
 
   // (B) IT WORKS!
   // MANUALLY OPENING 1B-SESSION.HTML WILL NOT WORK THOUGH
@@ -222,8 +216,6 @@ function notExpired(exp) {
     }
     return true;
 }
-
-
 
 // <form class="container-center" method="POST"
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
@@ -303,7 +295,5 @@ if(localStorage.getItem('cart') != null) {
 
 
 </script>
-
 </body>
-
 </html>
