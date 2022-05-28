@@ -62,7 +62,7 @@
             </a>
         </li>
         <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart</a></li>
+        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a></li>
     </ul>
 </div>
 <!-- nav-bar -->
@@ -259,13 +259,11 @@
       }
 
       // If loaded from localStorage
-      if(number == -1) {
+      if(number == -1 && localStorage.getItem('cart') != null) {
         var cart = localStorage.getItem('cart').split(',');
         // If cart has data:
         if(cart[0] != "") {
           document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
-        } else {
-          document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a>';
         }
       }
       /*
@@ -279,57 +277,59 @@
     function updateCartFromSession(data) {
       // Update the cart from session data (localStorage)
       // Grab localStorage
-      var cart = localStorage.getItem('cart').split(',');
-      var alreadyAdded = [];
+      if(localStorage.getItem('cart') != null) {
+        var cart = localStorage.getItem('cart').split(',');
+        var alreadyAdded = [];
 
-      // For length of localStorage, check each menu item against it.
-      for(let i = 0; i < cart.length; i++) {
-        for(let j = 0; j < data.length; j++) {
+        // For length of localStorage, check each menu item against it.
+        for(let i = 0; i < cart.length; i++) {
+          for(let j = 0; j < data.length; j++) {
 
-          // If cart matches menuItem ID
-          if(cart[i] == data[j]["_id"]) {
+            // If cart matches menuItem ID
+            if(cart[i] == data[j]["_id"]) {
 
-            let added = false;
+              let added = false;
 
-            // Check if menu item has been added before, mark if it has
-            for(let k = 0; k < alreadyAdded.length; k++) {
-              if(cart[i] == alreadyAdded[k]) {
-                added = true;
-                // Break out of for loop early if found
-                break;
-              }
-            }
-
-            // If it hasn't been added...
-            if(!added) {
-              // Add item to cart and alreadyAdded list.
-              addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"]);
-              alreadyAdded.push(cart[i]);
-
-            } else {
-
-              // If it has not been added:
-              // find locations, check IDs and increase quantity.
-              var cartItemContainer = document.getElementsByClassName('cart-items')[0]
-              var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-              for (var l = 0; l < cartRows.length; l++) {
-                  var cartRow = cartRows[l]
-                  var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
-                  var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].value
-                  if(id == cart[i]) {
-                    cartRow.getElementsByClassName('cart-quantity-input')[0].value++;
-                    // if the item has been found, break out early.
-                    break;
-                  }
+              // Check if menu item has been added before, mark if it has
+              for(let k = 0; k < alreadyAdded.length; k++) {
+                if(cart[i] == alreadyAdded[k]) {
+                  added = true;
+                  // Break out of for loop early if found
+                  break;
+                }
               }
 
+              // If it hasn't been added...
+              if(!added) {
+                // Add item to cart and alreadyAdded list.
+                addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"]);
+                alreadyAdded.push(cart[i]);
+
+              } else {
+
+                // If it has not been added:
+                // find locations, check IDs and increase quantity.
+                var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+                var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+                for (var l = 0; l < cartRows.length; l++) {
+                    var cartRow = cartRows[l]
+                    var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
+                    var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].value
+                    if(id == cart[i]) {
+                      cartRow.getElementsByClassName('cart-quantity-input')[0].value++;
+                      // if the item has been found, break out early.
+                      break;
+                    }
+                }
+
+              }
+              // Get out of for loop early to check next localStorage item if menu item found.
+              break;
             }
-            // Get out of for loop early to check next localStorage item if menu item found.
-            break;
           }
         }
+        cartIndicator(-1);
       }
-      cartIndicator(-1);
     }
 
 </script>

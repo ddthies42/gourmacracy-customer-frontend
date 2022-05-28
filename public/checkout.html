@@ -25,7 +25,7 @@
             <div class="col-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-item-center">
                     <span class="text-muted">Your Cart</span>
-                    <span class="badge bg-secondary rounded-pill" id="cartIndicator">3</span>
+                    <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
                 </h4>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between">
@@ -223,12 +223,13 @@
     window.addEventListener('load', (event) =>{
 
       // Load items from local storage, apply to cartIndicator
-      var cart = localStorage.getItem('cart').split(',');
-      console.log(cart);
-      if(cart[0] != "") {
-        document.getElementById("cartIndicator").innerText = cart.length;
-      } else {
-        document.getElementById("cartIndicator").innerText = "0";
+      if(localStorage.getItem('cart') != null) {
+        var cart = localStorage.getItem('cart').split(',');
+        if(cart[0] != "") {
+          document.getElementById("cartIndicator").innerText = cart.length;
+        } else {
+          document.getElementById("cartIndicator").innerText = "0";
+        }
       }
     });
 
