@@ -165,19 +165,8 @@
       }
     });
 
-// Need to write this to retrieve user id of logged in person
-//     window.addEventListener('load', (event) =>{
 
-// // Load items from local storage, apply to cartIndicator
-// if(localStorage.getItem('cart') != null) {
-//   var cart = localStorage.getItem('cart').split(',');
-//   if(cart[0] != "") {
-//     document.getElementById("cartIndicator").innerText = cart.length;
-//   } else {
-//     document.getElementById("cartIndicator").innerText = "0";
-//   }
-// }
-// });
+
 
 
 
@@ -295,6 +284,29 @@ function validateForm() {
         },3000);
     }
 }
+function userModify() {
+    if(localStorage.getItem('id') != null) {
+  var userID = localStorage.getItem('id');
+}
+if(localStorage.getItem('cart') != null) {
+        var cart = localStorage.getItem('cart').split(',');}
+
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("message").innerHTML =
+                    "Thank you for your purchase!";
+            }
+        }
+        let userData = "orders="  + cart  + "&";
+
+
+        xhttp.open('PATCH', url + userID, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(userData);
+    }
 
 
 </script>
