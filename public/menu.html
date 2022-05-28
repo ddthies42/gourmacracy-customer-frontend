@@ -144,16 +144,11 @@
         ready()
     }
 
-<<<<<<< HEAD
-        sessionStorage.setItem("id", id);
-
-=======
     if (document.readyState == 'loading') {
         document.addEventListener('DOMContentLoaded', ready)
     } else {
         ready()
     }
->>>>>>> 54e0d0102552c0b432130dfd97991aa24441096a
 
     function ready() {
         var removeCartItemButtons = document.getElementsByClassName('btn-delete-item')
@@ -172,6 +167,11 @@
     }
 
     function checkoutClicked() {
+        let parameter = new URLSearchParams();
+        parameter.append("restaurantID", id);
+        location.href = "menu.html?" + parameter.toString();
+
+
     }
 
     function removeCartItem(event) {
