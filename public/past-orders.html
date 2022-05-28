@@ -37,17 +37,24 @@
     function LoadUserData(menuItems){
       let userID = "626c99569aba2d00048f6371";
 
+      if(localStorage.getItem('id') != null) {
+        userID = localStorage.getItem('id');
+      }
+
       let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/" + userID;
       let xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function (){
           if (this.readyState == 4 && this.status == 200){
               let userData = JSON.parse(this.responseText);
-              var orders = (userData.orders[0]).split(',  ');
-              var userMenuData = new Array;
-              for(orderID in orders) {
-                for(item in menuItems) {
-                  if(menuItems[item]["_id"] == orders[orderID]) {
-                    userMenuData.push(menuItems[item]);
+              console.log(userData);
+              if((userData.orders[0])) {
+                var orders = (userData.orders[0]).split(',  ');
+                var userMenuData = new Array;
+                for(orderID in orders) {
+                  for(item in menuItems) {
+                    if(menuItems[item]["_id"] == orders[orderID]) {
+                      userMenuData.push(menuItems[item]);
+                    }
                   }
                 }
               }
