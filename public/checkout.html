@@ -170,7 +170,7 @@
                                 <option value="WV">West Virginia</option>
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
-                                
+
                             </select>
                         </div>
                         <div class="col-3">
@@ -223,7 +223,7 @@
 function get () {
   // (A) GET FROM SESSION
   var id = sessionStorage.getItem("id");
-      
+
 
   // (B) IT WORKS!
   // MANUALLY OPENING 1B-SESSION.HTML WILL NOT WORK THOUGH
@@ -239,7 +239,7 @@ function get () {
 function is_creditCard(str)
 {
  regexp = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/;
-  
+
         if (regexp.test(str))
           {
             return true;
@@ -286,14 +286,14 @@ function notExpired(exp) {
 //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
 function validateForm() {
-
+        alert(localStorage.getItem('cart'));
         let cardname = document.getElementById("cardname").value;
         let creditcard = document.getElementById("creditcard").value;
         let exp = document.getElementById("expiration").value;
         let cvv = document.getElementById("cvv").value;
 
         validateCVV(cvv);
-        
+
         if (cardname === "") {
             alert("Name must be filled out");
             return false;
@@ -307,12 +307,12 @@ function validateForm() {
             alert("CVV Number is Required");
             return false;
         }
-        
+
         if (!validateDate(exp)) {
             alert("Invalid date format. The Date format requires is MM/YYYY");
             return false;
         }
-        
+
         if (!notExpired(exp)) {
             alert("The Card is Expired!");
             return false;
@@ -323,11 +323,11 @@ function validateForm() {
 
             }if (!validateDate(exp)){
                 alert("The Date Format Required is MM/YY");
-            
+
             }else if (creditcard == "4111111111111111"){
-                
+
             alert("Your Payment has been Received! Thank You!");
-                
+
             setTimeout(function(){
             let parameter = new URLSearchParams();
             location.href = "rate-order.html";
@@ -338,8 +338,8 @@ function validateForm() {
 
 
 
-            
-        
+
+
 
 
  //         // Go to restaurants list after 3 seconds
