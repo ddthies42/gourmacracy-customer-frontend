@@ -53,31 +53,32 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
-
-                if (this.responseText == "Login Successful!") {
+                console.log(this.responseText);
+                if (this.responseText.text == "Login Successful!") {
                     document.getElementById("output1").innerHTML =
-                        this.responseText + " Redirecting...";
-
+                        this.responseText.text + " Redirecting...";
+                    localStorage.setItem('id', this.responseText.id);
                     // Go to restaurants list after 3 seconds
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
                         location.href = "restaurants.html";
                     },3000);
-                } else if (this.responseText == "Admin Login Successful!") {
+                } else if (this.responseText.text == "Admin Login Successful!") {
                     document.getElementById("output1").innerHTML =
-                        this.responseText + " Redirecting...";
-
+                        this.responseText.text + " Redirecting...";
+                    localStorage.setItem('id', this.responseText.id);
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
                         location.href = "adminIndex.html";
                     },3000);
                 } else {
                     document.getElementById("output1").innerHTML =
-                        this.responseText;
+                        this.responseText.text;
+                    localStorage.setItem('id', this.responseText.id);
                 }
             }
             };
-            
+
 
         let userData = "email=" + document.getElementById("email").value  + "&" +
             "password="  + document.getElementById("password").value  + "&";
