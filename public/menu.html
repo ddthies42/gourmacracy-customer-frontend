@@ -6,29 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Show All Menu Items</title>
     <meta name="author" content="Gourmacracy">
+    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/menu.css">
 </head>
 <body>
 <div class="gourmacracy-main-container">
-    <!-- restaurant header -->
-    <div class="gourmacracy-menu-header-container">
-        <div class="gourmacracy-menu-header-center">
-            <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
-            <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+    <div class="gourmacracy-menu-container">
+        <!-- restaurant header -->
+        <div class="gourmacracy-menu-header-container">
+            <div class="gourmacracy-menu-header-center">
+                <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
+                <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+            </div>
         </div>
-    </div>
-    <!-- restaurant header -->
-    <!-- epic eats info and menu output -->
-    <div class="gourmacracy-menu-output-container">
-        <div class="gourmacracy-menu-output-center">
-            <h2>Epic Eats</h2>
-            <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
-            <div class="jumbotron" style="width: 800px" id="output">Loading...</div>
+        <!-- restaurant header -->
+        <!-- epic eats info and menu output -->
+        <div class="gourmacracy-menu-output-container">
+            <div class="gourmacracy-menu-output-center">
+                <h2>Epic Eats</h2>
+                <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+                <div class="jumbotron" style="width: 800px;" id="output"><h4>Loading...</h4></div>
+            </div>
         </div>
+        <!-- epic eats info and menu output -->
     </div>
-    <!-- epic eats info and menu output -->
+
+    <!-- cart info -->
+    <section class="gourmacracy-cart-container">
+        <h2>Your Cart</h2>
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column"></span>
+            <span class="cart-price cart-header cart-column"></span>
+            <span class="cart-quantity cart-header cart-column"></span>
+        </div>
+        <hr>
+        <div class="cart-items">
+        </div><br>
+        <div class="cart-subtotal">
+            <strong class="cart-subtotal-title">Subtotal</strong>
+            <span class="cart-subtotal-price">$0</span>
+        </div><br>
+        <button class="gourmacracy-button checkout-btn" type="button">Checkout</button>
+    </section>
+    <!-- cart info -->
+
 </div>
 <!-- nav-bar -->
 <div class="gourmacracy-nav-bar">
@@ -43,73 +66,25 @@
     </ul>
 </div>
 <!-- nav-bar -->
+
 <script>
-    function CreateTable(data){
-        let table = "";
-        table =
-            '<table class="table table-bordered table-hover"> \n' +
-            '   <thead>\n' +
-            '       <tr>\n' +
-            '           <th scope="col">Item Name</th> \n'+
-            '           <th scope="col">Category</th> \n'+
-            '           <th scope="col">Description</th> \n'+
-            '           <th scope="col">Price</th> \n'+
-            '           <th scope="col">Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> \n'+
-            '           <th scope="col">Actions</th> \n'+
-            '       </tr>\n' +
-            '   </thead>\n' +
-            '   <tbody>\n';
-
-        for (let menuItem in data){
-            let average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
-            table +=
-                '       <tr>\n' +
-                '           <td>' + data[menuItem]["itemName"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["category"]+  '</td>\n' +
-                '           <td>' + data[menuItem]["description"]+  '</td>\n' +
-                '           <td>$' + data[menuItem]["price"]+  '</td>\n' +
-                '           <td>';
-            for(let i =0; i < 5; i++) {
-              if(average > 0) {
-                table += '<i class="bi bi-star-fill"></i>';
-                average--;
-              } else {
-                table += '<i class="bi bi-star"></i>';
-              }
-            }
-            table += '</td>\n' +
-
-                '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"addMenuItemToCart(\''+ data[menuItem]["_id"] +
-                '\')\">Add</button></td>\n' +
-                '       </tr>\n';
-        }
-
-        table +=
-            '   </tbody>\n' +
-            '</table>\n'
-        return table;
-    }
-
     function CreateMenu(data) {
       let visibleMenu = "";
       let sortedMenu = [];
       let categoryExists = false;
       for(let menuItem in data) {
-        //console.log(data[menuItem]["category"]);
         categoryExists = false;
         for(let i = 0; i < sortedMenu.length; i++) {
-          //console.log(sortedMenu[i]);
           if(sortedMenu[i][0] == data[menuItem]["category"]) {
             sortedMenu[i].push(data[menuItem]);
             categoryExists = true;
           }
         }
-        if(!categoryExists) {
+        if(!categoryExists && data[menuItem]["category"] != "Optional") {
           sortedMenu.push([data[menuItem]["category"]]);
           sortedMenu[sortedMenu.length-1].push(data[menuItem]);
         }
       }
-      console.log(sortedMenu);
 
       for(let category in sortedMenu) {
         visibleMenu +=
@@ -132,11 +107,14 @@
                 }
             visibleMenu +=
                 '   </span></b></p>\n' +
-                '   <p>'+sortedMenu[category][menuItem].description+'</p>\n' +
-                '   <p>';
+                '   <p>'+sortedMenu[category][menuItem].description+'\n';
 
             visibleMenu +=
-                '   </p>\n' +
+                '   <button class=\"add-to-cart-btn\" style="width: 9em; margin-top: 1em; float: right;" ' +
+                'onclick=\"addItemToCart(\''+ sortedMenu[category][menuItem]._id + '\', \''+
+                sortedMenu[category][menuItem].itemName + '\', \''+
+                sortedMenu[category][menuItem].price +
+                '\')\">Add</button></p>\n' +
                 '</div>\n';
           }
         }
@@ -160,18 +138,124 @@
         xhttp.send();
     });
 
-    function addMenuItemToCart(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("menuItemID", id);
-        location.href = "cart.html?" + parameter.toString();
-        //code that sends to cart.....what happens next?
-
-        sessionStorage.setItem("id", id);
-
-
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', ready)
+    } else {
+        ready()
     }
 
+<<<<<<< HEAD
+        sessionStorage.setItem("id", id);
 
+=======
+    if (document.readyState == 'loading') {
+        document.addEventListener('DOMContentLoaded', ready)
+    } else {
+        ready()
+    }
+>>>>>>> 54e0d0102552c0b432130dfd97991aa24441096a
+
+    function ready() {
+        var removeCartItemButtons = document.getElementsByClassName('btn-delete-item')
+        for (var i = 0; i < removeCartItemButtons.length; i++) {
+            var button = removeCartItemButtons[i]
+            button.addEventListener('click', removeCartItem)
+        }
+
+        var addToCartButtons = document.getElementsByClassName('add-to-cart-btn')
+        for (var i = 0; i < addToCartButtons.length; i++) {
+            var button = addToCartButtons[i]
+            button.addEventListener('click', addToCartClicked)
+        }
+
+        document.getElementsByClassName('checkout-btn')[0].addEventListener('click', checkoutClicked)
+    }
+
+    function checkoutClicked() {
+    }
+
+    function removeCartItem(event) {
+        var buttonClicked = event.target
+        // If event clicked is <i> trash icon:
+        if(event.target.type == null) {
+          // Remove higher than if button
+          buttonClicked.parentElement.parentElement.parentElement.remove()
+        } else {
+          // If it is button, remove one less above parent
+          buttonClicked.parentElement.parentElement.remove()
+        }
+        updateCartTotal()
+    }
+
+    function quantityChanged(event) {
+        var input = event.target
+        if (isNaN(input.value) || input.value <= 0) {
+            input.value = 1
+        }
+        updateCartTotal()
+    }
+
+    function addToCartClicked(event) {
+        var button = event.target
+        var menuItem = button.parentElement.parentElement
+        var title = menuItem.getElementsByClassName('menu-item-title')[0].innerText
+        var price = menuItem.getElementsByClassName('menu-item-price')[0].innerText
+
+        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+        quantityInputs.click();
+        quantityInputs.readOnly = false;
+        quantityInputs.focus();
+        quantityInputs.value = quantityInputs.value;
+        for (var i = 0; i < quantityInputs.length; i++) {
+            var input = quantityInputs[i]
+            input.addEventListener('change', quantityChanged)
+        }
+        addItemToCart(id, title, price)
+        updateCartTotal()
+    }
+
+    function addItemToCart(id, title, price) {
+        var cartRow = document.createElement('div')
+        cartRow.classList.add('cart-row')
+        var cartItems = document.getElementsByClassName('cart-items')[0]
+        var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+        for (var i = 0; i < cartItemNames.length; i++) {
+            if (cartItemNames[i].innerText == title) {
+                alert('This item is already added to the cart')
+                return
+            }
+        }
+        var cartRowContents = `
+        <div class="cart-item cart-column">
+            <span class="cart-item-title" style="font-weight: bold">${title}</span>
+        </div>
+        <span class="cart-price cart-column">$${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="1">
+            <button class="btn btn-delete-item" type="button" style="float: right"><i class="bi bi-trash3-fill"></i></button>
+        </div><hr>`
+        cartRow.innerHTML = cartRowContents
+        cartItems.append(cartRow)
+        cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
+        cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+        updateCartTotal();
+    }
+
+    function updateCartTotal() {
+        var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+        var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+        var subtotal = 0
+        for (var i = 0; i < cartRows.length; i++) {
+            var cartRow = cartRows[i]
+            var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+            var price = parseFloat(priceElement.innerText.replace('$', ''))
+            var quantity = quantityElement.value
+            subtotal = subtotal + (price * quantity)
+        }
+        subtotal = Math.round(subtotal * 100) / 100
+        document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+    }
 
 </script>
 </body>
