@@ -6,301 +6,193 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Checkout Form</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="stylesheets/style2.css" type="text/css">
+    <link rel="stylesheet" href="/style2.css" type="text/css">
     <script type= "text/javascript" src = "js/countries.js"></script>
 </head>
-<script>
-    function get () {
-        var id = sessionStorage.getItem("id");
-    }
-
-    get();
-</script>
 
 <body>
-    <div class="container col-8 my-5 br-2 rounded">
-        <div class="row g-3">
-            <div class="col-4 order-md-last">
-                <h4 class="d-flex justify-content-between align-item-center">
-                    <span class="text-muted">Your Cart</span>
-                    <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
-                </h4>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6><var>id</var></h6>
-                            <span class="text-muted"><var>id</var></span>
-                        </div>
-                        <span class="text-muted">Rs 500</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Second Product</h6>
-                            <span class="text-muted">Brief Description</span>
-                        </div>
-                        <span class="text-muted">Rs 200</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Third Product</h6>
-                            <span class="text-muted">Brief Description</span>
-                        </div>
-                        <span class="text-muted">Rs 600</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6 class="text-success">Promo Code</h6>
-                            <span class="text-muted">Sale10</span>
-                        </div>
-                        <span class="text-muted">Rs 100</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Total (Rs)</h6>
-                        </div>
-                        <span class="text-muted">Rs 1200</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-8">
-                <h4>Billing Address</h4>
-                <form>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-label" for="firstname">First Name</label>
-                            <input type="text" id="firstname" class="form-control">
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label" for="lastname">Last name</label>
-                            <input type="text" id="lastname" class="form-control">
-                        </div>
-                        <div class="col-12">
-                            <label class="from-label" for="username">Username</label>
-                            <div class="input-group">
-                                <span class="input-group-text">@</span>
-                                <input type="text" class="form-control" id="usrname">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label" for="email">Email
-                                <span class="text-muted"> (Optional)</span>
-                            </label>
-                            <input type="text" id="email" class="form-control">
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label" for="address">Address </label>
-                            <input type="text" id="address" class="form-control">
-                        </div>
-                        <div class="col-5">
-                            <label class="form-label" for="country">Country  </label>
-                            <select class="form-select" onchange="print_state('state',this.selectedIndex)" id="country" name ="country">
-                                <option value="" selected="selected">Select country</option>
-                                <option value="United States of America">United States of America</option>
-                            </select>
-                        </div>
-                        <div class="col-4">
-                            <label class="form-label" for="state">State </label>
-                            <select class="form-select" name ="state" id ="state">
-                                <option value="" selected="selected">Select a State</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AS">American Samoa</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="UM-81">Baker Island</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="GU">Guam</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="UM-84">Howland Island</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="UM-86">Jarvis Island</option>
-                                <option value="UM-67">Johnston Atoll</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="UM-89">Kingman Reef</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="UM-71">Midway Atoll</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="UM-76">Navassa Island</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="MP">Northern Mariana Islands</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="UM-95">Palmyra Atoll</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="PR">Puerto Rico</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UM">United States Minor Outlying Islands</option>
-                                <option value="VI">United States Virgin Islands</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="UM-79">Wake Island</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-
-                            </select>
-                        </div>
-                        <div class="col-3">
-                            <label class="form-label" for="zip">Zip </label>
-                            <input type="text" id="zip" class="form-control">
+<div class="container col-8 my-5 br-2 rounded">
+    <div class="row g-3">
+        <div class="col-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-item-center">
+                <span class="text-muted">Your Cart</span>
+                <span class="badge bg-secondary rounded-pill">3</span>
+            </h4>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>Product name</h6>
+                        <span class="text-muted">Brief Description</span>
+                    </div>
+                    <span class="text-muted">Rs 500</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>Second Product</h6>
+                        <span class="text-muted">Brief Description</span>
+                    </div>
+                    <span class="text-muted">Rs 200</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>Third Product</h6>
+                        <span class="text-muted">Brief Description</span>
+                    </div>
+                    <span class="text-muted">Rs 600</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-success">Promo Code</h6>
+                        <span class="text-muted">Sale10</span>
+                    </div>
+                    <span class="text-muted">Rs 100</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6>Total (Rs)</h6>
+                    </div>
+                    <span class="text-muted">Rs 1200</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-8">
+            <h4>Billing Address</h4>
+            <form>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" for="firstname">First Name</label>
+                        <input type="text" id="firstname" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label" for="lastname">Last name</label>
+                        <input type="text" id="lastname" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label class="from-label" for="username">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" id="usrname">
                         </div>
                     </div>
-                    <hr>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label">Shipping address is the same as my billing address</label>
+                    <div class="col-12">
+                        <label class="form-label" for="email">Email
+                            <span class="text-muted"> (Optional)</span>
+                        </label>
+                        <input type="text" id="email" class="form-control">
                     </div>
-                    <hr>
-                    <h4>Payment</h4>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input">
-                        <label class="form-check-label">Credit Card</label>
+                    <div class="col-12">
+                        <label class="form-label" for="address">Address </label>
+                        <input type="text" id="address" class="form-control">
                     </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input">
-                        <label class="form-check-label">Debit Card</label>
+                    <div class="col-5">
+                        <label class="form-label" for="country">Country </label>
+                        <select class="form-select" onchange="print_state('state',this.selectedIndex)" id="country" name ="country"></select>
+                        </select>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-label" for="cardname">Name on Card </label>
-                            <input type="text" id="cardname" class="form-control">
-                            <small class="text-muted">Full name as displayed on card</small>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label" for="creditcard">Credit Card Number </label>
-                            <input type="text" id="creditcard" class="form-control">
-                        </div>
-                        <div class="col-3">
-                            <label class="form-label" for="expiration">Expiration </label>
-                            <input type="text" id="expiration" class="form-control">
-                        </div>
-                        <div class="col-3">
-                            <label class="form-label" for="cvv">CVV </label>
-                            <input type="text" id="cvv" class="form-control">
-                        </div>
+                    <div class="col-4">
+                        <label class="form-label" for="state">State </label>
+                        <select class="form-select" name ="state" id ="state"></select>
+                        </select>
                     </div>
-                    <hr>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" onclick="validateForm()">Process Payment</button>
-                </form>
-            </div>
+                    <div class="col-3">
+                        <label class="form-label" for="zip">Zip </label>
+                        <input type="text" id="zip" class="form-control">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label">Shipping address is the same as my billing address</label>
+                </div>
+                <hr>
+                <h4>Payment</h4>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input">
+                    <label class="form-check-label">Credit Card</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input">
+                    <label class="form-check-label">Debit Card</label>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" for="cardname">Name on Card </label>
+                        <input type="text" id="cardname" class="form-control">
+                        <small class="text-muted">Full name as displayed on card</small>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label" for="creditcard">Credit Card Number </label>
+                        <input type="text" id="creditcard" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label" for="expiration">Expiration </label>
+                        <input type="text" id="expiration" class="form-control">
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label" for="cvv">CVV </label>
+                        <input type="text" id="cvv" class="form-control">
+                    </div>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary btn-block mb-4" onclick="validateForm()">Process Payment</button>
+            </form>
         </div>
     </div>
-    <script>
+</div>
+<script>
 
-    window.addEventListener('load', (event) =>{
-
-      // Load items from local storage, apply to cartIndicator
-      if(localStorage.getItem('cart') != null) {
-        var cart = localStorage.getItem('cart').split(',');
-        if(cart[0] != "") {
-          document.getElementById("cartIndicator").innerText = cart.length;
-        } else {
-          document.getElementById("cartIndicator").innerText = "0";
-        }
-      }
-    });
-
-
-function get () {
-  // (A) GET FROM SESSION
-  var id = sessionStorage.getItem("id");
-
-
-  // (B) IT WORKS!
-  // MANUALLY OPENING 1B-SESSION.HTML WILL NOT WORK THOUGH
-  // SESSION DATA WILL PERISH ONCE TAB/WINDOW IS CLOSED
-  console.log(first);  // Foo Bar
-  console.log(second); // ["Hello", "World"]
-
-  // (EXTRA) CLEAR SESSION STORAGE
-  // sessionStorage.removeItem("KEY");
-  // sessionStorage.clear();
-}
-
-function is_creditCard(str)
-{
- regexp = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/;
+    function is_creditCard(str)
+    {
+        regexp = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/;
 
         if (regexp.test(str))
-          {
+        {
             return true;
-          }
+        }
         else
-          {
+        {
             return false;
-          }
-}
+        }
+    }
 
-// tests for MM/YYYY
-function validateDate(testdate) {
-    var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
-    return date_regex.test(testdate);
-}
+    // tests for MM/YYYY
+    function validateDate(testdate) {
+        var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
+        return date_regex.test(testdate);
+    }
 
-function validateCVV(sample){
-    var re = new RegExp("\d\d\d");
+    function validateCVV(sample){
+        var re = new RegExp("\d\d\d");
         if (re.test(sample)){
             console.log("Valid CVV");
         }else{
             alert("Invalid CVV!");
         }
 
-}
-
-// Returns whether or not it has passed a date
-function notExpired(exp) {
-    var curr = new Date();
-
-    // mm/yyyy
-    var dateParts = exp.split("/");
-    var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
-
-    if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
-        return false;
     }
-    return true;
-}
+
+    // Returns whether or not it has passed a date
+    function notExpired(exp) {
+        var curr = new Date();
+
+        // mm/yyyy
+        var dateParts = exp.split("/");
+        var expDate = new Date(+dateParts[1], dateParts[0] - 1, "0");
+
+        if ((expDate - curr) / (1000 * 3600 * 24) < 0) {
+            return false;
+        }
+        return true;
+    }
 
 
 
-// <form class="container-center" method="POST"
-//           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
+    // <form class="container-center" method="POST"
+    //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
-function validateForm() {
-        alert(localStorage.getItem('cart'));
+    function validateForm() {
+
         let cardname = document.getElementById("cardname").value;
         let creditcard = document.getElementById("creditcard").value;
         let exp = document.getElementById("expiration").value;
@@ -335,19 +227,16 @@ function validateForm() {
         if (!is_creditCard(creditcard)){
             alert("The Credit Card Number Is Not Valid!")
 
-            }if (!validateDate(exp)){
-                alert("The Date Format Required is MM/YY");
-
-            }else if (creditcard == "4111111111111111"){
+        }else {
 
             alert("Your Payment has been Received! Thank You!");
 
             setTimeout(function(){
-            let parameter = new URLSearchParams();
-            location.href = "rate-order.html";
-        },3000);
+                let parameter = new URLSearchParams();
+                location.href = "rate-order.html";
+            },3000);
+        }
     }
-}
 
 
 
@@ -356,7 +245,7 @@ function validateForm() {
 
 
 
- //         // Go to restaurants list after 3 seconds
+    //         // Go to restaurants list after 3 seconds
     //         setTimeout(function(){
     //             let parameter = new URLSearchParams();
     //             location.href = "restaurants.html";
