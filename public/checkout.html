@@ -147,9 +147,10 @@
             }
 
             function validateCVV(sample){
-                var re = new RegExp("\d\d\d");
+                var re = /^[0-9]{3,4}$/;
                     if (re.test(sample)){
-                        console.log("Valid CVV");
+                        alert("valid cvv");
+                        //console.log("Valid CVV");
                     }else{
                         alert("Invalid CVV!");
                     }
