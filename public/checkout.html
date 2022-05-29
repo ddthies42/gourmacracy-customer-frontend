@@ -17,46 +17,26 @@
         <div class="row g-3">
             <div class="col-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-item-center">
-                    <span class="text-muted">Your Cart</span>
                     <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
                 </h4>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6><var>id</var></h6>
-                            <span class="text-muted"><var>id</var></span>
-                        </div>
-                        <span class="text-muted">Rs 500</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Second Product</h6>
-                            <span class="text-muted">Brief Description</span>
-                        </div>
-                        <span class="text-muted">Rs 200</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Third Product</h6>
-                            <span class="text-muted">Brief Description</span>
-                        </div>
-                        <span class="text-muted">Rs 600</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6 class="text-success">Promo Code</h6>
-                            <span class="text-muted">Sale10</span>
-                        </div>
-                        <span class="text-muted">Rs 100</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between">
-                        <div>
-                            <h6>Total (Rs)</h6>
-                        </div>
-                        <span class="text-muted">Rs 1200</span>
-                    </li>
-                </ul>
-            </div>
+    <!-- cart info -->
+    <section class="gourmacracy-cart-container">
+        <h2>Your Cart</h2>
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column"></span>
+            <span class="cart-price cart-header cart-column"></span>
+            <span class="cart-quantity cart-header cart-column"></span>
+        </div>
+        <hr>
+        <div class="cart-items">
+        </div><br>
+        <div class="cart-subtotal">
+            <strong class="cart-subtotal-title">Subtotal</strong>
+            <span class="cart-subtotal-price">$0</span>
+        </div><br>
+        <button class="gourmacracy-button checkout-btn" type="button" onclick="checkoutCart()">Checkout</button>
+    </section>
+    <!-- cart info -->
             <div class="col-8">
                 <h4>Billing Address</h4>
                 <form>
