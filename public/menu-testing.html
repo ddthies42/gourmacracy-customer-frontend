@@ -122,11 +122,11 @@
         </div><br>
         <div class="cart-tax" style="text-align:left;">
             <span class="cart-tax-title">Tax</span>
-            <span class="cart-tax-percentage" style="float:right;">10.25%</span>
+            <span class="cart-tax-percentage" style="float:right;">$0</span>
         </div><br/>
         <div class="cart-tip" style="text-align:left;">
             <span class="cart-tip-title">Tip</span>
-            <span class="cart-tip-percentage" style="float:right;">15%</span>
+            <span class="cart-tip-percentage" style="float:right;">$0</span>
         </div><hr>
         <div class="cart-total" style="text-align:left;">
             <strong class="cart-total-title">Total</strong>
@@ -268,8 +268,10 @@
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
         var subtotal = 0
         var numItems = 0
-        var tax = .1025
-        var tip = .15
+        var taxRate = .1025
+        var tax = subtotal * taxRate
+        var tipRate = .15
+        var tip = subtotal * tipRate
         for (var i = 0; i < cartRows.length; i++) {
             var cartRow = cartRows[i]
             var priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -280,7 +282,7 @@
         }
         subtotal = Math.round(subtotal * 100) / 100
         document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
-        total = subtotal + (subtotal * tax)*tip
+        total = subtotal + (subtotal + tax + tip)
         document.getElementsByClassName('cart-total-price')[0].innerText = '$' + Math.round(total*100) / 100
     }
 
