@@ -132,21 +132,12 @@ html {
 }
 
 .menu-item {
-  margin: 5px;
+  margin: 15px;
   padding: 10px;
   border: solid #DB9232;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 5px lightgrey;
-  cursor: pointer;
-}
-
-.menu-item:active {
-  background: lightgrey;
-}
-
-.menu-item:hover {
-  background: lightgrey;
 }
 
 .star-checked {
@@ -264,7 +255,8 @@ input[type=email] {
 }
 
 .gourmacracy-past-orders-output-container {
-  height: 35em;
+  margin-top: 100px;
+  width: 100%;
   position: relative;
 }
 

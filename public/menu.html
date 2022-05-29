@@ -15,19 +15,20 @@
 <div class="gourmacracy-main-container">
     <div class="gourmacracy-menu-container">
         <!-- restaurant header -->
-        <div class="gourmacracy-menu-header-container">
-            <div class="gourmacracy-menu-header-center">
-                <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
-                <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-xs-6">
+                <img class="img-fluid gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg">
             </div>
         </div>
+        <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
+
         <!-- restaurant header -->
         <!-- epic eats info and menu output -->
-        <div class="gourmacracy-menu-output-container">
-            <div class="gourmacracy-menu-output-center">
-                <h2>Epic Eats</h2>
-                <p style="color: #808080">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
-                <div class="jumbotron" style="width: 800px;" id="output"><h4>Loading...</h4></div>
+        <div class="row d-flex justify-content-center gourmacracy-menu-output-container">
+            <div class="col-md-8 col-xs-6">
+                <h2 style="margin-left: 5px;">Epic Eats</h2>
+                <p style="color: #808080; margin-left: 5px;">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+                <div class="jumbotron" id="output"><h4>Loading...</h4></div>
             </div>
         </div>
         <!-- epic eats info and menu output -->
@@ -92,7 +93,7 @@
       for(let category in sortedMenu) {
         visibleMenu +=
             '<div class="row" id='+sortedMenu[category][0]+'>\n' +
-            '   <br/><h4>'+sortedMenu[category][0]+'s</h4>\n';
+            '   <h4 style="margin-left: 5px;">'+sortedMenu[category][0]+'s</h4>\n';
         for(let menuItem in sortedMenu[category]) {
           if(sortedMenu[category][menuItem].itemName != null) {
             let average = Math.ceil((sortedMenu[category][menuItem].points / sortedMenu[category][menuItem].numRatings));
