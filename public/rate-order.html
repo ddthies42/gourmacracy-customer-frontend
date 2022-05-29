@@ -101,8 +101,30 @@
 
     function submitReview() {
       // rebuild data from cart: no duplicate IDs
-      // Add IDs with reviews and comments.
-      // Submit IDs with reviews and comments to database.
+      var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+      var cartRows = cartItemContainer.getElementsByClassName('menu-item')
+
+      for (var l = 0; l < cartRows.length; l++) {
+          var cartRow = cartRows[l]
+          var id = cartRow.getElementsByClassName('hidden-id')[0].innerText;
+          var rating = cartRow.getElementsByClassName('hidden-rating')[0].value;
+          var comment = cartRow.getElementsByClassName('hidden-comment')[0].value;
+
+          if(rating > 0 && rating < 6) {
+              // submit to rating with ID
+              console.log(id +", "+ rating);
+          }
+
+          if(comment.length > 1) {
+            // submit to comment with ID
+            console.log(id +", "+ comment);
+          }
+      }
+
+
+      // Add IDs with reviews.
+      // Add IDs with comments.
+      // Submit IDs with reviews and comments to database separately.
       alert("Review submitted!");
     }
 
@@ -136,7 +158,8 @@
             ' <i class="bi bi-star-fill star-checked" id="4:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             ' <i class="bi bi-star-fill star-checked" id="5:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             '</h6>\n'+
-            '<h5 style="">&emsp;&emsp;Comment:</h5>\n';
+            '<h5 style="text-align: center;">Comment:</h5>\n'+
+            '<input type="text" id="comment'+data["_id"]+'" class="form-control hidden-comment"><br/>\n';
 
         cartRow.innerHTML = visibleMenu;
         cartItems.append(cartRow);
