@@ -63,7 +63,7 @@
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
                         location.href = "restaurants.html";
-                    },3000);
+                    },2000);
                 } else if (response.text == "Admin Login Successful!") {
                     document.getElementById("output1").innerHTML =
                         response.text + " Redirecting...";
@@ -71,7 +71,7 @@
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
                         location.href = "adminIndex.html";
-                    },3000);
+                    },2000);
                 } else {
                     document.getElementById("output1").innerHTML =
                         response.text;

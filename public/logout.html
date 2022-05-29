@@ -46,6 +46,18 @@
         let userID = "";
         if(localStorage.getItem('id') != null) {
           userID = localStorage.getItem('id');
+
+          // Frontend logout.
+          document.getElementById("output1").innerHTML =
+          "User successfully logged out!";
+          localStorage.clear();
+          setTimeout(function(){
+              let parameter = new URLSearchParams();
+              location.href = "index.html";
+          },1000);
+        } else {
+          document.getElementById("output1").innerHTML =
+          "You must sign in in order to log out.";
         }
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/logout/";
 
