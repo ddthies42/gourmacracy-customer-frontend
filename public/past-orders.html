@@ -71,8 +71,7 @@
     function CreatePastOrders(data) {
       // If we have any orders, make the past orders table
       if(data) {
-        let visibleMenu = '<h4>&nbsp;&nbsp;&nbsp;&nbsp;Epic Eats</h4>\n' +
-                          '<div class="">\n';
+        let visibleMenu = '<h4>&nbsp;&nbsp;&nbsp;&nbsp;Epic Eats</h4>\n';
         for(let menuItem in data) {
           let average = Math.ceil((data[menuItem]["points"] / data[menuItem]["numRatings"]));
           visibleMenu +=
@@ -93,7 +92,7 @@
               '</div>\n';
         }
         visibleMenu +=
-            '</div><br/>\n';
+            '<br/>\n';
 
         cartIndicator(-1);
         return visibleMenu;
