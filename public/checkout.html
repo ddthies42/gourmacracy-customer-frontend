@@ -160,51 +160,33 @@
             //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
             function validateForm() {
-                    //alert(localStorage.getItem('cart'));
-                    let cardname = document.getElementById("cardname").value;
-                    let creditcard = document.getElementById("creditcard").value;
-                    let exp = document.getElementById("expiration").value;
-                    let cvv = document.getElementById("cvv").value;
+                //alert(localStorage.getItem('cart'));
+                let cardname = document.getElementById("cardname").value;
+                let creditcard = document.getElementById("creditcard").value;
+                let exp = document.getElementById("expiration").value;
+                let cvv = document.getElementById("cvv").value;
 
-                    /*if (cardname === "") {
-                        alert("Name must be filled out");
-                        return false;
-                    } else if (creditcard === "") {
-                        alert("Credit Card Information Required");
-                        return false;
-                    } else if (exp === "") {
-                        alert("Must Provide an Expiration Date");
-                        return false;
-                    } else if (cvv === "") {
-                        alert("CVV Number is Required");
-                        return false;
-                    }
-
-                    if (!validateDate(exp)) {
-                        alert("Invalid date format. The Date format requires is MM/YYYY");
-                        return false;
-                    }*/
-
-                    if (!validateCVV(cvv)) {
-                        alert("Invalid CVV.");
-                        return false;
-                    }
-
-                    if (!notExpired(exp)) {
-                        alert("The card is Expired!");
-                        return false;
-                    }
-
-                    if (!is_creditCard(creditcard)){
-                        alert("Invalid credit card number")
-
-                    } else {
-
-                        alert("Your payment has been received! Thank you!");
-
-                        setTimeout(function(){
-                        let parameter = new URLSearchParams();
-                        location.href = "rate-order.html";
+                if (cardname === "") {
+                    alert("Name must be filled out");
+                } else if (creditcard === "") {
+                    alert("Credit Card Information Required");
+                } else if (exp === "") {
+                    alert("Must Provide an Expiration Date");
+                } else if (cvv === "") {
+                    alert("CVV Number is Required");
+                } else if (!validateDate(exp)) {
+                    alert("Invalid date format. The Date format requires is MM/YYYY");
+                } else if (!validateCVV(cvv)) {
+                    alert("Invalid CVV.");
+                } else if (!notExpired(exp)) {
+                    alert("The card is Expired!");
+                } else if (!is_creditCard(creditcard)){
+                    alert("Invalid credit card number")
+                } else {
+                    alert("Your payment has been received! Thank you!");
+                    setTimeout(function(){
+                    let parameter = new URLSearchParams();
+                    location.href = "rate-order.html";
                     },3000);
                 }
             }
