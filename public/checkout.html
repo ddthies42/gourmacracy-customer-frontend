@@ -293,6 +293,8 @@
                 var cartRows = cartItemContainer.getElementsByClassName('cart-row')
                 var subtotal = 0
                 var numItems = 0
+                var tax = .1025
+                var tip = .15
                 for (var i = 0; i < cartRows.length; i++) {
                     var cartRow = cartRows[i]
                     var priceElement = cartRow.getElementsByClassName('cart-price')[0]
@@ -303,6 +305,8 @@
                 }
                 subtotal = Math.round(subtotal * 100) / 100
                 document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+                total = subtotal + (subtotal * tax)*tip
+                document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
             }
 
             function updateCartFromSession(data) {
