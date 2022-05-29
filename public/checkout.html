@@ -1,65 +1,81 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Checkout Form</title>
+        <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="stylesheets/style2.css" type="text/css">
+        <script type= "text/javascript" src = "js/countries.js"></script>
+    </head>
+    <body>
+        <div class="container checkout-container col-8 my-5 br-2 rounded">
+            <div class="row g-3">
+              <div class="col-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-item-center">
+                        <span class="text-muted">Your Cart</span>
+                        <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
+                    </h4>
+                    <ul class="list-group">
+                      <div class="cart-row">
+                          <span class="cart-item cart-header cart-column"></span>
+                          <span class="cart-price cart-header cart-column"></span>
+                          <span class="cart-quantity cart-header cart-column"></span>
+                      </div>
+                      <hr>
+                      <div class="cart-items">
+                      </div><br/>
+                      <div class="cart-subtotal">
+                          <p class="cart-subtotal-title" style="text-align: center;"><strong>Subtotal: </strong><span class="cart-subtotal-price">$0</span></p>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Checkout Form</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="stylesheets/style2.css" type="text/css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheets/menu.css">
-    <script type= "text/javascript" src = "js/countries.js"></script>
-</head>
-
-<body>
-    <div class="container col-8 my-5 br-2 rounded">
-        <div class="row g-3">
-            <div class="col-4 order-md-last">
-                <img class="gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg" height="250">
-                <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" src="images/epic-eats-logo.svg"></a>
-                <h4 class="d-flex justify-content-between align-item-center">
-                    <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
-                </h4>
-    <!-- cart info -->
-    <section class="gourmacracy-cart-container">
-        <h2>Your Cart</h2>
-        <div class="cart-row">
-            <span class="cart-item cart-header cart-column"></span>
-            <span class="cart-price cart-header cart-column"></span>
-            <span class="cart-quantity cart-header cart-column"></span>
-        </div>
-        <hr>
-        <div class="cart-items">
-        </div><br>
-        <div class="cart-subtotal">
-            <strong class="cart-subtotal-title">Subtotal</strong>
-            <span class="cart-subtotal-price">$0</span>
-        </div><br>
-        <button class="gourmacracy-button checkout-btn" type="button" onclick="checkoutCart()">Checkout</button>
-    </section>
-    <!-- cart info -->
-            <div class="col-8">
-                <h4>Billing Address</h4>
-                <form>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-label" for="firstname">First Name</label>
-                            <input type="text" id="firstname" class="form-control">
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label" for="lastname">Last name</label>
-                            <input type="text" id="lastname" class="form-control">
-                        </div>
-                        <div class="col-12">
-                            <label class="from-label" for="username">Username</label>
-                            <div class="input-group">
-                                <span class="input-group-text">@</span>
-                                <input type="text" class="form-control" id="usrname">
+                      </div><br/>
+                    </ul>
+                </div>
+                <div class="col-8">
+                    <h4>Billing Address</h4>
+                    <form>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-label" for="firstname">First Name</label>
+                                <input type="text" id="firstname" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label" for="lastname">Last name</label>
+                                <input type="text" id="lastname" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="from-label" for="username">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" id="usrname">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="email">Email
+                                    <span class="text-muted">(Optional)</span>
+                                </label>
+                                <input type="text" id="email" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="address">Address</label>
+                                <input type="text" id="address" class="form-control">
+                            </div>
+                            <div class="col-5">
+                                <label class="form-label" for="country">Country</label>
+                                <select class="form-select" onchange="print_state('state',this.selectedIndex)" id="country" name ="country">
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label" for="state">State</label>
+                                <select class="form-select" name ="state" id ="state">
+                                    <option value="" selected="selected">Select State</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <label class="form-label" for="zip">Zip</label>
+                                <input type="text" id="zip" class="form-control">
                             </div>
                         </div>
                         <hr>
@@ -107,26 +123,26 @@
             print_country("country");
 
             window.addEventListener('load', (event) =>{
-            // Load items from local storage, apply to cartIndicator
-                if (localStorage.getItem('cart') != null) {
-                    var cart = localStorage.getItem('cart').split(',');
-                    if(cart[0] != "") {
-                        document.getElementById("cartIndicator").innerText = cart.length;
-                    } else {
-                        document.getElementById("cartIndicator").innerText = "0";
-                    }
-                }
+              let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+              let xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function (){
+                  if (this.readyState == 4 && this.status == 200){
+                      updateCartFromSession(JSON.parse(this.responseText));
+                  }
+              };
+              xhttp.open('GET', url, true);
+              xhttp.send();
             });
 
             function get () {
             // (A) GET FROM SESSION
-            var id = sessionStorage.getItem("id");
+            //var id = sessionStorage.getItem("id");
 
             // (B) IT WORKS!
             // MANUALLY OPENING 1B-SESSION.HTML WILL NOT WORK THOUGH
             // SESSION DATA WILL PERISH ONCE TAB/WINDOW IS CLOSED
-            console.log(first);  // Foo Bar
-            console.log(second); // ["Hello", "World"]
+            //console.log(first);  // Foo Bar
+            //console.log(second); // ["Hello", "World"]
 
             // (EXTRA) CLEAR SESSION STORAGE
             // sessionStorage.removeItem("KEY");
@@ -229,58 +245,124 @@
                     },3000);
                 }
             }
-            function addItemToCart(id, title, price) {
-        var cartRow = document.createElement('div')
-        cartRow.classList.add('cart-row')
-        var cartItems = document.getElementsByClassName('cart-items')[0]
-        var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
-        for (var i = 0; i < cartItemNames.length; i++) {
-            if (cartItemNames[i].innerText == title) {
-                alert('This item is already added to the cart')
-                return
+
+            function addItemToCart(id, title, price, newItem) {
+                var cartRow = document.createElement('div')
+                cartRow.classList.add('cart-row')
+                cartRow.classList.add('list-group-item')
+                cartRow.classList.add('d-flex')
+                // cartRow.classList.add('justify-content-between')
+                var cartItems = document.getElementsByClassName('cart-items')[0]
+                var cartRowContents = `
+                <div class="justify-content-between">
+                  <div class="cart-item">
+                      <span class="cart-item-title" style="font-weight: bold">${title}</span>
+                  </div>
+                  <span class="cart-price cart-column" style="float: right;">$${price}</span>
+                  <span hidden class="hidden-id">${id}</span>
+                  <div class="cart-quantity cart-column">
+                      <span class="badge bg-secondary rounded-pill cart-quantity-input">1</span>
+                  </div>
+                </div>
+                <hr>`
+                /*
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6><var>id</var></h6>
+                        <span class="text-muted"><var>id</var></span>
+                    </div>
+                    <span class="text-muted">Rs 500</span>
+                </li>
+
+                */
+                cartRow.innerHTML = cartRowContents
+                cartItems.append(cartRow)
+                updateCartTotal();
             }
-        }
-        var cartRowContents = `
-        <div class="cart-item cart-column">
-            <span class="cart-item-title" style="font-weight: bold">${title}</span>
-        </div>
-        <span class="cart-price cart-column">$${price}</span>
-        <span hidden class="hidden-id">${id}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-delete-item" type="button" style="float: right"><i class="bi bi-trash3-fill"></i></button>
-        </div><hr>`
-        cartRow.innerHTML = cartRowContents
-        cartItems.append(cartRow)
-        cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
-        cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
-        updateCartTotal();
-        updateLocalStorage();
-    }
 
-    function updateCartTotal() {
-        var cartItemContainer = document.getElementsByClassName('cart-items')[0]
-        var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-        var subtotal = 0
-        var numItems = 0
-        for (var i = 0; i < cartRows.length; i++) {
-            var cartRow = cartRows[i]
-            var priceElement = cartRow.getElementsByClassName('cart-price')[0]
-            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
-            var price = parseFloat(priceElement.innerText.replace('$', ''))
-            var quantity = quantityElement.value
-            subtotal = subtotal + (price * quantity)
-            numItems = numItems + parseInt(quantity)
-        }
-        subtotal = Math.round(subtotal * 100) / 100
-        document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
-        cartIndicator(numItems);
-    }
+            function updateCartTotal() {
+                var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+                var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+                var subtotal = 0
+                var numItems = 0
+                for (var i = 0; i < cartRows.length; i++) {
+                    var cartRow = cartRows[i]
+                    var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+                    var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+                    var price = parseFloat(priceElement.innerText.replace('$', ''))
+                    var quantity = parseInt(quantityElement.innerText)
+                    subtotal = subtotal + (price * quantity)
+                }
+                subtotal = Math.round(subtotal * 100) / 100
+                document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+            }
 
+            function updateCartFromSession(data) {
+              // Update the cart from session data (localStorage)
+              // Grab localStorage
+              if(localStorage.getItem('cart') != null) {
+                var cart = localStorage.getItem('cart').split(',');
+                var alreadyAdded = [];
 
+                // For length of localStorage, check each menu item against it.
+                for(let i = 0; i < cart.length; i++) {
+                  for(let j = 0; j < data.length; j++) {
 
+                    // If cart matches menuItem ID
+                    if(cart[i] == data[j]["_id"]) {
 
+                      let added = false;
 
+                      // Check if menu item has been added before, mark if it has
+                      for(let k = 0; k < alreadyAdded.length; k++) {
+                        if(cart[i] == alreadyAdded[k]) {
+                          added = true;
+                          // Break out of for loop early if found
+                          break;
+                        }
+                      }
+
+                      // If it hasn't been added...
+                      if(!added) {
+                        // Add item to cart and alreadyAdded list.
+                        addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"],false);
+                        alreadyAdded.push(cart[i]);
+
+                      } else {
+
+                        // If it has not been added:
+                        // find locations, check IDs and increase quantity.
+                        var cartItemContainer = document.getElementsByClassName('cart-items')[0]
+                        var cartRows = cartItemContainer.getElementsByClassName('cart-row')
+                        for (var l = 0; l < cartRows.length; l++) {
+                            var cartRow = cartRows[l]
+                            var id = cartRow.getElementsByClassName('hidden-id')[0].innerText
+                            var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0].innerText
+                            if(id == cart[i]) {
+                              cartRow.getElementsByClassName('cart-quantity-input')[0].innerText =
+                              (parseInt(cartRow.getElementsByClassName('cart-quantity-input')[0].innerText) + 1);
+                              // if the item has been found, break out early.
+                              break;
+                            }
+                        }
+
+                      }
+                      // Get out of for loop early to check next localStorage item if menu item found.
+                      break;
+                    }
+                  }
+                }
+                // Load items from local storage, apply to cartIndicator
+                if(localStorage.getItem('cart') != null) {
+                  var cart = localStorage.getItem('cart').split(',');
+                  if(cart[0] != "") {
+                    document.getElementById("cartIndicator").innerText = cart.length;
+                  } else {
+                    document.getElementById("cartIndicator").innerText = "0";
+                  }
+                }
+              }
+            }
 
             function userModify() {
                 if(localStorage.getItem('id') != null) {

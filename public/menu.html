@@ -116,7 +116,7 @@
                 '   <button class=\"add-to-cart-btn\" style="width: 9em; margin-top: 1em; float: right;" ' +
                 'onclick=\"addItemToCart(\''+ sortedMenu[category][menuItem]._id + '\', \''+
                 sortedMenu[category][menuItem].itemName + '\', \''+
-                sortedMenu[category][menuItem].price +
+                sortedMenu[category][menuItem].price + '\', \''+ false +
                 '\')\">Add</button></p>\n' +
                 '</div>\n';
           }
@@ -174,7 +174,7 @@
         updateLocalStorage();
     }
 
-    function addItemToCart(id, title, price) {
+    function addItemToCart(id, title, price, newItem) {
         var cartRow = document.createElement('div')
         cartRow.classList.add('cart-row')
         var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -200,7 +200,9 @@
         cartRow.getElementsByClassName('btn-delete-item')[0].addEventListener('click', removeCartItem)
         cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
         updateCartTotal();
-        updateLocalStorage();
+        if(newItem) {
+          updateLocalStorage();
+        }
     }
 
     function updateCartTotal() {
@@ -266,12 +268,6 @@
           document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
         }
       }
-      /*
-      var cart = localStorage.getItem('cart').split(',');
-      if(cart[0] != "") {
-        document.getElementById("cartIndicator").innerHTML = '<a href="cart.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
-      }
-      */
     }
 
     function updateCartFromSession(data) {
@@ -302,7 +298,7 @@
               // If it hasn't been added...
               if(!added) {
                 // Add item to cart and alreadyAdded list.
-                addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"]);
+                addItemToCart(data[j]["_id"], data[j]["itemName"], data[j]["price"],false);
                 alreadyAdded.push(cart[i]);
 
               } else {
