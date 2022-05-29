@@ -136,16 +136,10 @@
                 var date_regex = /^(0[1-9]|[1-9]|1[0-2])\/?([0-9]{4})$/;
                 return date_regex.test(testdate);
             }
-
+            
             function validateCVV(sample){
                 var re = /^[0-9]{3,4}$/;
-                    if (re.test(sample)){
-                        alert("valid cvv");
-                        //console.log("Valid CVV");
-                    }else{
-                        alert("Invalid CVV!");
-                    }
-
+                return re.test(sample);
             }
 
             // Returns whether or not it has passed a date
@@ -172,7 +166,7 @@
                     let exp = document.getElementById("expiration").value;
                     let cvv = document.getElementById("cvv").value;
 
-                    if (cardname === "") {
+                    /*if (cardname === "") {
                         alert("Name must be filled out");
                         return false;
                     } else if (creditcard === "") {
@@ -189,26 +183,24 @@
                     if (!validateDate(exp)) {
                         alert("Invalid date format. The Date format requires is MM/YYYY");
                         return false;
-                    }
-
-                    /*if (!validateCVV(exp)) {
-                        alert("Invalid date format. The Date format requires is MM/YYYY");
-                        return false;
                     }*/
 
-                    validateCVV(cvv);
+                    if (!validateCVV(cvv)) {
+                        alert("Invalid CVV.");
+                        return false;
+                    }
 
                     if (!notExpired(exp)) {
-                        alert("The Card is Expired!");
+                        alert("The card is Expired!");
                         return false;
                     }
 
                     if (!is_creditCard(creditcard)){
-                        alert("The Credit Card Number Is Not Valid!")
+                        alert("Invalid credit card number")
 
                     } else {
 
-                        alert("Your Payment has been Received! Thank You!");
+                        alert("Your payment has been received! Thank you!");
 
                         setTimeout(function(){
                         let parameter = new URLSearchParams();
