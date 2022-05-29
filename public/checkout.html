@@ -142,22 +142,7 @@
               xhttp.send();
             });
 
-            function get () {
-            // (A) GET FROM SESSION
-            //var id = sessionStorage.getItem("id");
-
-            // (B) IT WORKS!
-            // MANUALLY OPENING 1B-SESSION.HTML WILL NOT WORK THOUGH
-            // SESSION DATA WILL PERISH ONCE TAB/WINDOW IS CLOSED
-            //console.log(first);  // Foo Bar
-            //console.log(second); // ["Hello", "World"]
-
-            // (EXTRA) CLEAR SESSION STORAGE
-            // sessionStorage.removeItem("KEY");
-            // sessionStorage.clear();
-            }
-
-            function is_creditCard(str)
+           function is_creditCard(str)
             {
             regexp = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/;
 
