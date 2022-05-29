@@ -166,7 +166,7 @@
             //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
 
             function validateForm() {
-                    alert(localStorage.getItem('cart'));
+                    //alert(localStorage.getItem('cart'));
                     let cardname = document.getElementById("cardname").value;
                     let creditcard = document.getElementById("creditcard").value;
                     let exp = document.getElementById("expiration").value;
@@ -190,6 +190,13 @@
                         alert("Invalid date format. The Date format requires is MM/YYYY");
                         return false;
                     }
+
+                    if (!validateCVV(exp)) {
+                        alert("Invalid date format. The Date format requires is MM/YYYY");
+                        return false;
+                    }
+
+                    validateCVV(cvv);
 
                     if (!notExpired(exp)) {
                         alert("The Card is Expired!");
