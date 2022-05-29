@@ -49,7 +49,7 @@
                                     </select>
                                 </div>
                                 <div class="col-3">
-                                    <label class="form-label" for="zip">Zip</label>
+                                    <label class="form-label" for="zip">Zip Code</label>
                                     <input type="text" id="zip" class="form-control">
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <button type="submit" class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
+                            <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
                         </form>
                         <div class="card mb-4 mb-lg-0" style="margin-top: 15px;">
                             <div class="card-body">
@@ -106,33 +106,33 @@
     </div>
     <!-- cart info -->
     <section class="gourmacracy-cart-container">
-        <h2>Your Cart</h2>
-        <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>
-        <div class="cart-row">
-            <span class="cart-item cart-header cart-column"></span>
-            <span class="cart-price cart-header cart-column"></span>
-            <span class="cart-quantity cart-header cart-column"></span>
+        <h4>Your items</h4>
+<!--        <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>-->
+        <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
+        <div class="cart-row" style="border-style: none; text-align: left;">
+            <span class="cart-quantity cart-header cart-column" style="border-style: none"></span>
+            <span class="cart-item cart-header cart-column" style="border-style: none"></span>
+            <span class="cart-price cart-header cart-column" style="border-style: none; float: right"></span>
         </div>
         <hr>
-        <div class="cart-items">
-        </div><br>
+        <div class="cart-items" style="border-style: none">
+        </div><br><hr>
         <div class="cart-subtotal" style="text-align:left;">
             <span class="cart-subtotal-title">Subtotal</span>
             <span class="cart-subtotal-price" style="float:right;">$0</span>
         </div><br>
         <div class="cart-tax" style="text-align:left;">
-            <span class="cart-tax-title">Tax</span>
+            <span class="cart-tax-title">Tax (10.25%)</span>
             <span class="cart-tax-percentage" style="float:right;">$0</span>
         </div><br/>
         <div class="cart-tip" style="text-align:left;">
-            <span class="cart-tip-title">Tip</span>
+            <span class="cart-tip-title">Tip (15%)</span>
             <span class="cart-tip-percentage" style="float:right;">$0</span>
         </div><hr>
         <div class="cart-total" style="text-align:left;">
             <strong class="cart-total-title">Total</strong>
-            <span class="cart-total-price" style="float:right;">$0</span>
+            <strong class="cart-total-price" style="float:right;">$0</strong>
         </div><br/>
-        <button type="submit" class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
     </section>
     <!-- cart info -->
 </div>
@@ -232,20 +232,21 @@
     function addItemToCart(id, title, price, newItem) {
         var cartRow = document.createElement('div')
         cartRow.classList.add('cart-row')
-        cartRow.classList.add('list-group-item')
+        // cartRow.classList.add('list-group-item')
         cartRow.classList.add('d-flex')
         // cartRow.classList.add('justify-content-between')
         var cartItems = document.getElementsByClassName('cart-items')[0]
         var cartRowContents = `
-                <div class="justify-content-between">
+                <div class="">
                   <div class="cart-item">
-                      <span class="cart-item-title" style="font-weight: bold">${title}</span>
+                      <div class="cart-quantity cart-column">
+                      <span class="cart-quantity-input">1</span>
+                       <span class="cart-item-title" style="font-weight: bold">${title}</span>
+                       </div>
                   </div>
-                  <span class="cart-price cart-column" style="float: right;">$${price}</span>
-                  <span hidden class="hidden-id">${id}</span>
-                  <div class="cart-quantity cart-column">
-                      <span class="badge bg-secondary rounded-pill cart-quantity-input">1</span>
-                  </div>
+                  <div class="cart-column" style="text-align: left;">
+                  <span class="cart-price">$${price}</span>
+                  <span hidden class="hidden-id">${id}</span></div>
                 </div>
                 <hr>`
         /*
@@ -380,6 +381,54 @@
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(userData);
     }
+
+
+    // const submitBtn = document.getElementsByClassName('checkout-btn');
+    // const firstName = document.getElementById('firstname')
+    // const lastName = document.getElementById('lastname')
+    // const address = document.getElementById('address')
+    // const country = document.getElementById ('country')
+    // const state = document.getElementById('state')
+    // const zipCode = document.getElementById('zip')
+    // const formCheck = document.getElementsByClassName('form-check-input')
+    // const cardName = document.getElementById('cardname')
+    // const creditCard = document.getElementById('creditcard')
+    // const expiration = document.getElementById('expiration')
+    // const cvv = document.getElementById('cvv')
+    //
+    // function updateSubmitBtn(){
+    //     const firstNameValue = firstName.value.trim();
+    //     const lastNameValue = lastName.value.trim();
+    //     const addressValue = address.value.trim();
+    //     const countryValue = country.value.trim();
+    //     const stateValue = state.value.trim();
+    //     const zipCodeValue = zipCode.value.trim();
+    //     const formCheckValue = formCheck.value.trim();
+    //     const cardNameValue = cardName.value.trim();
+    //     const creditCardValue = creditCard.value.trim();
+    //     const expirationValue = expiration.value.trim();
+    //     const cvvValue = cvv.value.trim();
+    //
+    //     debugger;
+    //     if(firstNameValue && lastNameValue && addressValue && countryValue && stateValue && zipCodeValue
+    //         && cardNameValue && creditCardValue && expirationValue && cvvValue){
+    //         submitBtn.removeAttribute('disabled');
+    //     }else {
+    //         submitBtn.setAttribute('disabled', 'disabled');
+    //     }
+    // }
+    //
+    // firstName.addEventListener('change', updateSubmitBtn);
+    // lastName.addEventListener('change', updateSubmitBtn);
+    // address.addEventListener('change', updateSubmitBtn);
+    // country.addEventListener('change', updateSubmitBtn);
+    // state.addEventListener('change', updateSubmitBtn);
+    // zipCode.addEventListener('change', updateSubmitBtn);
+    // // formCheck.addEventListener('change', updateSubmitBtn);
+    // cardName.addEventListener('change', updateSubmitBtn);
+    // creditCard.addEventListener('change', updateSubmitBtn);
+    // expiration.addEventListener('change', updateSubmitBtn);
+    // cvv.addEventListener('change', updateSubmitBtn);
 
 </script>
 </body>
