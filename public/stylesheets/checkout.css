@@ -1,0 +1,50 @@
+body {
+    /* background: url(/image/background2.png) 100% 100%; */
+    background-size: cover;
+}
+
+.container {
+    background: #E8F0F9;
+}
+
+.gourmacracy-checkout-nav-bar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid;
+    border-bottom: #323232;
+    box-shadow: 0 5px 5px #E5E5E5;
+}
+
+.gourmacracy-checkout-nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.gourmacracy-checkout-nav-bar li {
+    float: left;
+}
+
+.gourmacracy-checkout-nav-bar li a {
+    font: 16px 'Inter', sans-serif;
+    font-weight: normal;
+    display: block;
+    color: #DB9232;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.gourmacracy-checkout-nav-bar li a:hover:not(.active) {
+    background-color: #E5E5E5;
+}
+
+.gourmacracy-checkout-nav-bar .active {
+    color: #DB9232;
+}
+
+
