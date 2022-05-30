@@ -21,10 +21,9 @@
     </div>
 </div>
 <!-- nav-bar -->
-<div class="container-form" style="margin-top: 70px;">
+<div class="container-form" style="margin-top: 92px;">
     <!-- Form -->
-    <form class="container-center" method="POST"
-          action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
+    <form class="col-md-3">
         <br><br><br>
         <h2 style="font-weight: bold; text-align: center">Sign Up</h2>
         <p style="color: #808080; text-align: center; font-size: 18px">Already have an account?
@@ -41,9 +40,9 @@
         <div class="mb-3 form-group">
             <label for="password" style="font-size: 18px; margin-bottom: 8px"><i class="bi bi-key-fill"></i>&emsp;&emsp;&emsp;Password</label>
             <input type="password" name="password" id="password" class="form-control">
-        </div>
+        </div><br/>
 
-        <input type="submit" class="gourmacracy-button" id="btnInsertUser" value="Create Account"> <br>
+        <input type="button" class="gourmacracy-button" id="btnInsertUser" value="Create Account" onclick="userFind()"> <br>
     </form>
     <br>
 </div>
@@ -70,13 +69,7 @@
                     location.href = "signin.html";
                 },3000);
             } else {
-              document.getElementById("output1").innerHTML =
-                  "There was an error registering. Please try again later.";
-              document.getElementById("output1").style.display = 'block';
               console.log("Output error: " + this.responseText);
-              setTimeout(function(){
-                  document.getElementById("output1").style.display = 'none';
-              },4000);
             }
         };
 
