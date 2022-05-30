@@ -14,8 +14,13 @@
 <body>
   <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container">
     <div style="display: block;" class="col-md-8" id="rateOrder">
-        <h2>Rate Your Order</h2>
+        <h2 style="text-align: center;">Rate Your Order</h2>
         <div class="cart-items"></div>
+        <div style="display: none;" id="futureItems">
+          <br/><br/><h2 style="text-align: center;">Rate Future Items</h2>
+          <p style="text-align: center;">We're interested in your opinion on future menu items! What do you think about these future dishes?</p>
+          <div class="future-items"></div>
+        </div>
         <div class="jumbotron" id="loadingSign"><h4>Loading...</h4></div>
         <br/><br/><button class="gourmacracy-button rate-order-button" type="button" onclick="submitReview()">Submit Review</button>
     </div>
@@ -145,7 +150,6 @@
     }
 
     function addItemToCart(data, newItem) {
-      let average = Math.ceil((data["points"] / data["numRatings"]));
       let strDataId = data["_id"];
         var cartRow = document.createElement('div')
         cartRow.classList.add('menu-item')
@@ -162,13 +166,44 @@
             '   </div>\n'+
             '<p>'+data["description"]+'</p>\n' +
             '<br/>\n'+
-            '<input hidden class="hidden-rating" type="text" value="5" id="stars'+data["_id"]+'"></input>\n' +
+            '<input hidden class="hidden-rating" type="text" value="0" id="stars'+data["_id"]+'"></input>\n' +
             '<h5 style="text-align: center;"><i>Rate:</i>'+
-            '  <i class="bi bi-star-fill star-checked" id="1:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
-            ' <i class="bi bi-star-fill star-checked" id="2:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
-            ' <i class="bi bi-star-fill star-checked" id="3:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
-            ' <i class="bi bi-star-fill star-checked" id="4:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
-            ' <i class="bi bi-star-fill star-checked" id="5:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            '  <i class="bi bi-star-fill star-unchecked" id="1:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="2:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="3:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="4:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="5:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            '</h6>\n'+
+            '<h5 style="text-align: center;">Comment:</h5>\n'+
+            '<input type="text" id="comment'+data["_id"]+'" class="form-control hidden-comment"><br/>\n';
+
+        cartRow.innerHTML = visibleMenu;
+        cartItems.append(cartRow);
+    }
+
+    function addItemToOptionalRating(data, newItem) {
+      let strDataId = data["_id"];
+        var cartRow = document.createElement('div')
+        cartRow.classList.add('menu-item')
+
+        var cartItems = document.getElementsByClassName('future-items')[0]
+        let visibleMenu = '';
+            visibleMenu +=
+            '<span hidden class="hidden-id">'+data["_id"]+'</span>\n' +
+            '   <div class="cart-quantity cart-column">\n'+
+            '      <p><b>'+data["itemName"]+
+            '      <span style="float: right;"> $'+data["price"]+'&emsp;&emsp;' +
+            '      </span></b></p>\n' +
+            '   </div>\n'+
+            '<p>'+data["description"]+'</p>\n' +
+            '<br/>\n'+
+            '<input hidden class="hidden-rating" type="text" value="0" id="stars'+data["_id"]+'"></input>\n' +
+            '<h5 style="text-align: center;"><i>Rate:</i>'+
+            '  <i class="bi bi-star-fill star-unchecked" id="1:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="2:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="3:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="4:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
+            ' <i class="bi bi-star-fill star-unchecked" id="5:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             '</h6>\n'+
             '<h5 style="text-align: center;">Comment:</h5>\n'+
             '<input type="text" id="comment'+data["_id"]+'" class="form-control hidden-comment"><br/>\n';
@@ -232,6 +267,16 @@
             }
           }
         }
+        for(let j = 0; j < data.length; j++) {
+
+          if(data[j]["category"] == "Optional") {
+            document.getElementById("futureItems").style.display = 'block';
+            console.log(data[j]);
+            addItemToOptionalRating(data[j],false);
+          }
+        }
+
+
         // Load items from local storage, apply to cartIndicator
         if(localStorage.getItem('cart') != null) {
           var cart = localStorage.getItem('cart').split(',');
