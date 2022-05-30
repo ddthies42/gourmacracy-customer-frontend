@@ -45,13 +45,13 @@
       xhttp.onreadystatechange = function (){
           if (this.readyState == 4 && this.status == 200){
               let userData = JSON.parse(this.responseText);
-
               if(!userData[0] && (userData.orders[0])) {
-                var orders = (userData.orders[0]).split(', ');
+                var orders = (userData.orders[0]).split(',');
                 var userMenuData = new Array;
                 for(orderID in orders) {
+                  let thisOrder = orders[orderID].split(' ').join('');
                   for(item in menuItems) {
-                    if(menuItems[item]["_id"] == orders[orderID]) {
+                    if(menuItems[item]["_id"] == thisOrder) {
                       userMenuData.push(menuItems[item]);
                     }
                   }
