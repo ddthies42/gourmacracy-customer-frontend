@@ -251,10 +251,15 @@
         updateLocalStorage();
 
         // Load next Page.
-        setTimeout(function(){
-            let parameter = new URLSearchParams();
-            location.href = "checkout.html";
-        },0);
+        let cart = localStorage.getItem('cart');
+        // If cart has items, load it.
+        if(cart.length > 0 && cart[0] != '') {
+          let parameter = new URLSearchParams();
+          location.href = "checkout.html";
+        } else {
+          // Otherwise, let user know.
+          alert("Your cart is empty. Please add items first.");
+        }
     }
 
     function cartIndicator(number) {
