@@ -39,13 +39,14 @@
             </a>
         </li>
         <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a></li>
+        <li style="margin-top: 15px"><a class="hover" onclick="goToPage()"><i class="bi bi-cart3"></i>&emsp;Menu</a></li>
     </ul>
 </div>
 <!-- nav-bar -->
 <script>
 
     function goToPage() {
+      localStorage.setItem('cart', [""]);
       let parameter = new URLSearchParams();
       location.href = "menu.html";
     }
@@ -269,33 +270,9 @@
             addItemToOptionalRating(data[j],false);
           }
         }
-
-
-        // Load items from local storage, apply to cartIndicator
-        if(localStorage.getItem('cart') != null) {
-          var cart = localStorage.getItem('cart').split(',');
-          if(cart[0] != "") {
-            cartIndicator(cart.length);
-          }
-        }
       }
       // When done loading, get rid of loading sign.
       document.getElementById("loadingSign").innerHTML = '';
-    }
-
-    function cartIndicator(number) {
-      if(number >= 0) {
-        document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+number+')</a>';
-      }
-
-      // If loaded from localStorage
-      if(number == -1 && localStorage.getItem('cart') != null) {
-        var cart = localStorage.getItem('cart').split(',');
-        // If cart has data:
-        if(cart[0] != "") {
-          document.getElementById("cartIndicator").innerHTML = '<a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart ('+cart.length+')</a>';
-        }
-      }
     }
 
     window.addEventListener('load', (event) =>{

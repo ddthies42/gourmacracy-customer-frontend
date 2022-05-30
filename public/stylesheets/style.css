@@ -369,3 +369,7 @@ input[type=email] {
   clear: both;
   display: table;
 }
+
+.hover:hover {
+  cursor: pointer;
+}
