@@ -53,6 +53,14 @@ a:link {
   border: 0px;
 }
 
+.gourmacracy-button:disabled {
+  background-color: #8e8e8e;
+}
+
+.gourmacracy-button:disabled:hover {
+  cursor: not-allowed;
+}
+
 .gourmacracy-button-secondary {
   width:100%;
   height: 40px;

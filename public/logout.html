@@ -35,7 +35,8 @@
     <div class="col-md-8 menu-item">
       <h2 style="font-weight: bold; text-align: center; margin-top: 30px;">Log Out</h2>
       <h6 style="text-align: center; margin: 25px;">Are you sure that you want to log out?</h6>
-      <button class="gourmacracy-button restaurant-list" style="margin-bottom: 25px;" type="button" onclick="logout()">Confirm</button>
+      <button class="gourmacracy-button restaurant-list" style="margin-bottom: 25px;" type="button" onclick="logout()" id="logout-button">Confirm</button>
+      <button class="gourmacracy-button-secondary restaurant-list" style="margin-bottom: 25px;" type="button" onclick="goToIndex()">Cancel</button>
       <div class="container">
         <div class="row d-flex justify-content-center">
           <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
@@ -50,19 +51,20 @@
         let userID = "";
         if(localStorage.getItem('id') != null) {
           userID = localStorage.getItem('id');
-
+          localStorage.clear();
+          document.getElementById("logout-button").disabled = true;
           // Frontend logout.
           document.getElementById("output1").innerHTML =
-          "User successfully logged out!";
+          "You have logged out! Please wait...";
           document.getElementById("output1").style.display = 'block';
-          localStorage.clear();
+
           setTimeout(function(){
               let parameter = new URLSearchParams();
               location.href = "index.html";
           },2000);
         } else {
           document.getElementById("output1").innerHTML =
-          "You must sign in in order to log out.";
+          "You must login in order to log out.";
           document.getElementById("output1").style.display = 'block';
           setTimeout(function(){
               document.getElementById("output1").style.display = 'none';
@@ -76,29 +78,29 @@
 
         if (this.readyState == 4 && this.status == 200) {
           if(this.responseText == "Logged out successfully.") {
-            document.getElementById("output1").innerHTML =
-            "User successfully logged out!";
-            document.getElementById("output1").style.display = 'block';
             localStorage.clear();
-            setTimeout(function(){
-                let parameter = new URLSearchParams();
-                location.href = "index.html";
-            },3000);
+            document.getElementById("logout-button").disabled = true;
+            document.getElementById("output1").innerHTML =
+            "You have logged out! Please wait...";
+            document.getElementById("output1").style.display = 'block';
+
+            let parameter = new URLSearchParams();
+            location.href = "index.html";
           } else {
             document.getElementById("output1").innerHTML =
-            "User did not log out successfully. Please try again later.";
+            "You did not log out successfully. Please try again later.";
             document.getElementById("output1").style.display = 'block';
             setTimeout(function(){
                 document.getElementById("output1").style.display = 'none';
-            },4000);
+            },2000);
           }
         } else {
           document.getElementById("output1").innerHTML =
-          "Log out did not occur. Please try again later.";
+          "Your log out did not occur. Please try again later.";
           document.getElementById("output1").style.display = 'block';
           setTimeout(function(){
               document.getElementById("output1").style.display = 'none';
-          },4000);
+          },2000);
         }
 
         let userData = "id=" + userID  + "&";
@@ -109,6 +111,11 @@
         xhttp.send(userData);
       }
 
+    }
+
+    function goToIndex() {
+      let parameter = new URLSearchParams();
+      location.href = "index.html";
     }
 </script>
 </body>
