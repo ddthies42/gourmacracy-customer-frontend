@@ -22,7 +22,7 @@
                 <img src="images/gourmacracy-admin-logo.svg" alt="logo" width="150">
             </a>
         </li>
-        <li style="margin-top: 15px"><a href="menu.html">Customer Menu</a></li>
+<!--        <li style="margin-top: 15px"><a href="menu.html">Customer Menu</a></li>-->
         <li style="margin-top: 15px"><a href="show-user.html">Find A User</a></li>
         <li style="margin-top: 15px"><a href="users.html">Show All Users</a></li>
         <li style="margin-top: 15px"><a href="adminAddMenuItem.html">Add Menu Item</a></li>
@@ -47,7 +47,7 @@
             '           <th scope="col">ID</th> \n'+
             '           <th scope="col">Name</th> \n'+
             '           <th scope="col">Email</th> \n'+
-            '           <th scope="col">Orders</th> \n'+
+            // '           <th scope="col" style="width: 20em">Orders</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
@@ -59,7 +59,7 @@
                 '           <td>' + data[user]["_id"] +  '</td>\n' +
                 '           <td>' + data[user]["name"]+  '</td>\n' +
                 '           <td>' + data[user]["email"]+  '</td>\n' +
-                '           <td>' + data[user]["orders"]+  '</td>\n' +
+                // '           <td>' + data[user]["orders"]+  '</td>\n' +
 
                 '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +
