@@ -47,7 +47,7 @@
               let userData = JSON.parse(this.responseText);
 
               if(!userData[0] && (userData.orders[0])) {
-                var orders = (userData.orders[0]).split(',  ');
+                var orders = (userData.orders[0]).split(', ');
                 var userMenuData = new Array;
                 for(orderID in orders) {
                   for(item in menuItems) {
