@@ -153,7 +153,15 @@ html {
 }
 
 .container-form {
-    height: 30em;
+    height: 50em;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.container-form-users {
+    margin-top: 10%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center
@@ -161,7 +169,7 @@ html {
 
 .container-center {
     margin: 0;
-    width: 400px
+    width: 550px
 }
 .container-secondary-btn {
     height: 0;
