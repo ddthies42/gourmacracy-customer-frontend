@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
+                            <!-- <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button> -->
                         </form>
                         <div class="card mb-4 mb-lg-0" style="margin-top: 15px;">
                             <div class="card-body">
@@ -221,11 +221,7 @@
         } else if (!is_creditCard(creditcard)){
             alert("Invalid credit card number")
         } else {
-            alert("Your payment has been received! Thank you!");
-            setTimeout(function(){
-                let parameter = new URLSearchParams();
-                location.href = "rate-order.html";
-            },3000);
+            userModify();
         }
     }
 
@@ -287,7 +283,7 @@
         document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
         document.getElementsByClassName('cart-tax-percentage')[0].innerText = '$' + Math.round(tax * 100) / 100
         document.getElementsByClassName('cart-tip-percentage')[0].innerHTML = '$' + Math.round(tip * 100) / 100
-        total = subtotal + (subtotal + tax + tip)
+        total = subtotal + tax + tip
         document.getElementsByClassName('cart-total-price')[0].innerText = '$' + Math.round(total * 100) / 100
     }
 
@@ -359,18 +355,25 @@
     }
 
     function userModify() {
+        var userID = ""
+        var cart = ""
         if(localStorage.getItem('id') != null) {
-            var userID = localStorage.getItem('id');
+            userID = localStorage.getItem('id');
         }
         if(localStorage.getItem('cart') != null) {
-            var cart = localStorage.getItem('cart').split(',');}
+            cart = localStorage.getItem('cart').split(',');
+        }
 
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
-                document.getElementById("message").innerHTML =
-                    "Thank you for your purchase!";
+                console.log("SUBMITTED");
+                alert("Thank you for your purchase!");
+                setTimeout(function(){
+                    let parameter = new URLSearchParams();
+                    location.href = "rate-order.html";
+                },2000);
             }
         }
         let userData = "orders="  + cart  + "&";

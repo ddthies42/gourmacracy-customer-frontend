@@ -348,6 +348,10 @@ input[type=email] {
   border: 0px;
 }
 
+.rate-order-button {
+  margin-bottom: 5em;
+}
+
 /* centered index images */
 
 * {
