@@ -13,11 +13,16 @@
 </head>
 <body>
   <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container">
-      <div class="col-md-8">
-        <h2 id="userName">Rate Your Order</h2>
-        <div class="jumbotron" id="loadingSign"><h4>Loading...</h4></div>
+    <div style="display: block;" class="col-md-8" id="rateOrder">
+        <h2>Rate Your Order</h2>
         <div class="cart-items"></div>
+        <div class="jumbotron" id="loadingSign"><h4>Loading...</h4></div>
         <br/><br/><button class="gourmacracy-button rate-order-button" type="button" onclick="submitReview()">Submit Review</button>
+    </div>
+    <div style="display: none; text-align: center;" class="col-md-8" id="ratingCompleted">
+        <h2 style="margin: 30px;">Thank you!</h2>
+        <div style="margin-bottom: 75px;" class="jumbotron"><h4>Your reviews have been submitted!</h4></div>
+        <button class="gourmacracy-button rate-order-button" type="button" onclick="goToPage()">Return to Menu</button>
     </div>
 </div>
 <!-- nav-bar -->
@@ -35,44 +40,10 @@
 <!-- nav-bar -->
 <script>
 
-
-
-    function LoadUserData(menuItems){
-      // user with order ID data
-      let userID = "";
-
-      if(localStorage.getItem('id') != null) {
-        userID = localStorage.getItem('id');
-      }
-
-      let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/" + userID;
-      let xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function (){
-          if (this.readyState == 4 && this.status == 200){
-              let userData = JSON.parse(this.responseText);
-
-              if(!userData[0] && (userData.orders[0])) {
-                var orders = (userData.orders[0]).split(',  ');
-                var userMenuData = new Array;
-                for(orderID in orders) {
-                  for(item in menuItems) {
-                    if(menuItems[item]["_id"] == orders[orderID]) {
-                      userMenuData.push(menuItems[item]);
-                    }
-                  }
-                }
-                document.getElementById("userName").innerHTML =
-                    userData.name + "'s Past Orders";
-              }
-
-              document.getElementById("output").innerHTML =
-                  CreatePastOrders(userMenuData);
-          }
-      };
-      xhttp.open('GET', url, true);
-      xhttp.send();
+    function goToPage() {
+      let parameter = new URLSearchParams();
+      location.href = "menu.html";
     }
-
 
     function ratingChange(item) {
         let starId = (item.id).split(':');
@@ -111,33 +82,74 @@
           var comment = cartRow.getElementsByClassName('hidden-comment')[0].value;
 
           if(rating > 0 && rating < 6) {
-              // submit to rating with ID
-              console.log(id +", "+ rating);
+            // submit to rating with ID
+            sendRating(id, rating);
           }
 
           if(comment.length > 1) {
             // submit to comment with ID
-            console.log(id +", "+ comment);
+            sendComment(id, comment);
           }
       }
+      // If any comment or review is submitted successfully:
+      // Page will transition to the "review submitted" view.
+
+    }
+
+    function sendRating(menuItemID, points) {
+        var numRatingsIncrease = 1;
+
+        // If user tries to send bad rating
+        if(points < 0 || points > 5) {
+          points = 5;
+        }
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/rating/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+                //console.log("SUBMITTED RATING: " + menuItemID + ", " + points);
+                document.getElementById("loadingSign").innerHTML = "Review submitted!";
+                document.getElementById("rateOrder").style.display = 'none';
+                document.getElementById("ratingCompleted").style.display = 'block';
+            }
+        }
+        let userData = "points="  + points  + "&"+
+                       "numRatings=" + numRatingsIncrease + "&";
 
 
-      // Add IDs with reviews.
-      // Add IDs with comments.
-      // Submit IDs with reviews and comments to database separately.
-      alert("Review submitted!");
+        xhttp.open('PATCH', url + menuItemID, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(userData);
+    }
+
+    function sendComment(menuItemID, comment) {
+
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/comment/";
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200){
+                //console.log("SUBMITTED COMMENT: " + menuItemID + ", " + comment);
+                document.getElementById("loadingSign").innerHTML = "Review submitted!";
+                document.getElementById("rateOrder").style.display = 'none';
+                document.getElementById("ratingCompleted").style.display = 'block';
+            }
+        }
+        let userData = "comments="  + comment  + "&";
+
+
+        xhttp.open('PATCH', url + menuItemID, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(userData);
     }
 
     function addItemToCart(data, newItem) {
-      //ratingsArray.push(data);
       let average = Math.ceil((data["points"] / data["numRatings"]));
       let strDataId = data["_id"];
-      /*
-      data[j]["_id"], data[j]["itemName"], data[j]["price"]
-      */
         var cartRow = document.createElement('div')
         cartRow.classList.add('menu-item')
-        // cartRow.classList.add('justify-content-between')
+
         var cartItems = document.getElementsByClassName('cart-items')[0]
         let visibleMenu = '';
             visibleMenu +=
