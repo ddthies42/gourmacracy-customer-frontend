@@ -31,14 +31,18 @@
 
 
 <div class="gourmacracy-main-container">
-  <div class="container-form" style="height: 10em;">
-    <div class="container-center">
-      <h2 style="font-weight: bold; text-align: center">Log Out</h2>
-      <!-- <input type="submit" class="btn btn-lg btn-outline-primary" value="Logout"> -->
-      <button class="gourmacracy-button" type="button" onclick="logout()">Confirm</button>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 menu-item">
+      <h2 style="font-weight: bold; text-align: center; margin-top: 30px;">Log Out</h2>
+      <h6 style="text-align: center; margin: 25px;">Are you sure that you want to log out?</h6>
+      <button class="gourmacracy-button restaurant-list" style="margin-bottom: 25px;" type="button" onclick="logout()">Confirm</button>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
+        </div>
+      </div>
     </div><br/>
   </div>
-  <div class="col-xs-12 jumbotron" style="background-color: #FFF7D6; border-radius: 10px" id="output1"></div>
 </div>
 
 <script>
@@ -50,14 +54,19 @@
           // Frontend logout.
           document.getElementById("output1").innerHTML =
           "User successfully logged out!";
+          document.getElementById("output1").style.display = 'block';
           localStorage.clear();
           setTimeout(function(){
               let parameter = new URLSearchParams();
               location.href = "index.html";
-          },1000);
+          },2000);
         } else {
           document.getElementById("output1").innerHTML =
           "You must sign in in order to log out.";
+          document.getElementById("output1").style.display = 'block';
+          setTimeout(function(){
+              document.getElementById("output1").style.display = 'none';
+          },4000);
         }
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/logout/";
 
@@ -69,6 +78,7 @@
           if(this.responseText == "Logged out successfully.") {
             document.getElementById("output1").innerHTML =
             "User successfully logged out!";
+            document.getElementById("output1").style.display = 'block';
             localStorage.clear();
             setTimeout(function(){
                 let parameter = new URLSearchParams();
@@ -77,10 +87,18 @@
           } else {
             document.getElementById("output1").innerHTML =
             "User did not log out successfully. Please try again later.";
+            document.getElementById("output1").style.display = 'block';
+            setTimeout(function(){
+                document.getElementById("output1").style.display = 'none';
+            },4000);
           }
         } else {
           document.getElementById("output1").innerHTML =
           "Log out did not occur. Please try again later.";
+          document.getElementById("output1").style.display = 'block';
+          setTimeout(function(){
+              document.getElementById("output1").style.display = 'none';
+          },4000);
         }
 
         let userData = "id=" + userID  + "&";
