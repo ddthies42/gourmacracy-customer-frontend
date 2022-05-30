@@ -27,29 +27,48 @@
 <!-- nav-bar -->
 
 <div class="gourmacracy-main-container">
-    <form method="POST"
-          action="https://gourmacracy-customer-backend.herokuapp.com/api/errorchange"
-          onsubmit="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value); return false">
-        <h2>Please select a restaurant</h2>
-        <div class="mb-3 form-group">
-            <label for="restaurantList">RESTAURANT</label>
-            <select name="restaurantList" id="restaurantList" class="form-control" placeholder="Restaurants">
-                <option value="Epic Eats">Epic Eats</option>
-                <option value="Food of Destiny">Food of Destiny</option>
-                <option value="Great Yum!">Great Yum!</option>
-                <option value="Terrific Teriyaki">Terrific Teriyaki</option>
-                <option value="Victor's Noodle Spot">Victor's Noodle Spot</option>
-            </select>
-            <br><input type="submit" class="btn btn-lg btn-outline-primary" id="btnOpenRestaurantMenu" value="Open Menu"> <br>
+  <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container">
+    <div class="col-md-8 menu-item">
+      <h2 style="text-align: center; margin: 25px;">Please select a restaurant</h2>
+      <div class="mb-3">
+        <form>
+          <select name="restaurantList" id="restaurantList" class="form-select restaurant-list" placeholder="Restaurants">
+              <option value="Epic Eats" selected>Epic Eats</option>
+              <option value="Food of Destiny">Food of Destiny</option>
+              <option value="Great Yum!">Great Yum!</option>
+              <option value="Terrific Teriyaki">Terrific Teriyaki</option>
+              <option value="Victor's Noodle Spot">Victor's Noodle Spot</option>
+          </select>
+        </form>
+      </div>
+      <br/>
+      <input type="button" class="gourmacracy-button checkout-btn restaurant-list" id="btnOpenRestaurantMenu" style="margin-bottom: 25px;"
+      value="Open Menu" onclick="openMenu(document.forms[0].restaurantList.options[document.forms[0].restaurantList.selectedIndex].value)">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <h6 class="col-md-8 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 0px; text-align: center;" id="output1"></h6>
         </div>
-    </form>
+      </div>
+    </div>
+  </div>
 </div>
+
 <script>
 
     function openMenu(id) {
-        let parameter = new URLSearchParams();
-        parameter.append("restaurantID", id);
-        location.href = "menu.html?" + parameter.toString();
+        console.log(id);
+        if(id != "Epic Eats") {
+          document.getElementById("output1").innerHTML =
+              "Epic Eats is the only available restaurant at this time. Apologies for the incovenience.";
+          document.getElementById("output1").style.display = 'block';
+          setTimeout(function(){
+              document.getElementById("output1").style.display = 'none';
+          },4000);
+        } else {
+          let parameter = new URLSearchParams();
+          parameter.append("restaurantID", id);
+          location.href = "menu.html?" + parameter.toString();
+        }
     }
 
 </script>
