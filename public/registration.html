@@ -69,13 +69,7 @@
                     location.href = "signin.html";
                 },3000);
             } else {
-              document.getElementById("output1").innerHTML =
-                  "There was an error registering. Please try again later.";
-              document.getElementById("output1").style.display = 'block';
               console.log("Output error: " + this.responseText);
-              setTimeout(function(){
-                  document.getElementById("output1").style.display = 'none';
-              },5000);
             }
         };
 
