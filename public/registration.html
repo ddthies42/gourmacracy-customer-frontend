@@ -54,33 +54,87 @@
 <script>
 
     function userFind() {
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function (){
-            if (this.readyState == 4 && this.status == 200){
 
-                document.getElementById("output1").innerHTML =
-                    "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Redirecting...";
-                document.getElementById("output1").style.display = 'block';
+        // If the form passes user validation, send request.
+        if(userValidation()) {
+          let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/"
+          let xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function (){
+              if (this.readyState == 4 && this.status == 200){
+                  let response = JSON.parse(this.responseText);
+                  if(!response.error) {
+                    document.getElementById("btnInsertUser").disabled = true;
+                    document.getElementById("output1").innerHTML =
+                        "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Please wait...";
+                    document.getElementById("output1").style.display = 'block';
 
-                // Go to restaurants list after 3 seconds
-                setTimeout(function(){
-                    let parameter = new URLSearchParams();
-                    location.href = "signin.html";
-                },3000);
-            } else {
-              console.log("Output error: " + this.responseText);
-            }
-        };
+                    // Go to sign in after a delay.
+                    setTimeout(function(){
+                        let parameter = new URLSearchParams();
+                        location.href = "signin.html";
+                    },1500);
+                  } else {
+                    document.getElementById("output1").innerHTML =
+                        "This email is already in use. Try signing in instead.";
+                    document.getElementById("output1").style.display = 'block';
+                  }
 
-        let userData = "name=" + document.getElementById("name").value + "&" +
-            "email=" + document.getElementById("email").value  + "&" +
-            "password="  + document.getElementById("password").value  + "&";
 
-        xhttp.open('POST', url, true);
-        // Just needed to place this line AFTER opening the object
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(userData);
+              } else {
+                console.log("Output error: " + this.responseText);
+              }
+          };
+
+          let userData = "name=" + document.getElementById("name").value + "&" +
+              "email=" + document.getElementById("email").value  + "&" +
+              "password="  + document.getElementById("password").value  + "&";
+
+          xhttp.open('POST', url, true);
+          // Just needed to place this line AFTER opening the object
+          xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhttp.send(userData);
+        }
+    }
+
+    function userValidation() {
+      if(!nameValidate()) {
+        document.getElementById("output1").innerHTML =
+            "You must have a name.";
+        document.getElementById("output1").style.display = 'block';
+        return false;
+      } else if(!emailValidate()) {
+        document.getElementById("output1").innerHTML =
+            "You must have a valid email address.";
+        document.getElementById("output1").style.display = 'block';
+        return false;
+      } else if(!passwordValidate()) {
+        document.getElementById("output1").innerHTML =
+            "Your password must be 4 or more characters long.";
+        document.getElementById("output1").style.display = 'block';
+        return false;
+      }
+      return true;
+    }
+
+    function nameValidate() {
+      if(document.getElementById("name").value.length > 1) {
+        return true;
+      }
+      return false;
+    }
+
+    function emailValidate() {
+      if (document.getElementById("email").value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        return true;
+      }
+      return false;
+    }
+
+    function passwordValidate() {
+      if(document.getElementById("password").value.length >= 4) {
+        return true;
+      }
+      return false;
     }
 </script>
 
