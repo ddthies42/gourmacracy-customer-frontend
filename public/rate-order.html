@@ -57,7 +57,6 @@
         if(numStars > 0 && numStars < 6) {
           document.getElementById("stars"+ratingID).value = numStars;
         }
-        //console.log(document.getElementById("stars"+ratingID).value);
 
         for(var i = 1; i < 6; i++) {
           var tempId = document.getElementById(i+":"+ratingID);
@@ -111,9 +110,7 @@
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/rating/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200){
-                //console.log("SUBMITTED RATING: " + menuItemID + ", " + points);
-                document.getElementById("loadingSign").innerHTML = "Review submitted!";
+            if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("rateOrder").style.display = 'none';
                 document.getElementById("ratingCompleted").style.display = 'block';
             }
@@ -133,9 +130,7 @@
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/comment/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200){
-                //console.log("SUBMITTED COMMENT: " + menuItemID + ", " + comment);
-                document.getElementById("loadingSign").innerHTML = "Review submitted!";
+            if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("rateOrder").style.display = 'none';
                 document.getElementById("ratingCompleted").style.display = 'block';
             }
@@ -271,7 +266,6 @@
 
           if(data[j]["category"] == "Optional") {
             document.getElementById("futureItems").style.display = 'block';
-            console.log(data[j]);
             addItemToOptionalRating(data[j],false);
           }
         }
