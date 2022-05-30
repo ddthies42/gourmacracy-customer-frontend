@@ -44,7 +44,12 @@
         </form>
         <br>
     </div>
-    <div class="col-xs-12 jumbotron" style="background-color: #FFF7D6; border-radius: 10px" id="output1"></div>
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
+      </div>
+    </div>
+
 </div>
 
 <script>
@@ -53,11 +58,11 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
-                console.log(this.responseText);
                 var response = JSON.parse(this.responseText);
                 if (response.text == "Login Successful!") {
                     document.getElementById("output1").innerHTML =
                         response.text + " Redirecting...";
+                    document.getElementById("output1").style.display = 'block';
                     localStorage.setItem('id', response.id);
                     // Go to restaurants list after 3 seconds
                     setTimeout(function(){
@@ -67,6 +72,7 @@
                 } else if (response.text == "Admin Login Successful!") {
                     document.getElementById("output1").innerHTML =
                         response.text + " Redirecting...";
+                    document.getElementById("output1").style.display = 'block';
                     localStorage.setItem('id', response.id);
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
@@ -75,6 +81,7 @@
                 } else {
                     document.getElementById("output1").innerHTML =
                         response.text;
+                    document.getElementById("output1").style.display = 'block';
                     localStorage.setItem('id', response.id);
                 }
             }

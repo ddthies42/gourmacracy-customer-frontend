@@ -21,7 +21,7 @@
     </div>
 </div>
 <!-- nav-bar -->
-<div class="container-form">
+<div class="container-form" style="margin-top: 70px;">
     <!-- Form -->
     <form class="container-center" method="POST"
           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
@@ -47,7 +47,11 @@
     </form>
     <br>
 </div>
-<div class="col-xs-12 jumbotron" style="background-color: #FFF7D6; border-radius: 10px" id="output1"></div>
+<div class="container" style="margin-top: 45px;">
+  <div class="row d-flex justify-content-center">
+    <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
+  </div>
+</div>
 <script>
 
     function userFind() {
@@ -58,6 +62,7 @@
 
                 document.getElementById("output1").innerHTML =
                     "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Redirecting...";
+                document.getElementById("output1").style.display = 'block';
 
                 // Go to restaurants list after 3 seconds
                 setTimeout(function(){
@@ -65,7 +70,13 @@
                     location.href = "signin.html";
                 },3000);
             } else {
-                console.log("Output error: " + this.responseText);
+              document.getElementById("output1").innerHTML =
+                  "There was an error registering. Please try again later.";
+              document.getElementById("output1").style.display = 'block';
+              console.log("Output error: " + this.responseText);
+              setTimeout(function(){
+                  document.getElementById("output1").style.display = 'none';
+              },4000);
             }
         };
 
