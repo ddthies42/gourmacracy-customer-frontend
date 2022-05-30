@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <!-- <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button> -->
+                            <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
                         </form>
                         <div class="card mb-4 mb-lg-0" style="margin-top: 15px;">
                             <div class="card-body">
@@ -222,6 +222,11 @@
             alert("Invalid credit card number")
         } else {
             userModify();
+            alert("Your payment has been received! Thank you!");
+            setTimeout(function(){
+                let parameter = new URLSearchParams();
+                location.href = "rate-order.html";
+            },3000);
         }
     }
 
@@ -343,37 +348,30 @@
                 }
             }
             // Load items from local storage, apply to cartIndicator
-            // if(localStorage.getItem('cart') != null) {
-            //     var cart = localStorage.getItem('cart').split(',');
-            //     if(cart[0] != "") {
-            //         document.getElementById("cartIndicator").innerText = cart.length;
-            //     } else {
-            //         document.getElementById("cartIndicator").innerText = "0";
-            //     }
-            // }
-        }
-    }
+    //         if(localStorage.getItem('cart') != null) {
+    //             var cart = localStorage.getItem('cart').split(',');
+    //             if(cart[0] != "") {
+    //                 document.getElementById("cartIndicator").innerText = cart.length;
+    //             } else {
+    //                 document.getElementById("cartIndicator").innerText = "0";
+    //             }
+    //         }
+    //     }
+    // }
 
     function userModify() {
-        var userID = ""
-        var cart = ""
         if(localStorage.getItem('id') != null) {
-            userID = localStorage.getItem('id');
+            var userID = localStorage.getItem('id');
         }
         if(localStorage.getItem('cart') != null) {
-            cart = localStorage.getItem('cart').split(',');
-        }
+            var cart = localStorage.getItem('cart').split(',');}
 
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
-                console.log("SUBMITTED");
-                alert("Thank you for your purchase!");
-                setTimeout(function(){
-                    let parameter = new URLSearchParams();
-                    location.href = "rate-order.html";
-                },2000);
+                document.getElementById("message").innerHTML =
+                    "Thank you for your purchase!";
             }
         }
         let userData = "orders="  + cart  + "&";
