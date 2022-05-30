@@ -96,7 +96,7 @@
             '   <h4 style="margin-left: 5px;">'+sortedMenu[category][0]+'s</h4>\n';
         for(let menuItem in sortedMenu[category]) {
           if(sortedMenu[category][menuItem].itemName != null) {
-            let average = Math.ceil((sortedMenu[category][menuItem].points / sortedMenu[category][menuItem].numRatings));
+            let average = Math.round((sortedMenu[category][menuItem].points / sortedMenu[category][menuItem].numRatings));
             visibleMenu +=
                 '<div class="menu-item"> \n' +
                 '   <p><b>'+sortedMenu[category][menuItem].itemName+
