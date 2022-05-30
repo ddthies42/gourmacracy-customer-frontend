@@ -60,7 +60,7 @@
             '   <tbody>\n';
 
         for (let menuItem in data){
-            var Rating= data[menuItem]["points"] / data[menuItem]["numRatings"];
+            var Rating= Math.round(data[menuItem]["points"] / data[menuItem]["numRatings"]);
             table +=
                 '       <tr>\n' +
                 '           <td>' + data[menuItem]["_id"] +  '</td>\n' +
