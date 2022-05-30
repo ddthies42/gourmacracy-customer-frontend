@@ -17,6 +17,11 @@
 <body>
 <div class="gourmacracy-main-container">
     <div class="gourmacracy-menu-container">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
+        </div>
+      </div>
         <div class="row d-flex justify-content-center gourmacracy-menu-output-container">
             <div class="gourmacracy-checkout-output-center">
                 <div class="col-md-8 col-xs-6">
@@ -231,11 +236,6 @@
             alert("Invalid credit card number")
         } else {
             userModify();
-            alert("Your payment has been received! Thank you!");
-            setTimeout(function(){
-                let parameter = new URLSearchParams();
-                location.href = "rate-order.html";
-            },3000);
         }
     }
 
@@ -373,23 +373,47 @@
             var userID = localStorage.getItem('id');
         }
         if(localStorage.getItem('cart') != null) {
-            var cart = localStorage.getItem('cart').split(',');}
+            var cart = localStorage.getItem('cart').split(',');
+            if(cart.length > 0 && cart[0] != '') {
+              let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
+              let xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200){
+                      document.getElementById("output1").innerHTML =
+                          "Thank you for your purchase!";
+                      document.getElementById("output1").style.display = 'block';
+                      // Scroll to top.
+                      document.body.scrollTop = 0; // Safari
+                      document.documentElement.scrollTop = 0; // Other browsers
+                      setTimeout(function(){
+                          let parameter = new URLSearchParams();
+                          location.href = "rate-order.html";
+                      },2500);
+                  }
+              }
+              let userData = "orders="  + cart  + "&";
 
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200){
-                document.getElementById("message").innerHTML =
-                    "Thank you for your purchase!";
+
+              xhttp.open('PATCH', url + userID, true);
+
+              xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              xhttp.send(userData);
+            } else {
+              document.getElementById("output1").innerHTML =
+                  "Your cart is empty. Go back to the menu and add items before checking out.";
+              document.getElementById("output1").style.display = 'block';
+              // Scroll to top.
+              document.body.scrollTop = 0; // Safari
+              document.documentElement.scrollTop = 0; // Other browsers
             }
+        } else {
+          document.getElementById("output1").innerHTML =
+              "Your cart is empty. Go back to the menu and add items before checking out.";
+          document.getElementById("output1").style.display = 'block';
+          // Scroll to top.
+          document.body.scrollTop = 0; // Safari
+          document.documentElement.scrollTop = 0; // Other browsers
         }
-        let userData = "orders="  + cart  + "&";
-
-
-        xhttp.open('PATCH', url + userID, true);
-        // Just needed to place this line AFTER opening the object
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send(userData);
     }
 
 
