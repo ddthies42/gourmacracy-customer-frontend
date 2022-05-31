@@ -27,8 +27,8 @@
 <!-- nav-bar -->
 
 <div class="gourmacracy-main-container">
-  <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container">
-    <div class="col-md-8 menu-item">
+  <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container" id="whole-container">
+    <div class="col-xs-8 menu-item" style="width: 80%;">
       <h2 style="text-align: center; margin: 25px;">Please select a restaurant</h2>
       <div class="mb-3">
         <form>
@@ -54,6 +54,24 @@
 </div>
 
 <script>
+
+window.addEventListener('load', (event) =>{
+  let width = window.innerWidth;
+  if(width > 322) {
+    document.getElementById("whole-container").style = "margin-top: 100px;";
+  } else {
+    document.getElementById("whole-container").style = "margin-top: 170px;";
+  }
+});
+
+window.addEventListener('resize', function() {
+  let width = window.innerWidth;
+  if(width > 322) {
+    document.getElementById("whole-container").style = "margin-top: 100px;";
+  } else {
+    document.getElementById("whole-container").style = "margin-top: 170px;";
+  }
+});
 
     function openMenu(id) {
         console.log(id);
