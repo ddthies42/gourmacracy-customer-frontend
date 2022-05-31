@@ -141,7 +141,9 @@ html {
 
 .menu-item {
   margin: 15px;
+  margin-top: 0px;
   padding: 10px;
+  max-width: 800px;
   border: solid #DB9232;
   background: white;
   border-radius: 5px;
@@ -332,12 +334,11 @@ input[type=email] {
   color: white;
   text-align: center;
   font-family: 'Josefin Sans', sans-serif;
-  width: 850px;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
+  /* width: 850px; */
+  margin-top: 50px;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
 }
 
 .gourmacracy-main-container {
@@ -387,4 +388,8 @@ input[type=email] {
   cursor: pointer;
   width: 50%;
   transform: translate(50%, 0%);
+}
+
+.nav-width-space {
+  min-width: 200px;
 }

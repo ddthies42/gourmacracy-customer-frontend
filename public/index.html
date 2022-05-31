@@ -17,7 +17,6 @@
 <body>
 <!-- nav-bar -->
 <div class="gourmacracy-nav-bar-index">
-<!--    <img src="images/gourmacracy-index-nav-img.jpg">-->
     <ul>
         <li>
             <a href="index.html">
@@ -29,7 +28,11 @@
         <li style="display: none; margin-top: 15px; border-radius: 50px; background: white" id="logged-in1"><a href="logout.html" class="sign-up-index"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
         <li style="display: none; margin-top: 15px;" id="logged-in2"><a href="restaurants.html" class="sign-in-index"><i class="bi bi-building"></i>&emsp;Restaurants</a></li>
     </ul>
-    <div class="index-nav-bar-content-center">Revolutionizing your restaurant experience</div>
+    <div class="d-sm-flex row justify-content-sm-center">
+      <div class="index-nav-bar-content-center col-sm-10"> Revol&shy;utionizing your restaurant experience </div>
+
+    </div>
+
 </div>
 <!-- nav-bar -->
 <div class="gourmacracy-main-container">
@@ -213,6 +216,31 @@ window.addEventListener('load', (event) =>{
       document.getElementById("logged-out1").style.display = 'block';
       document.getElementById("logged-out2").style.display = 'block';
     }
+  }
+  let width = window.innerWidth;
+  if(width > 845) {
+    document.getElementById("logged-in2").style.float = "right";
+    document.getElementById("logged-out2").style.float = "right";
+  } else if(width > 576) {
+    document.getElementById("logged-in2").style.float = "left";
+    document.getElementById("logged-out2").style.float = "left";
+  } else {
+    document.getElementById("logged-in2").style.float = "left";
+    document.getElementById("logged-out2").style.float = "left";
+  }
+});
+
+window.addEventListener('resize', function() {
+  let width = window.innerWidth;
+  if(width > 845) {
+    document.getElementById("logged-in2").style.float = "right";
+    document.getElementById("logged-out2").style.float = "right";
+  } else if(width > 576) {
+    document.getElementById("logged-in2").style.float = "left";
+    document.getElementById("logged-out2").style.float = "left";
+  } else {
+    document.getElementById("logged-in2").style.float = "left";
+    document.getElementById("logged-out2").style.float = "left";
   }
 });
 
