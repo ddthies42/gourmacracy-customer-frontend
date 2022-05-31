@@ -61,13 +61,11 @@
           let xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function (){
               if (this.readyState == 4 && this.status == 200){
-                  let response = JSON.parse(this.responseText);
-                  if(!response.error) {
+                  if(!this.responseText.error) {
                     document.getElementById("btnInsertUser").disabled = true;
                     document.getElementById("output1").innerHTML =
                         "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Please wait...";
                     document.getElementById("output1").style.display = 'block';
-
                     // Go to sign in after a delay.
                     setTimeout(function(){
                         let parameter = new URLSearchParams();
