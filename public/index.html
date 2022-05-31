@@ -20,7 +20,7 @@
     <ul>
         <li>
             <a href="index.html">
-                <img src="images/gourmacracy-logo-index.svg" alt="logo" width="150">
+                <img src="images/gourmacracy-logo-index.svg" alt="logo" width="150"  id="gourmacracy-logo">
             </a>
         </li>
         <li style="display: block; margin-top: 15px; border-radius: 50px; background: white" id="logged-out1"><a href="registration.html" class="sign-up-index"><i class="bi bi-person-circle"></i>&emsp;Sign Up</a></li>
@@ -29,7 +29,7 @@
         <li style="display: none; margin-top: 15px;" id="logged-in2"><a href="restaurants.html" class="sign-in-index"><i class="bi bi-building"></i>&emsp;Restaurants</a></li>
     </ul>
     <div class="d-sm-flex row justify-content-sm-center">
-      <div class="index-nav-bar-content-center col-sm-8"> Revolution&shy;izing your restaurant experience </div>
+      <div class="index-nav-bar-content-center col-sm-8" id="header-text"> Revolution&shy;izing your restaurant experience </div>
 
     </div>
 
@@ -221,12 +221,13 @@ window.addEventListener('load', (event) =>{
   if(width > 845) {
     document.getElementById("logged-in2").style.float = "right";
     document.getElementById("logged-out2").style.float = "right";
-  } else if(width > 576) {
-    document.getElementById("logged-in2").style.float = "left";
-    document.getElementById("logged-out2").style.float = "left";
+    document.getElementById("gourmacracy-logo").style = "";
+    document.getElementById("header-text").style = "font-size: 75px;";
   } else {
     document.getElementById("logged-in2").style.float = "left";
     document.getElementById("logged-out2").style.float = "left";
+    document.getElementById("gourmacracy-logo").style = "margin-top: 60px;";
+    document.getElementById("header-text").style = "margin-top: 120px; font-size: 50px;";
   }
 });
 
@@ -235,12 +236,13 @@ window.addEventListener('resize', function() {
   if(width > 845) {
     document.getElementById("logged-in2").style.float = "right";
     document.getElementById("logged-out2").style.float = "right";
-  } else if(width > 576) {
-    document.getElementById("logged-in2").style.float = "left";
-    document.getElementById("logged-out2").style.float = "left";
+    document.getElementById("gourmacracy-logo").style = "";
+    document.getElementById("header-text").style = "font-size: 75px;";
   } else {
     document.getElementById("logged-in2").style.float = "left";
     document.getElementById("logged-out2").style.float = "left";
+    document.getElementById("gourmacracy-logo").style = "margin-top: 60px;";
+    document.getElementById("header-text").style = "margin-top: 120px; font-size: 50px;";
   }
 });
 
