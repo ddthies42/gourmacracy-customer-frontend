@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 <body>
-  <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container">
+  <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container" id="whole-container">
     <div style="display: block;" class="col-md-8" id="rateOrder">
         <h2 style="text-align: center;">Rate Your Order</h2>
         <div class="cart-items"></div>
         <div style="display: none;" id="futureItems">
-          <br/><br/><h2 style="text-align: center;">Rate Future Items</h2>
-          <p style="text-align: center;">We're interested in your opinion on future menu items! What do you think about these future dishes?</p>
+          <br/><br/><h2 style="text-align: center;">Interested In The Future?</h2>
+          <p style="text-align: center;">Vote on future dishes, and the restaurant owner might add them! What do you think about these future dishes?</p>
           <div class="future-items"></div>
         </div>
         <div class="jumbotron" id="loadingSign"><h4>Loading...</h4></div>
-        <br/><br/><button class="gourmacracy-button rate-order-button" type="button" onclick="submitReview()">Submit Review</button>
+        <br/><br/><button class="gourmacracy-button rate-order-button" type="button" onclick="submitReview()" disabled id="submitButton">Submit Review</button>
     </div>
     <div style="display: none; text-align: center;" class="col-md-8" id="ratingCompleted">
         <h2 style="margin: 30px;">Thank you!</h2>
@@ -44,6 +44,38 @@
 </div>
 <!-- nav-bar -->
 <script>
+
+    window.addEventListener('load', (event) =>{
+      let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function (){
+          if (this.readyState == 4 && this.status == 200){
+              updateCartFromSession(JSON.parse(this.responseText));
+          }
+      };
+      xhttp.open('GET', url, true);
+      xhttp.send();
+
+      let width = window.innerWidth;
+      if(width > 446) {
+        document.getElementById("whole-container").style = "margin-top: 100px;";
+      } else if(width > 264) {
+        document.getElementById("whole-container").style = "margin-top: 160px;";
+      } else {
+        document.getElementById("whole-container").style = "margin-top: 230px;";
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      let width = window.innerWidth;
+      if(width > 446) {
+        document.getElementById("whole-container").style = "margin-top: 100px;";
+      } else if(width > 264) {
+        document.getElementById("whole-container").style = "margin-top: 160px;";
+      } else {
+        document.getElementById("whole-container").style = "margin-top: 230px;";
+      }
+    });
 
     function goToPage() {
       localStorage.setItem('cart', [""]);
@@ -273,28 +305,22 @@
       }
       // When done loading, get rid of loading sign.
       document.getElementById("loadingSign").innerHTML = '';
-      console.log(alreadyAdded.length);
       if(alreadyAdded.length == 0) {
         var cartItemContainer = document.getElementsByClassName('cart-items')[0];
         cartItemContainer.innerHTML =
         '<p style="text-align: center;">There are no items in your cart to rate. '+
         'Please add items to your cart and try again.</p>';
+      } else {
+        document.getElementById('submitButton').disabled = false;
       }
     }
 
-    window.addEventListener('load', (event) =>{
-      let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
-      let xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function (){
-          if (this.readyState == 4 && this.status == 200){
-              updateCartFromSession(JSON.parse(this.responseText));
-          }
-      };
-      xhttp.open('GET', url, true);
-      xhttp.send();
-    });
-
-
+    function removeFocus(item) {
+      // If the item is not a textbox, remove focus.
+      if(!item.type && !item.type == "text") {
+        document.activeElement.blur();
+      }
+    }
 
 </script>
 </body>
