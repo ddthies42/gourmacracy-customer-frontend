@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="stylesheets/menu.css">
 </head>
 <body>
+
 <div class="gourmacracy-main-container">
-    <div class="gourmacracy-menu-container">
+    <div class="gourmacracy-menu-container" id="whole-container">
         <!-- restaurant header -->
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-xs-6">
+            <div class="col-sm-8 col-xs-12">
                 <img class="img-fluid gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg">
             </div>
         </div>
@@ -25,7 +26,7 @@
         <!-- restaurant header -->
         <!-- epic eats info and menu output -->
         <div class="row d-flex justify-content-center gourmacracy-menu-output-container">
-            <div class="col-md-8 col-xs-6">
+            <div class="col-sm-8 col-xs-12">
                 <h2 style="margin-left: 5px;">Epic Eats</h2>
                 <p style="color: #808080; margin-left: 5px;">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
                 <div class="jumbotron" id="output"><h4>Loading...</h4></div>
@@ -35,7 +36,7 @@
     </div>
 
     <!-- cart info -->
-    <section class="gourmacracy-cart-container">
+    <div class="gourmacracy-cart-container" id="cart-container">
         <h2>Your Cart</h2>
         <div class="cart-row">
             <span class="cart-item cart-header cart-column"></span>
@@ -50,21 +51,23 @@
             <span class="cart-subtotal-price">$0</span>
         </div><br>
         <button class="gourmacracy-button checkout-btn" type="button" onclick="checkoutCart()">Checkout</button>
-    </section>
+    </div>
     <!-- cart info -->
 
 </div>
 <!-- nav-bar -->
 <div class="gourmacracy-nav-bar">
     <ul>
-        <li style="float: left">
-            <a href="index.html">
-                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
-            </a>
-        </li>
-        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
-        <li style="margin-top: 15px" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a></li>
-        <li style="margin-top: 15px"><a href="past-orders.html"><i class="bi bi-menu-button-wide-fill"></i>&emsp;Past Orders</a></li>
+      <li style="float: left;">
+          <a href="index.html">
+              <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
+          </a>
+      </li>
+      <div class="d-sm-flex row justify-content-sm-end" style="float: right;">
+        <li class="col-sm-4" style="margin-top: 15px;"><a href="past-orders.html" class="nav-width-space"><i class="bi bi-menu-button-wide-fill"></i>&emsp;Past Orders</a></li>
+        <li class="col-sm-4" style="margin-top: 15px;" id="cartIndicator"><a href="menu.html"><i class="bi bi-cart3"></i>&emsp;Cart (0)</a></li>
+        <li class="col-sm-4" style="margin-top: 15px;"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+      </div>
     </ul>
 </div>
 <!-- nav-bar -->
@@ -141,8 +144,33 @@
         };
         xhttp.open('GET', url, true);
         xhttp.send();
+
+        let width = window.innerWidth;
+        if(width > 730) {
+          document.getElementById("whole-container").style = "margin-top: 100px;";
+          document.getElementById("cart-container").style = "padding-top: 100px; width: 260px;";
+        } else if(width > 576) {
+          document.getElementById("whole-container").style = "margin-top: 160px;";
+          document.getElementById("cart-container").style = "padding-top: 160px; width: 220px;";
+        } else {
+          document.getElementById("whole-container").style = "margin-top: 300px;";
+          document.getElementById("cart-container").style = "padding-top: 300px; width: 170px;";
+        }
     });
 
+    window.addEventListener('resize', function() {
+      let width = window.innerWidth;
+      if(width > 730) {
+        document.getElementById("whole-container").style = "margin-top: 100px;";
+        document.getElementById("cart-container").style = "padding-top: 100px; width: 260px;";
+      } else if(width > 576) {
+        document.getElementById("whole-container").style = "margin-top: 160px;";
+        document.getElementById("cart-container").style = "padding-top: 160px; width: 220px;";
+      } else {
+        document.getElementById("whole-container").style = "margin-top: 300px;";
+        document.getElementById("cart-container").style = "padding-top: 300px; width: 170px;";
+      }
+    });
 
 
     function checkoutClicked() {
