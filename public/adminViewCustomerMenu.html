@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Epic Eats Menu</title>
+    <meta name="author" content="Gourmacracy">
+    <link rel="shortcut icon" type="image/x-icon" href="images/gfavicon.ico"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/menu.css">
+</head>
+<body>
+
+<div class="gourmacracy-main-container">
+    <div class="row d-flex justify-content-center" id="whole-container">
+        <!-- restaurant header -->
+            <div class="col-sm-8">
+                <img class="img-fluid gourmacracy-menu-header-wrapper" src="images/gourmacracy-menu-banner.jpg">
+            </div>
+        <a href="https://gourmacracy.herokuapp.com/menu.html?restaurantID=Epic+Eats"><img class="gourmacracy-epic-eats-pos gourmacracy-epic-eats-wrapper" style="margin-left: 100px;" src="images/epic-eats-logo.svg"></a>
+
+        <!-- restaurant header -->
+        <!-- epic eats info and menu output -->
+        <div class="col-sm-8" style="margin-top: 60px;">
+                <h2 style="margin-left: 5px;">Epic Eats</h2>
+                <p style="color: #808080; margin-left: 5px;">Seattle, WA&emsp;&#x2022;&emsp;American&emsp;&#x2022;&emsp;4.6&emsp;<i class="bi bi-star-fill"></i>&emsp;(6,500+ ratings)&emsp;&#x2022;&emsp;$$</p>
+                <div class="jumbotron" id="output"><h4>Loading...</h4></div>
+        </div>
+        <!-- epic eats info and menu output -->
+    </div>
+
+</div>
+<!-- nav-bar -->
+<div class="gourmacracy-nav-bar">
+    <ul>
+      <li style="float: left;">
+          <a href="adminIndex.html">
+              <img src="images/gourmacracy-admin-logo.svg" alt="logo" width="150">
+          </a>
+      </li>
+      <div class="d-sm-flex row justify-content-sm-end" style="float: right;">
+        <li class="col-sm-12" style="margin-top: 15px;"><a href="adminLogout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Logout</a></li>
+      </div>
+    </ul>
+</div>
+<!-- nav-bar -->
+
+<script>
+    function CreateMenu(data) {
+      let visibleMenu = "";
+      let sortedMenu = [];
+      let categoryExists = false;
+      for(let menuItem in data) {
+        categoryExists = false;
+        for(let i = 0; i < sortedMenu.length; i++) {
+          if(sortedMenu[i][0] == data[menuItem]["category"]) {
+            sortedMenu[i].push(data[menuItem]);
+            categoryExists = true;
+          }
+        }
+        if(!categoryExists && data[menuItem]["category"] != "Optional") {
+          sortedMenu.push([data[menuItem]["category"]]);
+          sortedMenu[sortedMenu.length-1].push(data[menuItem]);
+        }
+      }
+
+      for(let category in sortedMenu) {
+        visibleMenu +=
+            '<div class="row" id='+sortedMenu[category][0]+'>\n' +
+            '   <h4 style="margin-left: 5px;">'+sortedMenu[category][0]+'s</h4>\n';
+        for(let menuItem in sortedMenu[category]) {
+          if(sortedMenu[category][menuItem].itemName != null) {
+            let average = Math.round((sortedMenu[category][menuItem].points / sortedMenu[category][menuItem].numRatings));
+            visibleMenu +=
+                '<div class="menu-item" style="width: 95%"> \n' +
+                '   <p><b>'+sortedMenu[category][menuItem].itemName+
+                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price+'&emsp;&emsp;';
+                for(let i =0; i < 5; i++) {
+                  if(average > 0) {
+                    visibleMenu += '<i class="bi bi-star-fill"></i>';
+                    average--;
+                  } else {
+                    visibleMenu += '<i class="bi bi-star"></i>';
+                  }
+                }
+            visibleMenu +=
+                '   </span></b></p>\n' +
+                '   <p>'+sortedMenu[category][menuItem].description+'\n'+
+                '</div>\n';
+          }
+        }
+        visibleMenu +=
+            '</div><br/>\n';
+      }
+
+      return visibleMenu;
+    }
+
+    window.addEventListener('load', (event) =>{
+        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("output").innerHTML =
+                    CreateMenu(JSON.parse(this.responseText));
+            }
+        };
+        xhttp.open('GET', url, true);
+        xhttp.send();
+    });
+
+</script>
+</body>
+</html>
