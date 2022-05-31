@@ -32,8 +32,9 @@
 <!-- nav-bar -->
 
 <div class="gourmacracy-main-container">
-    <div class="container-form-users">
-        <div style="background-color: #FFF7D6" id="output"></div>
+  <h2 style="margin-top: 125px; margin-bottom: 25px; text-align: center;">All Users</h2>
+    <div style="padding: 0 50px;">
+      <div id="output"></div>
     </div>
 </div>
 
@@ -41,13 +42,13 @@
     function CreateTable(data){
         let table = "";
         table =
-            '<table class="table table-bordered table-hover"> \n' +
+            '<table class="table table-bordered table-hover" style="background-color: #FFF7D6; margin-bottom: 40px;"> \n' +
             '   <thead>\n' +
             '       <tr>\n' +
             '           <th scope="col">ID</th> \n'+
             '           <th scope="col">Name</th> \n'+
             '           <th scope="col">Email</th> \n'+
-            // '           <th scope="col" style="width: 20em">Orders</th> \n'+
+            '           <th scope="col">Orders</th> \n'+
             '           <th scope="col">Actions</th> \n'+
             '       </tr>\n' +
             '   </thead>\n' +
@@ -59,7 +60,7 @@
                 '           <td>' + data[user]["_id"] +  '</td>\n' +
                 '           <td>' + data[user]["name"]+  '</td>\n' +
                 '           <td>' + data[user]["email"]+  '</td>\n' +
-                // '           <td>' + data[user]["orders"]+  '</td>\n' +
+                '           <td>' + data[user]["orders"]+  '</td>\n' +
 
                 '           <td style=\"text-align:center\"> <button id=\"deleteButton\" class=\"btn btn-primary\" onclick=\"deleteUser(\''+ data[user]["_id"] +
                 '\')\">Delete</button> <br><br> <button id=\"updateButton\" class=\"btn btn-primary\" onclick=\"updateUser(\'' +

@@ -20,6 +20,31 @@ h3 {
     font-family: 'TT Norms Pro', sans-serif;
 }
 
+table {
+    table-layout:fixed;
+    margin: 0px;
+    padding: 0px;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+@media only screen and (max-width: 480px) {
+    .table {
+        overflow-x: auto;
+        display: block;
+    }
+}
+
 .gourmacracy-logo-container {
     height: 4em;
     position: relative

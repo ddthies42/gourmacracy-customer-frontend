@@ -37,29 +37,33 @@
 <!-- nav-bar -->
 <div class="gourmacracy-main-container">
   <div class="container-form">
-    <form class="container-center" onsubmit="userRequest(); return false">
-        <h2>Please enter a user ID</h2>
-        <div class="mb-3 form-group">
-            <label>User ID:</label>
-            <input type="text" name="_id" id="_id" class="form-control" required><br>
-            <input type="submit" class="gourmacracy-button" value="Find User">
-        </div>
-    </form>
-  </div>
- <div class="jumbotron" style="background-color: #FFF7D6" id="output2">
-        <table style="text-align: center;">
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
-            </tr>
-            <tr>
-                <td id="name"></td>
-                <td id="email"></td>
-                <td id="password"></td>
-            </tr>
-        </table>
+    <div class="container-center row">
+      <form class="container-center"  style="width: 95%;" onsubmit="userRequest(); return false">
+          <h2>Please enter a user ID</h2>
+          <div class="mb-3 form-group">
+              <label>User ID:</label>
+              <input type="text" name="_id" id="_id" class="form-control" required><br>
+              <input type="submit" class="gourmacracy-button" value="Find User">
+          </div>
+      </form>
+      <div class="jumbotron col-sm-12" id="output2">
+         <table style="text-align: center; background-color: #FFF7D6; width: 95%; margin-top: 25px;">
+             <tr>
+                 <th>Name</th>
+                 <th>Email</th>
+             </tr>
+             <tr>
+                 <td id="name"></td>
+                 <td id="email"></td>
+             </tr>
+         </table>
+       </div>
     </div>
+
+  </div>
+  <div class="container-form-users" style="margin-top: 0px;">
+
+   </div>
 </div>
 
 <script>
@@ -69,13 +73,12 @@
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
-            var resp;
-            resp = JSON.parse(xhttp.responseText);
+          console.log(xhttp.responseText);
+            var resp = JSON.parse(xhttp.responseText);
 
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("name").innerHTML = resp["name"];
                 document.getElementById("email").innerHTML = resp["email"];
-                document.getElementById("password").innerHTML = resp["password"];
 
 
             } else if (this.readyState == 4 && this.status != 200) {
