@@ -54,7 +54,7 @@
 
 <script>
     function userFind() {
-      if(userValidation()) {
+      //if(userValidation()) {
         let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/signin"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -97,7 +97,7 @@
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(userData);
-      }
+      //}
     }
 
     function userValidation() {
