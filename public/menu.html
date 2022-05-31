@@ -14,7 +14,7 @@
 <body>
 
 <div class="gourmacracy-main-container">
-    <div class="gourmacracy-menu-container" id="whole-container">
+    <div class="gourmacracy-menu-container" id="whole-container" onclick="removeFocus()">
         <!-- restaurant header -->
         <div class="row d-flex justify-content-center">
             <div class="col-sm-8 col-xs-12">
@@ -361,6 +361,10 @@
         }
         cartIndicator(-1);
       }
+    }
+
+    function removeFocus() {
+      document.activeElement.blur();
     }
 
 </script>
