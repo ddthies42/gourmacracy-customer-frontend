@@ -336,9 +336,9 @@ input[type=email] {
   font-family: 'Josefin Sans', sans-serif;
   /* width: 850px; */
   margin-top: 50px;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
 }
 
 .gourmacracy-main-container {
