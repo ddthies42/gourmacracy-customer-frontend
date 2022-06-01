@@ -19,12 +19,12 @@ Cart: "bi bi-cart3"
 <nav class="gourmacracy-nav-bar">
     <ul>
         <li style="float: left">
-            <a href="">
+            <a>
                 <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
             </a>
         </li>
-        <li style="margin-top: 15px"><a href=""><i class="bi bi-person-circle"></i>&emsp;Sign Up</a></li>
-        <li style="margin-top: 15px"><a href=""><i class="bi bi-box-arrow-in-right"></i>&emsp;Login</a></li>
+        <li style="margin-top: 15px"><a><i class="bi bi-person-circle"></i>&emsp;Sign Up</a></li>
+        <li style="margin-top: 15px"><a><i class="bi bi-box-arrow-in-right"></i>&emsp;Login</a></li>
     </ul>
 </nav>
 <hr>
