@@ -19,6 +19,10 @@ hr {
     color: #323232FF;
 }
 
+.form-label {
+  margin-top: 10px;
+}
+
 .gourmacracy-logo-container {
     height: 4em;
     position: relative

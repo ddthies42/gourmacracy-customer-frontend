@@ -16,25 +16,23 @@
     <script type="text/javascript" src="js/backend.js"></script>
 </head>
 <body>
-<div class="gourmacracy-main-container">
-    <div class="gourmacracy-menu-container">
+<div class="gourmacracy-main-container" style="width: 95%;">
+    <div class="">
       <div class="container">
         <div class="row d-flex justify-content-center">
           <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
         </div>
       </div>
-        <div class="row d-flex justify-content-center gourmacracy-menu-output-container">
-            <div class="gourmacracy-checkout-output-center">
-                <div class="col-md-8 col-xs-6">
-                    <div class="col-8">
+        <div class="row d-flex justify-content-center">
+                    <div class="col-sm-8 col-xs-4" style="margin-bottom: 40px; margin-left: 20px;">
                         <h4>Billing Address</h4>
                         <form>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label class="form-label" for="firstname">First Name</label>
                                     <input type="text" id="firstname" class="form-control">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label class="form-label" for="lastname">Last name</label>
                                     <input type="text" id="lastname" class="form-control">
                                 </div>
@@ -43,18 +41,18 @@
                                     <label class="form-label" for="address">Address</label>
                                     <input type="text" id="address" class="form-control">
                                 </div>
-                                <div class="col-5">
+                                <div class="col-12">
                                     <label class="form-label" for="country">Country</label>
                                     <select class="form-select" onchange="print_state('state',this.selectedIndex)" id="country" name ="country">
                                     </select>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12">
                                     <label class="form-label" for="state">State</label>
                                     <select class="form-select" name ="state" id ="state">
                                         <option value="" selected="selected">Select State</option>
                                     </select>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label class="form-label" for="zip">Zip Code</label>
                                     <input type="text" id="zip" class="form-control">
                                 </div>
@@ -70,20 +68,20 @@
                                 <label class="form-check-label">Debit Card</label>
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label class="form-label" for="cardname">Name on Card</label>
                                     <input type="text" id="cardname" class="form-control">
                                     <small class="text-muted">Full name as displayed on card</small>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label class="form-label" for="creditcard">Credit Card Number</label>
-                                    <input type="text" id="creditcard" class="form-control">
+                                    <input type="text" id="creditcard" class="form-control" placeholder="16xxxxxxxxxxxxxx">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label class="form-label" for="expiration">Expiration</label>
                                     <input type="text" id="expiration" class="form-control" placeholder="MM/YYYY">
                                 </div>
-                                <div class="col-3">
+                                <div class="col-12">
                                     <label class="form-label" for="cvv">CVV</label>
                                     <input type="text" id="cvv" class="form-control">
                                 </div>
@@ -91,6 +89,30 @@
                             <hr>
                         </form>
                         <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
+                        <div class="cart-row" style="border-style: none; text-align: left;">
+                            <span class="cart-quantity cart-header cart-column" style="border-style: none"></span>
+                            <span class="cart-item cart-header cart-column" style="border-style: none"></span>
+                            <span class="cart-price cart-header cart-column" style="border-style: none; float: right"></span>
+                        </div>
+                        <hr>
+                        <div class="cart-items" style="border-style: none">
+                        </div><hr>
+                        <div class="cart-subtotal" style="text-align:left;">
+                            <span class="cart-subtotal-title">Subtotal</span>
+                            <span class="cart-subtotal-price" style="float:right;">$0</span>
+                        </div><br>
+                        <div class="cart-tax" style="text-align:left;">
+                            <span class="cart-tax-title">Tax (10.25%)</span>
+                            <span class="cart-tax-percentage" style="float:right;">$0</span>
+                        </div><br/>
+                        <div class="cart-tip" style="text-align:left;">
+                            <span class="cart-tip-title">Tip (15%)</span>
+                            <span class="cart-tip-percentage" style="float:right;">$0</span>
+                        </div><hr>
+                        <div class="cart-total" style="text-align:left;">
+                            <strong class="cart-total-title">Total</strong>
+                            <strong class="cart-total-price" style="float:right;">$0</strong>
+                        </div><br/>
                         <div class="card mb-4 mb-lg-0" style="margin-top: 15px;">
                             <div class="card-body">
                                 <p><strong>We accept</strong></p>
@@ -106,41 +128,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     </div>
-    <!-- cart info -->
-    <section class="gourmacracy-cart-container">
-        <h4>Your items</h4>
-<!--        <span class="badge bg-secondary rounded-pill" id="cartIndicator">0</span>-->
-        <button class="gourmacracy-button checkout-btn" onclick="validateForm()">Place Order</button>
-        <div class="cart-row" style="border-style: none; text-align: left;">
-            <span class="cart-quantity cart-header cart-column" style="border-style: none"></span>
-            <span class="cart-item cart-header cart-column" style="border-style: none"></span>
-            <span class="cart-price cart-header cart-column" style="border-style: none; float: right"></span>
-        </div>
-        <hr>
-        <div class="cart-items" style="border-style: none">
-        </div><br><hr>
-        <div class="cart-subtotal" style="text-align:left;">
-            <span class="cart-subtotal-title">Subtotal</span>
-            <span class="cart-subtotal-price" style="float:right;">$0</span>
-        </div><br>
-        <div class="cart-tax" style="text-align:left;">
-            <span class="cart-tax-title">Tax (10.25%)</span>
-            <span class="cart-tax-percentage" style="float:right;">$0</span>
-        </div><br/>
-        <div class="cart-tip" style="text-align:left;">
-            <span class="cart-tip-title">Tip (15%)</span>
-            <span class="cart-tip-percentage" style="float:right;">$0</span>
-        </div><hr>
-        <div class="cart-total" style="text-align:left;">
-            <strong class="cart-total-title">Total</strong>
-            <strong class="cart-total-price" style="float:right;">$0</strong>
-        </div><br/>
-    </section>
-    <!-- cart info -->
 </div>
 
 <!-- nav-bar -->
@@ -149,7 +138,7 @@
         <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
     </a>
     <ul>
-        <li style="margin-top: 10px;"><a href="menu.html"><i class="bi bi-arrow-left"></i>&emsp;&emsp;Back to Store</a></li>
+        <li style="margin-top: 10px;"><a href="menu.html"><i class="bi bi-arrow-left"></i>&emsp;&emsp;Back</a></li>
     </ul>
 </div>
 <!-- nav-bar -->
@@ -220,7 +209,7 @@
         let cvv = document.getElementById("cvv").value;
 
         if (cardname === "") {
-            alert("Name must be filled out");
+            alert("Card name must be filled out");
         } else if (creditcard === "") {
             alert("Credit Card Information Required");
         } else if (exp === "") {
@@ -248,14 +237,14 @@
         // cartRow.classList.add('justify-content-between')
         var cartItems = document.getElementsByClassName('cart-items')[0]
         var cartRowContents = `
-                <div class="">
+                <div>
                   <div class="cart-item">
                       <div class="cart-quantity cart-column">
                       <span class="cart-quantity-input">1</span>
                        <span class="cart-item-title" style="font-weight: bold">${title}</span>
                        </div>
                   </div>
-                  <div class="cart-column" style="text-align: left;">
+                  <div class="cart-column" style="text-align: left; margin-bottom: 10px;">
                   <span class="cart-price">$${price}</span>
                   <span hidden class="hidden-id">${id}</span></div>
                 </div>
@@ -357,15 +346,6 @@
                     }
                 }
             }
-            // Load items from local storage, apply to cartIndicator
-    //         if(localStorage.getItem('cart') != null) {
-    //             var cart = localStorage.getItem('cart').split(',');
-    //             if(cart[0] != "") {
-    //                 document.getElementById("cartIndicator").innerText = cart.length;
-    //             } else {
-    //                 document.getElementById("cartIndicator").innerText = "0";
-    //             }
-    //         }
         }
     }
 
@@ -416,54 +396,6 @@
           document.documentElement.scrollTop = 0; // Other browsers
         }
     }
-
-
-    // const submitBtn = document.getElementsByClassName('checkout-btn');
-    // const firstName = document.getElementById('firstname')
-    // const lastName = document.getElementById('lastname')
-    // const address = document.getElementById('address')
-    // const country = document.getElementById ('country')
-    // const state = document.getElementById('state')
-    // const zipCode = document.getElementById('zip')
-    // const formCheck = document.getElementsByClassName('form-check-input')
-    // const cardName = document.getElementById('cardname')
-    // const creditCard = document.getElementById('creditcard')
-    // const expiration = document.getElementById('expiration')
-    // const cvv = document.getElementById('cvv')
-    //
-    // function updateSubmitBtn(){
-    //     const firstNameValue = firstName.value.trim();
-    //     const lastNameValue = lastName.value.trim();
-    //     const addressValue = address.value.trim();
-    //     const countryValue = country.value.trim();
-    //     const stateValue = state.value.trim();
-    //     const zipCodeValue = zipCode.value.trim();
-    //     const formCheckValue = formCheck.value.trim();
-    //     const cardNameValue = cardName.value.trim();
-    //     const creditCardValue = creditCard.value.trim();
-    //     const expirationValue = expiration.value.trim();
-    //     const cvvValue = cvv.value.trim();
-    //
-    //     debugger;
-    //     if(firstNameValue && lastNameValue && addressValue && countryValue && stateValue && zipCodeValue
-    //         && cardNameValue && creditCardValue && expirationValue && cvvValue){
-    //         submitBtn.removeAttribute('disabled');
-    //     }else {
-    //         submitBtn.setAttribute('disabled', 'disabled');
-    //     }
-    // }
-    //
-    // firstName.addEventListener('change', updateSubmitBtn);
-    // lastName.addEventListener('change', updateSubmitBtn);
-    // address.addEventListener('change', updateSubmitBtn);
-    // country.addEventListener('change', updateSubmitBtn);
-    // state.addEventListener('change', updateSubmitBtn);
-    // zipCode.addEventListener('change', updateSubmitBtn);
-    // // formCheck.addEventListener('change', updateSubmitBtn);
-    // cardName.addEventListener('change', updateSubmitBtn);
-    // creditCard.addEventListener('change', updateSubmitBtn);
-    // expiration.addEventListener('change', updateSubmitBtn);
-    // cvv.addEventListener('change', updateSubmitBtn);
 </script>
 </body>
 </html>
