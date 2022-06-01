@@ -13,19 +13,3 @@ Forgot Password: "bi bi-file-earmark-lock2"
 Logout: "bi bi-box-arrow-right"
 Menu: "bi bi-menu-up"
 Cart: "bi bi-cart3"
-
-###### **Navigation Bar Example:**
-<!-- nav-bar -->
-<nav class="gourmacracy-nav-bar">
-    <ul>
-        <li style="float: left">
-            <a>
-                <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
-            </a>
-        </li>
-        <li style="margin-top: 15px"><a><i class="bi bi-person-circle"></i>&emsp;Sign Up</a></li>
-        <li style="margin-top: 15px"><a><i class="bi bi-box-arrow-in-right"></i>&emsp;Login</a></li>
-    </ul>
-</nav>
-<hr>
-<!-- nav-bar -->
