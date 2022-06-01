@@ -16,11 +16,13 @@
   <div class="row d-flex justify-content-center gourmacracy-past-orders-output-container" id="whole-container">
     <div style="display: block;" class="col-md-8" id="rateOrder">
         <h2 style="text-align: center;">Rate Your Order</h2>
-        <div class="cart-items"></div>
+        <div class="container">
+          <div class="cart-items"></div>
         <div style="display: none;" id="futureItems">
           <br/><br/><h2 style="text-align: center;">Interested In The Future?</h2>
           <p style="text-align: center;">Vote on future dishes, and the restaurant owner might add them! What do you think about these future dishes?</p>
           <div class="future-items"></div>
+        </div>
         </div>
         <div class="jumbotron" id="loadingSign"><h4>Loading...</h4></div>
         <br/><br/><button class="gourmacracy-button rate-order-button" type="button" onclick="submitReview()" disabled id="submitButton">Submit Review</button>
@@ -182,6 +184,7 @@
       let strDataId = data["_id"];
         var cartRow = document.createElement('div')
         cartRow.classList.add('menu-item')
+        cartRow.style = "margin: auto; margin-top: 25px;"
 
         var cartItems = document.getElementsByClassName('cart-items')[0]
         let visibleMenu = '';
@@ -214,6 +217,7 @@
       let strDataId = data["_id"];
         var cartRow = document.createElement('div')
         cartRow.classList.add('menu-item')
+        cartRow.style = "margin: auto; margin-top: 25px;"
 
         var cartItems = document.getElementsByClassName('future-items')[0]
         let visibleMenu = '';
