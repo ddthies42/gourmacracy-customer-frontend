@@ -32,7 +32,8 @@
 <div class="gourmacracy-main-container">
   <h2 style="margin-top: 125px; margin-bottom: 25px; text-align: center;">Menu Items</h2>
     <div class="" style="padding: 0 50px;">
-        <div style="background-color: #FFF7D6;" id="output"></div>
+        <div style="background-color: #FFF7D6;" id="output" hidden="true"></div>
+        <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
     </div>
 </div>
 
@@ -79,6 +80,9 @@
         return table;
     }
     window.addEventListener('load', (event) =>{
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("output").hidden = false;
+        
         let url = backendLink + "menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -89,18 +93,26 @@
         };
         xhttp.open('GET', url, true);
         xhttp.send();
+
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     });
 
     function deleteMenuItem(id) {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let parameter = new URLSearchParams();
         parameter.append("menuItemID", id);
         location.href = "adminDeleteMenuItem.html?" + parameter.toString();
+      }
     }
 
     function updateMenuItem(id) {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let parameter = new URLSearchParams();
         parameter.append("menuItemID", id);
         location.href = "adminUpdateMenuItem.html?" + parameter.toString();
+      }
     }
 
 </script>

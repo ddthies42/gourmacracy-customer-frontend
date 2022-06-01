@@ -33,10 +33,21 @@
 <div class="gourmacracy-main-container">
   <div class="row d-flex justify-content-center">
       <h2 style="text-align: center;">Admin Control Panel</h2>
-      <button class="gourmacracy-button" style="max-width: 500px; margin: 20px;" type="button" onclick="location.href='adminViewCustomerMenu.html'">Customer View</button>
-      <button class="gourmacracy-button" style="max-width: 500px; margin: 20px;" type="button" onclick="location.href='adminShowMenu.html'">Admin Menu</button>
+      <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+      <button class="gourmacracy-button" id="placement1" style="max-width: 500px; margin: 20px;" type="button" onclick="location.href='adminViewCustomerMenu.html'" hidden="true">Customer View</button>
+      <button class="gourmacracy-button" id="placement2" style="max-width: 500px; margin: 20px;" type="button" onclick="location.href='adminShowMenu.html'" hidden="true">Admin Menu</button>
   </div>
 </div>
 <!-- main container -->
+<script>
+window.addEventListener('load', (event) =>{
+  if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+    document.getElementById("placement1").hidden = false;
+    document.getElementById("placement2").hidden = false;
+  } else {
+    document.getElementById("blocked").hidden = false;
+  }
+});
+</script>
 </body>
 </html>

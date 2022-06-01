@@ -39,7 +39,8 @@
 <div class="gourmacracy-main-container">
   <div class="container-form">
     <div class="container-center row">
-      <form class="container-center"  style="width: 95%;" onsubmit="userRequest(); return false">
+      <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+      <form class="container-center"  style="width: 95%;" onsubmit="userRequest(); return false" id="placement" hidden="true">
           <h2>Please enter a user ID</h2>
           <div class="mb-3 form-group">
               <label>User ID:</label>
@@ -47,7 +48,7 @@
               <input type="submit" class="gourmacracy-button" value="Find User">
           </div>
       </form>
-      <div class="jumbotron col-sm-12" id="output2">
+      <div class="jumbotron col-sm-12" id="output2" hidden="true">
          <table style="text-align: center; background-color: #FFF7D6; width: 95%; margin-top: 25px;">
              <tr>
                  <th>Name</th>
@@ -59,6 +60,7 @@
              </tr>
          </table>
        </div>
+       <div class="jumbotron col-sm-12" style="text-align: center; background-color: #FFF7D6; width: 95%; margin-top: 25px;" id="output1"></div>
     </div>
 
   </div>
@@ -68,26 +70,48 @@
 </div>
 
 <script>
+    window.addEventListener('load', (event) =>{
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("placement").hidden = false;
+        document.getElementById("output2").hidden = false;
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
+    });
     const userRequest = () => {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let _id = document.getElementById("_id").value;
         let url = backendLink + "users/";
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
           console.log(xhttp.responseText);
-            var resp = JSON.parse(xhttp.responseText);
+            var resp = xhttp.responseText;
 
             if (this.readyState == 4 && this.status == 200) {
+                resp = JSON.parse(resp);
                 document.getElementById("name").innerHTML = resp["name"];
                 document.getElementById("email").innerHTML = resp["email"];
 
 
             } else if (this.readyState == 4 && this.status != 200) {
-                document.getElementById("output2").innerHTML = "User not found! Please re-enter the User ID.";
+                document.getElementById("output1").hidden = false;
+                document.getElementById("output1").innerHTML = "User not found! Please re-enter the User ID.";
+                setTimeout(function(){
+                    document.getElementById("output1").hidden = true;
+                },2000);
             }
         };
         xhttp.open('GET', url + _id, true);
-        xhttp.send(_id);}
+        xhttp.send(_id);
+      } else {
+        document.getElementById("output1").hidden = false;
+        document.getElementById("output1").innerHTML = "You are not allowed to look for users.";
+        setTimeout(function(){
+            document.getElementById("output1").hidden = true;
+        },2000);
+      }
+    }
 
 </script>
 </body>

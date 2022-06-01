@@ -31,8 +31,10 @@
 <!-- nav-bar -->
 
 <div class="gourmacracy-main-container">
+
   <div class="container-form">
-    <div>
+    <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+    <div id="placement" hidden="true">
         <form onsubmit="menuItemDelete(); return false">
             <h4>Please select Confirm if you want to delete</h4>
             <input type="submit" class="gourmacracy-button" value="Confirm">
@@ -40,7 +42,7 @@
     </div>
     <br>
     </div>
-    <div class="jumbotron" style="background-color: #FFF7D6" id="message">
+    <div class="jumbotron" style="background-color: #FFF7D6" id="message" hidden="true">
   </div>
 </div>
 
@@ -49,6 +51,7 @@
     var menuItemID = parameter.get("menuItemID");
 
     const menuItemDelete = () => {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -61,13 +64,22 @@
         };
         xhttp.open('DELETE', url + menuItemID, true);
         xhttp.send(menuItemID);
+      } else {
+        document.getElementById("message").innerHTML = "You are not allowed to delete Menu Items.";
+      }
     }
 
     function load() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.open('GET', url + menuItemID, true);
         xhttp.send();
+        document.getElementById("placement").hidden = false;
+        document.getElementById("message").hidden = false;
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     }
 
     window.onload = load();

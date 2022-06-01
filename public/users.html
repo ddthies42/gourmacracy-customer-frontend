@@ -32,7 +32,8 @@
 
 <div class="gourmacracy-main-container">
   <h2 style="margin-top: 125px; margin-bottom: 25px; text-align: center;">All Users</h2>
-    <div style="padding: 0 50px;">
+  <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+    <div style="padding: 0 50px;" id="placement" hidden="true">
       <div id="output"></div>
     </div>
 </div>
@@ -74,6 +75,8 @@
         return table;
     }
     window.addEventListener('load', (event) =>{
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("placement").hidden = false;
         let url = backendLink + "users/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -84,18 +87,25 @@
         };
         xhttp.open('GET', url, true);
         xhttp.send();
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     });
 
     function deleteUser(id) {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "delete-user.html?" + parameter.toString();
+      }
     }
 
     function updateUser(id) {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let parameter = new URLSearchParams();
         parameter.append("userID", id);
         location.href = "update-user.html?" + parameter.toString();
+      }
     }
 
 </script>

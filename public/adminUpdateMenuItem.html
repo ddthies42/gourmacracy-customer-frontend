@@ -32,7 +32,8 @@
 <div class="gourmacracy-main-container">
   <div class="container-form">
     <div class="container-center">
-        <form onsubmit="menuItemModify(); return false">
+        <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+        <form onsubmit="menuItemModify(); return false" id="placement" hidden="true">
             <h4 style="text-align: center">Please Insert the Menu Item Information</h4>
             <div class="mb-3 form-group">
                 <label for="itemName">ITEM NAME</label>
@@ -87,6 +88,7 @@
     var menuItemID = parameter.get("menuItemID");
 
     function menuItemModify() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -105,28 +107,35 @@
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(menuItemData);
+      }
     }
 
     function load() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "menuItems/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 menuItemData(JSON.parse(this.responseText));
+                document.getElementById("placement").hidden = false;
             }
         };
         xhttp.open('GET', url + menuItemID, true);
         xhttp.send();
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     }
 
     function menuItemData(menuItem) {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         document.getElementById("itemName").value = menuItem["itemName"];
         document.getElementById("category").value = menuItem["category"];
         document.getElementById("description").value = menuItem["description"];
+        document.getElementById("price").value = menuItem["price"];
         document.getElementById("points").value = menuItem["points"];
         document.getElementById("numRatings").value = menuItem["numRatings"];
-
-
+      }
     }
 
     window.onload = load();

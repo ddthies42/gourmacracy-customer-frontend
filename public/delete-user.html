@@ -31,7 +31,8 @@
 
 <div class="gourmacracy-main-container">
   <div class="container-form">
-    <div class="">
+    <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+    <div id="placement" hidden="true">
         <form onsubmit="userDelete(); return false">
             <h4>Please select Confirm if you want to delete</h4>
             <input type="submit" class="gourmacracy-button" value="Confirm">
@@ -47,6 +48,7 @@
     var userID = parameter.get("userID");
 
     const userDelete = () => {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "users/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -59,13 +61,22 @@
         };
         xhttp.open('DELETE', url + userID, true);
         xhttp.send(userID);
+      } else {
+        document.getElementById("message").innerHTML = "You are not allowed to delete users.";
+      }
     }
 
     function load() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("placement").hidden = false;
+
         let url = backendLink + "users/";
         let xhttp = new XMLHttpRequest();
         xhttp.open('GET', url + userID, true);
         xhttp.send();
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     }
 
     window.onload = load();

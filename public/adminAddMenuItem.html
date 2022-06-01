@@ -31,7 +31,9 @@
 <!-- nav-bar -->
 <div class="gourmacracy-main-container">
   <div class="container-form">
+    <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
     <!-- Form -->
+    <div id="placement" hidden="true">
     <form class="container-center" method="POST"
           action=backendLink + "menuItems" onsubmit="menuItemFind(); return false">
         <h4 style="text-align: center">Please insert menu item information</h4>
@@ -77,15 +79,25 @@
         </div>
         <input type="submit" class="gourmacracy-button" id="btnAddMenuItem" value="Add Menu Item"> <br>
     </form>
+    </div>
     <br>
   </div>
-    <div class="jumbotron" style="background-color: #FFF7D6" id="output1"></div>
+    <div class="jumbotron" style="background-color: #FFF7D6; margin-bottom: 75px; text-align: center;" id="output1" hidden="true"></div>
 </div>
 
 </div>
 <script>
+    window.addEventListener('load', (event) =>{
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("output1").hidden = false;
+        document.getElementById("placement").hidden = false;
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
+    });
 
     function menuItemFind() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
         let url = backendLink + "menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
@@ -105,11 +117,13 @@
             "numRatings=" + document.getElementById("numRatings").value  + "&";
 
         xhttp.open('POST', url, true);
-        console.log("menuItemData: "+menuItemData);
-        console.log("url: " + url);
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(menuItemData);
+      } else {
+        document.getElementById("output1").innerHTML =
+            "You are not allowed to add items to the menu.";
+      }
     }
 </script>
 

@@ -32,7 +32,8 @@
 <div class="gourmacracy-main-container">
   <div class="container-form">
     <div class="container-center">
-        <form onsubmit="userModify(); return false">
+      <p id="blocked" hidden="true" style="text-align: center;">You are not allowed to access this data.</p>
+        <form onsubmit="userModify(); return false" id="placement" hidden="true">
             <h2>Please insert the user information</h2>
             <div class="mb-3 form-group">
                 <label for="name">NAME</label>
@@ -66,6 +67,8 @@
     var userID = parameter.get("userID");
 
     function userModify() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+
         let url = backendLink + "users/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -84,9 +87,16 @@
         // Just needed to place this line AFTER opening the object
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhttp.send(userData);
+      } else {
+        document.getElementById("message").innerHTML =
+            "You do not have permission to update users.";
+      }
     }
 
     function load() {
+      if(localStorage.getItem('id')  == "6281d69c6009f90004b69931") {
+        document.getElementById("placement").hidden = false;
+
         let url = backendLink + "users/";
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -96,6 +106,9 @@
         };
         xhttp.open('GET', url + userID, true);
         xhttp.send();
+      } else {
+        document.getElementById("blocked").hidden = false;
+      }
     }
 
     function userData(user) {
