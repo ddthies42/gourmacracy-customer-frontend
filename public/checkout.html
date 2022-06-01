@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="stylesheets/checkout.css" type="text/css">
     <link rel="stylesheet" href="stylesheets/menu.css">
     <script type= "text/javascript" src = "js/countries.js"></script>
+    <script type="text/javascript" src="js/backend.js"></script>
 </head>
 <body>
 <div class="gourmacracy-main-container">
@@ -158,7 +159,7 @@
     print_country("country");
 
     window.addEventListener('load', (event) =>{
-        let url = "https://gourmacracy-customer-backend.herokuapp.com/api/menuItems/"
+        let url = backendLink + "menuItems/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
             if (this.readyState == 4 && this.status == 200){
@@ -209,7 +210,7 @@
     }
 
     // <form class="container-center" method="POST"
-    //           action="https://gourmacracy-customer-backend.herokuapp.com/api/users" onsubmit="userFind(); return false">
+    //           action=backendLink + "users" onsubmit="userFind(); return false">
 
     function validateForm() {
 
@@ -375,7 +376,7 @@
         if(localStorage.getItem('cart') != null) {
             var cart = localStorage.getItem('cart').split(',');
             if(cart.length > 0 && cart[0] != '') {
-              let url = "https://gourmacracy-customer-backend.herokuapp.com/api/users/purchase/";
+              let url = backendLink + "users/purchase/";
               let xhttp = new XMLHttpRequest();
               xhttp.onreadystatechange = function () {
                   if (this.readyState == 4 && this.status == 200){
