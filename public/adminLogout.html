@@ -59,11 +59,13 @@
           },2000);
         } else {
           document.getElementById("output1").innerHTML =
-          "You must login in order to log out.";
+          "You must login in order to log out. Please wait...";
           document.getElementById("output1").style.display = 'block';
+          
           setTimeout(function(){
-              document.getElementById("output1").style.display = 'none';
-          },4000);
+              let parameter = new URLSearchParams();
+              location.href = "index.html";
+          },2000);
         }
         let url = backendLink + "users/logout/";
 
