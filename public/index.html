@@ -31,7 +31,7 @@
     <div class="d-sm-flex row justify-content-sm-center">
       <div class="index-nav-bar-content-center col-sm-8" id="header-text">
           <span style="font-family: 'Josefin Sans', sans-serif; font-size: 75px; font-weight: bold;">Revolution&shy;izing your restaurant experience</span><br>
-          <span style="font-size: 20px; color: white"><a id="logged-in3" href="signin.html" style="color: white; text-decoration: underline">Sign In</a> to see your past orders and rate</span>
+          <span id="logged-out3" style="font-size: 20px; color: white"><a href="signin.html" style="color: white; text-decoration: underline">Sign In</a> to see your past orders and rate</span>
       </div>
 
     </div>
@@ -213,11 +213,13 @@ window.addEventListener('load', (event) =>{
       document.getElementById("logged-in2").style.display = 'block';
       document.getElementById("logged-out1").style.display = 'none';
       document.getElementById("logged-out2").style.display = 'none';
+      document.getElementById("logged-out3").style.display = 'none';
     } else {
       document.getElementById("logged-in1").style.display = 'none';
       document.getElementById("logged-in2").style.display = 'none';
       document.getElementById("logged-out1").style.display = 'block';
       document.getElementById("logged-out2").style.display = 'block';
+      document.getElementById("logged-out3").style.display = 'block';
     }
   }
   let width = window.innerWidth;
