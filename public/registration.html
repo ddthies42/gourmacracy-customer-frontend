@@ -60,8 +60,8 @@
           let url = backendLink + "users/"
           let xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function (){
-              if (this.readyState == 4 && this.status == 200){
-                  if(!this.responseText.error && !(JSON.parse(this.responseText).error)) {
+              if (this.readyState == 4 || this.status == 200){
+                  if(!this.responseText.error || !(JSON.parse(this.responseText).error)) {
                     document.getElementById("btnInsertUser").disabled = true;
                     document.getElementById("output1").innerHTML =
                         "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Please wait...";
