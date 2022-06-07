@@ -60,8 +60,8 @@
         let url = backendLink + "users/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
-            let response = JSON.parse(this.responseText);
             if (this.readyState == 4 && this.status == 200){
+                let response = JSON.parse(this.responseText);
                 if(!this.responseText.error && (response.error == "None")) {
                       document.getElementById("btnInsertUser").disabled = true;
                       document.getElementById("output1").innerHTML =
@@ -80,7 +80,7 @@
 
 
             } else {
-                console.log("Output error: " + response.text);
+                console.log("Output error: " + this.responseText);
             }
         };
 
