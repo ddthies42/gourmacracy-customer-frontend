@@ -48,20 +48,20 @@
     <br>
 </div>
 <div class="container" style="margin-top: 45px;">
-  <div class="row d-flex justify-content-center">
-    <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
-  </div>
+    <div class="row d-flex justify-content-center">
+        <h6 class="col-md-5 jumbotron" style="display: none; background-color: #FFF7D6; border-radius: 10px; padding: 10px; margin-top: 15px; text-align: center;" id="output1"></h6>
+    </div>
 </div>
 <script>
     function userFind() {
 
         // If the form passes user validation, send request.
         //if(userValidation()) {
-          let url = backendLink + "users/"
-          let xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function (){
-              if (this.readyState == 4 || this.status == 200){
-                  if(!this.responseText.error || !(JSON.parse(this.responseText).error)) {
+        let url = backendLink + "users/"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200){
+                if(!this.responseText.error || !(JSON.parse(this.responseText).error)) {
                     document.getElementById("btnInsertUser").disabled = true;
                     document.getElementById("output1").innerHTML =
                         "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Please wait...";
@@ -71,68 +71,68 @@
                         let parameter = new URLSearchParams();
                         location.href = "signin.html";
                     },1500);
-                  } else {
+                } else {
                     document.getElementById("output1").innerHTML =
                         "This email is already in use. Try signing in instead.";
                     document.getElementById("output1").style.display = 'block';
-                  }
+                }
 
 
-              } else {
+            } else {
                 console.log("Output error: " + this.responseText);
-              }
-          };
+            }
+        };
 
-          let userData = "name=" + document.getElementById("name").value + "&" +
-              "email=" + document.getElementById("email").value  + "&" +
-              "password="  + document.getElementById("password").value  + "&";
+        let userData = "name=" + document.getElementById("name").value + "&" +
+            "email=" + document.getElementById("email").value  + "&" +
+            "password="  + document.getElementById("password").value  + "&";
 
-          xhttp.open('POST', url, true);
-          // Just needed to place this line AFTER opening the object
-          xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          xhttp.send(userData);
+        xhttp.open('POST', url, true);
+        // Just needed to place this line AFTER opening the object
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send(userData);
         //}
     }
 
     function userValidation() {
-      if(!nameValidate()) {
-        document.getElementById("output1").innerHTML =
-            "You must have a name.";
-        document.getElementById("output1").style.display = 'block';
-        return false;
-      } else if(!emailValidate()) {
-        document.getElementById("output1").innerHTML =
-            "You must have a valid email address.";
-        document.getElementById("output1").style.display = 'block';
-        return false;
-      } else if(!passwordValidate()) {
-        document.getElementById("output1").innerHTML =
-            "Your password must be 4 or more characters long.";
-        document.getElementById("output1").style.display = 'block';
-        return false;
-      }
-      return true;
+        if(!nameValidate()) {
+            document.getElementById("output1").innerHTML =
+                "You must have a name.";
+            document.getElementById("output1").style.display = 'block';
+            return false;
+        } else if(!emailValidate()) {
+            document.getElementById("output1").innerHTML =
+                "You must have a valid email address.";
+            document.getElementById("output1").style.display = 'block';
+            return false;
+        } else if(!passwordValidate()) {
+            document.getElementById("output1").innerHTML =
+                "Your password must be 4 or more characters long.";
+            document.getElementById("output1").style.display = 'block';
+            return false;
+        }
+        return true;
     }
 
     function nameValidate() {
-      if(document.getElementById("name").value.length > 1) {
-        return true;
-      }
-      return false;
+        if(document.getElementById("name").value.length > 1) {
+            return true;
+        }
+        return false;
     }
 
     function emailValidate() {
-      if (document.getElementById("email").value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-        return true;
-      }
-      return false;
+        if (document.getElementById("email").value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            return true;
+        }
+        return false;
     }
 
     function passwordValidate() {
-      if(document.getElementById("password").value.length >= 4) {
-        return true;
-      }
-      return false;
+        if(document.getElementById("password").value.length >= 4) {
+            return true;
+        }
+        return false;
     }
 </script>
 
