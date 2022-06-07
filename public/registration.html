@@ -60,17 +60,18 @@
         let url = backendLink + "users/"
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function (){
+            let response = JSON.parse(this.responseText);
             if (this.readyState == 4 && this.status == 200){
-                if(!this.responseText.error || !(JSON.parse(this.responseText).error)) {
-                    document.getElementById("btnInsertUser").disabled = true;
-                    document.getElementById("output1").innerHTML =
-                        "Welcome " + this.responseText + "! You Are Now a Registered Gourmacracy User! Please wait...";
-                    document.getElementById("output1").style.display = 'block';
-                    // Go to sign in after a delay.
-                    setTimeout(function(){
-                        let parameter = new URLSearchParams();
-                        location.href = "signin.html";
-                    },1500);
+                if(!this.responseText.error && (response.error == "None")) {
+                      document.getElementById("btnInsertUser").disabled = true;
+                      document.getElementById("output1").innerHTML =
+                          "Welcome " + response.text + "! You Are Now a Registered Gourmacracy User! Please wait...";
+                      document.getElementById("output1").style.display = 'block';
+                      // Go to sign in after a delay.
+                      setTimeout(function(){
+                          let parameter = new URLSearchParams();
+                          location.href = "signin.html";
+                      },1500);
                 } else {
                     document.getElementById("output1").innerHTML =
                         "This email is already in use. Try signing in instead.";
@@ -79,7 +80,7 @@
 
 
             } else {
-                console.log("Output error: " + this.responseText);
+                console.log("Output error: " + response.text);
             }
         };
 
