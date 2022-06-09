@@ -49,7 +49,7 @@
         </div><br>
         <div class="cart-subtotal">
             <strong class="cart-subtotal-title">Subtotal</strong>
-            <span class="cart-subtotal-price">$0</span>
+            <span class="cart-subtotal-price">$0.00</span>
         </div><br>
         <button class="gourmacracy-button checkout-btn" type="button" onclick="checkoutCart()">Checkout</button>
     </div>
@@ -103,7 +103,7 @@
             visibleMenu +=
                 '<div class="menu-item"> \n' +
                 '   <p><b>'+sortedMenu[category][menuItem].itemName+
-                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price+'&emsp;&emsp;';
+                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price.toFixed(2)+'&emsp;&emsp;';
                 for(let i =0; i < 5; i++) {
                   if(average > 0) {
                     visibleMenu += '<i class="bi bi-star-fill"></i>';
@@ -211,18 +211,19 @@
         var cartRow = document.createElement('div')
         cartRow.classList.add('cart-row')
         var cartItems = document.getElementsByClassName('cart-items')[0]
-        var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+        var cartItemNames = cartItems.getElementsByClassName('hidden-id')
         for (var i = 0; i < cartItemNames.length; i++) {
-            if (cartItemNames[i].innerText == title) {
+            if (cartItemNames[i].innerText == id) {
                 alert('This item is already added to the cart')
                 return
             }
         }
+        let visualPrice = parseFloat(price).toFixed(2);
         var cartRowContents = `
         <div class="cart-item cart-column">
             <span class="cart-item-title" style="font-weight: bold">${title}</span>
         </div>
-        <span class="cart-price cart-column">$${price}</span>
+        <span class="cart-price cart-column">$`+visualPrice+`</span>
         <span hidden class="hidden-id">${id}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1" min="1" max="50">
@@ -253,7 +254,7 @@
             numItems = numItems + parseInt(quantity)
         }
         subtotal = Math.round(subtotal * 100) / 100
-        document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal
+        document.getElementsByClassName('cart-subtotal-price')[0].innerText = '$' + subtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
         cartIndicator(numItems);
     }
 
