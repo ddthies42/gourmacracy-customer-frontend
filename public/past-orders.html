@@ -78,7 +78,7 @@
           visibleMenu +=
               '<div class="menu-item"> \n' +
               '   <p><b>'+data[menuItem]["itemName"]+
-              '<span style="float: right;"> $'+data[menuItem]["price"]+'&emsp;&emsp;';
+              '<span style="float: right;"> $'+data[menuItem]["price"].toFixed(2)+'&emsp;&emsp;';
               for(let i =0; i < 5; i++) {
                 if(average > 0) {
                   visibleMenu += '<i class="bi bi-star-fill"></i>';
