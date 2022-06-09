@@ -19,8 +19,8 @@
         <div class="container">
           <div class="cart-items"></div>
         <div style="display: none;" id="futureItems">
-          <br/><br/><h2 style="text-align: center;">Interested In The Future?</h2>
-          <p style="text-align: center;">Vote on future dishes, and the restaurant owner might add them! What do you think about these future dishes?</p>
+          <br/><br/><h2 style="text-align: center;">Vote On Future Dishes!</h2>
+          <p style="text-align: center;">Cast your vote on potential dishes, and the restaurant owner might add them! What do you think about these future dishes?</p>
           <div class="future-items"></div>
         </div>
         </div>
@@ -37,11 +37,11 @@
 <div class="gourmacracy-nav-bar">
     <ul>
         <li style="float: left">
-            <a href="index.html">
+            <a class="hover" onclick="goToPage()">
                 <img src="images/gourmacracy-logo.svg" alt="logo" width="150">
             </a>
         </li>
-        <li style="margin-top: 15px"><a href="logout.html"><i class="bi bi-box-arrow-right"></i>&emsp;Log Out</a></li>
+        <li style="margin-top: 15px"><a class="hover" onclick="goToLogout()"><i class="bi bi-box-arrow-right"></i>&emsp;Log Out</a></li>
         <li style="margin-top: 15px"><a class="hover" onclick="goToPage()"><i class="bi bi-menu-down"></i>&emsp;Menu</a></li>
     </ul>
 </div>
@@ -81,12 +81,23 @@
     });
 
     function goToPage() {
-      localStorage.setItem('cart', [""]);
-      let parameter = new URLSearchParams();
-      location.href = "menu.html";
+      if(confirm("Are you sure? This will clear your cart and you won't be able to rate your order!")) {
+        localStorage.setItem('cart', [""]);
+        let parameter = new URLSearchParams();
+        location.href = "menu.html";
+      }
+    }
+
+    function goToLogout() {
+      if(confirm("Are you sure? This will clear your cart and you won't be able to rate your order!")) {
+        localStorage.setItem('cart', [""]);
+        let parameter = new URLSearchParams();
+        location.href = "logout.html";
+      }
     }
 
     function ratingChange(item) {
+        document.getElementById('submitButton').disabled = false;
         let starId = (item.id).split(':');
         let numStars = parseInt(starId[0]);
         let ratingID = starId[1];
@@ -199,7 +210,7 @@
             '<p>'+data["description"]+'</p>\n' +
             '<br/>\n'+
             '<input hidden class="hidden-rating" type="text" value="0" id="stars'+data["_id"]+'"></input>\n' +
-            '<h5 style="text-align: center;"><i>Rate:</i>'+
+            '<h5 style="text-align: center;">Rate:'+
             '  <i class="bi bi-star-fill star-unchecked" id="1:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             ' <i class="bi bi-star-fill star-unchecked" id="2:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             ' <i class="bi bi-star-fill star-unchecked" id="3:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
@@ -231,7 +242,7 @@
             '<p>'+data["description"]+'</p>\n' +
             '<br/>\n'+
             '<input hidden class="hidden-rating" type="text" value="0" id="stars'+data["_id"]+'"></input>\n' +
-            '<h5 style="text-align: center;"><i>Rate:</i>'+
+            '<h5 style="text-align: center;">Rate:'+
             '  <i class="bi bi-star-fill star-unchecked" id="1:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             ' <i class="bi bi-star-fill star-unchecked" id="2:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+
             ' <i class="bi bi-star-fill star-unchecked" id="3:'+data["_id"]+'" onclick="ratingChange(this)"></i>'+

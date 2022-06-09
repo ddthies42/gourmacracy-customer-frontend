@@ -30,8 +30,9 @@
     </ul>
     <div class="d-sm-flex row justify-content-sm-center">
       <div class="index-nav-bar-content-center col-sm-8" id="header-text">
-          <span style="font-family: 'Josefin Sans', sans-serif; font-size: 75px; font-weight: bold;">Revolution&shy;izing your restaurant experience</span><br>
-          <span id="logged-out3" style="font-size: 20px; color: white"><a href="signin.html" style="color: white; text-decoration: underline">Sign In</a> for your past orders</span>
+          <span id="experience-text" style="font-family: 'Josefin Sans', sans-serif; font-size: 75px; font-weight: bold;">Revolution&shy;izing your restaurant experience</span><br>
+          <span id="logged-out3" style="display: block; font-size: 20px; color: white"><a href="signin.html" style="color: white; text-decoration: underline">Sign In</a> for your past orders</span>
+          <span id="logged-in3" style="display: none; font-size: 20px; color: white">Look at <a href="restaurants.html" style="color: white; text-decoration: underline">Restaurants</a> to order!</span>
       </div>
 
     </div>
@@ -211,12 +212,14 @@ window.addEventListener('load', (event) =>{
     if(localStorage.getItem('id').length > 5) {
       document.getElementById("logged-in1").style.display = 'block';
       document.getElementById("logged-in2").style.display = 'block';
+      document.getElementById("logged-in3").style.display = 'block';
       document.getElementById("logged-out1").style.display = 'none';
       document.getElementById("logged-out2").style.display = 'none';
       document.getElementById("logged-out3").style.display = 'none';
     } else {
       document.getElementById("logged-in1").style.display = 'none';
       document.getElementById("logged-in2").style.display = 'none';
+      document.getElementById("logged-in3").style.display = 'none';
       document.getElementById("logged-out1").style.display = 'block';
       document.getElementById("logged-out2").style.display = 'block';
       document.getElementById("logged-out3").style.display = 'block';
@@ -227,12 +230,14 @@ window.addEventListener('load', (event) =>{
     document.getElementById("logged-in2").style.float = "right";
     document.getElementById("logged-out2").style.float = "right";
     document.getElementById("gourmacracy-logo").style = "";
-    document.getElementById("header-text").style = "font-size: 75px;";
+    document.getElementById("header-text").style = "";
+    document.getElementById("experience-text").style = "font-family: 'Josefin Sans', sans-serif; font-size: 75px; font-weight: bold;";
   } else {
     document.getElementById("logged-in2").style.float = "left";
     document.getElementById("logged-out2").style.float = "left";
     document.getElementById("gourmacracy-logo").style = "margin-top: 60px;";
-    document.getElementById("header-text").style = "margin-top: 120px; font-size: 50px;";
+    document.getElementById("header-text").style = "margin-top: 120px;";
+    document.getElementById("experience-text").style = "margin-top: 120px; font-family: 'Josefin Sans', sans-serif; font-size: 50px; font-weight: bold;";
   }
 });
 
@@ -242,12 +247,14 @@ window.addEventListener('resize', function() {
     document.getElementById("logged-in2").style.float = "right";
     document.getElementById("logged-out2").style.float = "right";
     document.getElementById("gourmacracy-logo").style = "";
-    document.getElementById("header-text").style = "font-size: 75px;";
+    document.getElementById("header-text").style = "";
+    document.getElementById("experience-text").style = "font-family: 'Josefin Sans', sans-serif; font-size: 75px; font-weight: bold;";
   } else {
     document.getElementById("logged-in2").style.float = "left";
     document.getElementById("logged-out2").style.float = "left";
     document.getElementById("gourmacracy-logo").style = "margin-top: 60px;";
-    document.getElementById("header-text").style = "margin-top: 120px; font-size: 50px;";
+    document.getElementById("header-text").style = "margin-top: 120px;";
+    document.getElementById("experience-text").style = "margin-top: 120px; font-family: 'Josefin Sans', sans-serif; font-size: 50px; font-weight: bold;";
   }
 });
 

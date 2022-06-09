@@ -112,6 +112,7 @@
                     visibleMenu += '<i class="bi bi-star"></i>';
                   }
                 }
+            visibleMenu += ' <span style="color: grey;">('+sortedMenu[category][menuItem].numRatings+' ratings)</span>';
             visibleMenu +=
                 '   </span></b></p>\n' +
                 '   <p>'+sortedMenu[category][menuItem].description+'\n';
@@ -197,7 +198,10 @@
     function quantityChanged(event) {
         var input = event.target
         if (isNaN(input.value) || input.value <= 0) {
-            input.value = 1
+            input.value = 1;
+        }
+        else if(input.value > 50) {
+          input.value = 50;
         }
         updateCartTotal();
         updateLocalStorage();
@@ -360,6 +364,7 @@
         }
         cartIndicator(-1);
       }
+      updateCartTotal();
     }
 
     function removeFocus() {
