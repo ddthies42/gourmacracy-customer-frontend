@@ -77,7 +77,7 @@
             visibleMenu +=
                 '<div class="menu-item" style="width: 95%"> \n' +
                 '   <p><b>'+sortedMenu[category][menuItem].itemName+
-                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price+'&emsp;&emsp;';
+                '<span style="float: right;"> $'+sortedMenu[category][menuItem].price.toFixed(2)+'&emsp;&emsp;';
                 for(let i =0; i < 5; i++) {
                   if(average > 0) {
                     visibleMenu += '<i class="bi bi-star-fill"></i>';
@@ -86,6 +86,7 @@
                     visibleMenu += '<i class="bi bi-star"></i>';
                   }
                 }
+            visibleMenu += ' <span style="color: grey;">('+sortedMenu[category][menuItem].numRatings+' ratings)</span>';
             visibleMenu +=
                 '   </span></b></p>\n' +
                 '   <p>'+sortedMenu[category][menuItem].description+'\n'+
