@@ -30,7 +30,7 @@
     <div style="display: none; text-align: center;" class="col-md-8" id="ratingCompleted">
         <h2 style="margin: 30px;">Thank you!</h2>
         <div style="margin-bottom: 75px;" class="jumbotron"><h4>Your reviews have been submitted!</h4></div>
-        <button class="gourmacracy-button rate-order-button" type="button" onclick="goToPage()">Return to Menu</button>
+        <button class="gourmacracy-button rate-order-button" type="button" onclick="returnHome()">Return to Menu</button>
     </div>
 </div>
 <!-- nav-bar -->
@@ -88,6 +88,12 @@
       }
     }
 
+    function returnHome() {
+      localStorage.setItem('cart', [""]);
+      let parameter = new URLSearchParams();
+      location.href = "menu.html";
+    }
+
     function goToLogout() {
       if(confirm("Are you sure? This will clear your cart and you won't be able to rate your order!")) {
         localStorage.setItem('cart', [""]);
@@ -123,14 +129,37 @@
 
     function submitReview() {
       // rebuild data from cart: no duplicate IDs
-      var cartItemContainer = document.getElementsByClassName('cart-items')[0]
-      var cartRows = cartItemContainer.getElementsByClassName('menu-item')
+      var cartItemContainer = document.getElementsByClassName('cart-items')[0];
+      var cartRows = cartItemContainer.getElementsByClassName('menu-item');
 
+      // rebuild data from future items as well: no duplicate IDs
+      var futureItemContainer = document.getElementsByClassName('future-items')[0];
+      var futureRows = futureItemContainer.getElementsByClassName('menu-item');
+
+      // Check for then submit any cart item reviews
       for (var l = 0; l < cartRows.length; l++) {
-          var cartRow = cartRows[l]
+          var cartRow = cartRows[l];
           var id = cartRow.getElementsByClassName('hidden-id')[0].innerText;
           var rating = cartRow.getElementsByClassName('hidden-rating')[0].value;
           var comment = cartRow.getElementsByClassName('hidden-comment')[0].value;
+
+          if(rating > 0 && rating < 6) {
+            // submit to rating with ID
+            sendRating(id, rating);
+          }
+
+          if(comment.length > 1) {
+            // submit to comment with ID
+            sendComment(id, comment);
+          }
+      }
+
+      // Check for them submit any future item reviews
+      for (var k = 0; k < futureRows.length; k++) {
+          var futureRow = futureRows[k];
+          var id = futureRow.getElementsByClassName('hidden-id')[0].innerText;
+          var rating = futureRow.getElementsByClassName('hidden-rating')[0].value;
+          var comment = futureRow.getElementsByClassName('hidden-comment')[0].value;
 
           if(rating > 0 && rating < 6) {
             // submit to rating with ID
@@ -203,7 +232,7 @@
             '<span hidden class="hidden-id">'+data["_id"]+'</span>\n' +
             '   <div class="cart-quantity cart-column">\n'+
             '      <p><b>'+data["itemName"]+
-            '      <span style="float: right;"> $'+data["price"]+'&emsp;&emsp;' +
+            '      <span style="float: right;"> $'+data["price"].toFixed(2)+'&emsp;&emsp;' +
             '      </span>\n' +
             '      <span style="margin-left: 10px;" class="badge bg-secondary rounded-pill cart-quantity-input">1</span></b></p>\n' +
             '   </div>\n'+
@@ -236,7 +265,7 @@
             '<span hidden class="hidden-id">'+data["_id"]+'</span>\n' +
             '   <div class="cart-quantity cart-column">\n'+
             '      <p><b>'+data["itemName"]+
-            '      <span style="float: right;"> $'+data["price"]+'&emsp;&emsp;' +
+            '      <span style="float: right;"> $'+data["price"].toFixed(2)+'&emsp;&emsp;' +
             '      </span></b></p>\n' +
             '   </div>\n'+
             '<p>'+data["description"]+'</p>\n' +
